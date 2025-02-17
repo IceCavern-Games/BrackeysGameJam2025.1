@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering.RenderGraphModule;
+using UnityEngine.Rendering.RenderGraphModule.Util;
 
 public class ShadingRenderPassFeature : ScriptableRendererFeature
 {
@@ -22,13 +23,13 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         // Pass Resources
         private Material _material;
         private ShadingSettings _settings;
-        private RenderTextureDescriptor _outputTexture;
+        private RenderTextureDescriptor _rtDescriptor;
         
         public CustomShadingRenderPass(Material material, ShadingSettings settings)
         {
             _material = material;
             _settings = settings;
-            _outputTexture = new RenderTextureDescriptor(Screen.width, Screen.height, RenderTextureFormat.Default, 0);
+            _rtDescriptor = new RenderTextureDescriptor(Screen.width, Screen.height, RenderTextureFormat.Default, 0);
         }
         
         // This class stores the data needed by the RenderGraph pass.
@@ -50,6 +51,13 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
         {
             const string passName = "ShadePass";
+            
+            // Make use of frameData to access resources and camera data through the dedicated containers.
+            UniversalResourceData resourceData = frameData.Get<UniversalResourceData>();
+            UniversalCameraData cameraData = frameData.Get<UniversalCameraData>();
+            TextureHandle dst =
+                UniversalRenderer.CreateRenderGraphTexture(renderGraph, _rtDescriptor, "_FinalColor", false);
+            TextureHandle cameraColor = resourceData.activeColorTexture;
 
             // This adds a raster render pass to the graph, specifying the name and the data type that will be passed to the ExecutePass function.
             using (var builder = renderGraph.AddRasterRenderPass<PassData>(passName, out var passData))
@@ -57,25 +65,22 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
                 // Use this scope to set the required inputs and outputs of the pass and to
                 // setup the passData with the required properties needed at pass execution time.
 
-                // Make use of frameData to access resources and camera data through the dedicated containers.
-                UniversalResourceData resourceData = frameData.Get<UniversalResourceData>();
-                UniversalCameraData cameraData = frameData.Get<UniversalCameraData>();
-                TextureHandle cameraColor = resourceData.activeColorTexture;
-                
                 passData._cameraColor = cameraColor;
                 
-
                 // Setup pass inputs and outputs through the builder interface.
                 // Eg:
                 // builder.UseTexture(sourceTexture);
                 // TextureHandle destination = UniversalRenderer.CreateRenderGraphTexture(renderGraph, cameraData.cameraTargetDescriptor, "Destination Texture", false);
                 
                 // This sets the render target of the pass to the active color texture. Change it to your own render target as needed.
-                builder.SetRenderAttachment(resourceData.activeColorTexture, 0);
+                builder.SetRenderAttachment(dst, 0);
 
                 // Assigns the ExecutePass function to the render pass delegate. This will be called by the render graph when executing the pass.
                 builder.SetRenderFunc((PassData data, RasterGraphContext context) => ExecutePass(data, context));
             }
+
+            RenderGraphUtils.BlitMaterialParameters blitParams = new (dst, cameraColor, _material, 1);
+            renderGraph.AddBlitPass(blitParams, "Copy to Color");
         }
 
         // NOTE: This method is part of the compatibility rendering path, please use the Render Graph API above instead.
@@ -123,7 +128,8 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
         if (m_ScriptablePass == null) return;
-        
+
+        if (renderingData.cameraData.camera.cameraType != CameraType.Game) return;
         renderer.EnqueuePass(m_ScriptablePass);
     }
 }

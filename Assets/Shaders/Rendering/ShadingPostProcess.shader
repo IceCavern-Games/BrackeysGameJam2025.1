@@ -5,6 +5,8 @@
     #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
     #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
 
+    float3 grayscaleDot = float3(0.2126729, 0.7151522, 0.0721750);
+    
     ENDHLSL
     
     SubShader
@@ -28,7 +30,27 @@
 
             float4 Frag(Varyings input) : SV_TARGET
             {
-                return float4(1, 0, 0, 1);
+                float4 camColor = SAMPLE_TEXTURE2D(_BlitTexture, sampler_LinearClamp, input.texcoord);
+                float luma = dot(camColor.rgb, float3(0.2126729, 0.7151522, 0.0721750));
+
+                return float4(luma.xxx, 1);
+            }
+
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "Copy to Color"
+            
+            HLSLPROGRAM
+
+            #pragma vertex Vert
+            #pragma fragment Frag
+
+            float4 Frag(Varyings input) : SV_TARGET
+            {
+                return SAMPLE_TEXTURE2D(_BlitTexture, sampler_LinearClamp, input.texcoord);
             }
 
             ENDHLSL
