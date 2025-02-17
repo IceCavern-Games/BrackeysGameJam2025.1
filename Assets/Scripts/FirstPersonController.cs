@@ -53,7 +53,6 @@ public class FirstPersonController : MonoBehaviour
     private float _rotationVelocity;
     private float _verticalVelocity;
     private float _terminalVelocity = 53.0f;
-    private bool _canInteract = true;
 
     // timeout deltatime
     private float _jumpTimeoutDelta;
@@ -214,7 +213,7 @@ public class FirstPersonController : MonoBehaviour
                 _jumpTimeoutDelta -= Time.deltaTime;
             }
 
-            _canInteract = true;
+            _interactionDetector.CanInteract = true;
         }
         else
         {
@@ -230,7 +229,7 @@ public class FirstPersonController : MonoBehaviour
             // if we are not grounded, do not jump
             _input.jump = false;
 
-            _canInteract = false;
+            _interactionDetector.CanInteract = false;
         }
 
         // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
@@ -242,7 +241,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void Interact()
     {
-        if (_interactionDetector.CurrentInteractable != null && _canInteract && _input.interact)
+        if (_interactionDetector.CurrentInteractable != null && _interactionDetector.CanInteract && _input.interact)
             _interactionDetector.CurrentInteractable.Interact(gameObject);
 
         _input.interact = false;
