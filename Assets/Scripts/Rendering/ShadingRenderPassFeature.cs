@@ -1,10 +1,9 @@
-using UnityEngine;
 using System;
-using TMPro;
+using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering.RenderGraphModule;
 using UnityEngine.Rendering.RenderGraphModule.Util;
+using UnityEngine.Rendering.Universal;
 
 public class ShadingRenderPassFeature : ScriptableRendererFeature
 {
@@ -23,7 +22,7 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
 
     [SerializeField] private ShadingSettings _settings;
     [SerializeField] private Shader _shader;
-    
+
     class CustomShadingRenderPass : ScriptableRenderPass
     {
         // Shader Properties
@@ -36,19 +35,18 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         private static readonly int _DitherTextureId = Shader.PropertyToID("_DitherTexture");
         private static readonly int _DitherTextureSizeId = Shader.PropertyToID("_DitherTextureSize");
 
-        
         // Pass Resources
         private Material _material;
         private ShadingSettings _settings;
         private RenderTextureDescriptor _rtDescriptor;
-        
+
         public CustomShadingRenderPass(Material material, ShadingSettings settings)
         {
             _material = material;
             _settings = settings;
             _rtDescriptor = new RenderTextureDescriptor(Screen.width, Screen.height, RenderTextureFormat.Default, 0);
         }
-        
+
         // This class stores the data needed by the RenderGraph pass.
         // It is passed as a parameter to the delegate function that executes the RenderGraph pass.
         private class PassData
@@ -68,10 +66,10 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
             _material.SetFloat(_DepthDistanceModulationId, _settings.DepthDistanceModulation);
             _material.SetFloat(_DepthModulationPowerId, _settings.DepthModulationPower);
             _material.SetFloat(_DitherSizeId, _settings.DitherSize);
-            
+
             _material.SetTexture(_DitherTextureId, data._ditherTexture);
             _material.SetVector(_DitherTextureSizeId, data._ditherTextureSize);
-            
+
             Blitter.BlitTexture(context.cmd, data._cameraColor, new Vector4(1, 1, 0, 0), _material, 0);
         }
 
@@ -80,7 +78,7 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
         {
             const string passName = "ShadePass";
-            
+
             // Make use of frameData to access resources and camera data through the dedicated containers.
             UniversalResourceData resourceData = frameData.Get<UniversalResourceData>();
             UniversalCameraData cameraData = frameData.Get<UniversalCameraData>();
@@ -93,9 +91,8 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
             {
                 // Use this scope to set the required inputs and outputs of the pass and to
                 // setup the passData with the required properties needed at pass execution time.
-
                 passData._cameraColor = cameraColor;
-                
+
                 // Setup pass inputs and outputs through the builder interface.
                 // Eg:
                 // builder.UseTexture(sourceTexture);
@@ -108,7 +105,7 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
                     passData._ditherTexture = ditherTexture;
                     passData._ditherTextureSize = new Vector4(_settings.DitherTexture.width, _settings.DitherTexture.width, 0.0f, 0.0f);
                 }
-                
+
                 // This sets the render target of the pass to the active color texture. Change it to your own render target as needed.
                 builder.SetRenderAttachment(dst, 0);
 
@@ -116,7 +113,7 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
                 builder.SetRenderFunc((PassData data, RasterGraphContext context) => ExecutePass(data, context));
             }
 
-            RenderGraphUtils.BlitMaterialParameters blitParams = new (dst, cameraColor, _material, 1);
+            RenderGraphUtils.BlitMaterialParameters blitParams = new(dst, cameraColor, _material, 1);
             renderGraph.AddBlitPass(blitParams, "Copy to Color");
         }
 
@@ -126,6 +123,7 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         // When empty this render pass will render to the active camera render target.
         // You should never call CommandBuffer.SetRenderTarget. Instead call <c>ConfigureTarget</c> and <c>ConfigureClear</c>.
         // The render pipeline will ensure target setup and clearing happens in a performant manner.
+        [Obsolete]
         public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
         {
         }
@@ -135,6 +133,7 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         // Use <c>ScriptableRenderContext</c> to issue drawing commands or execute command buffers
         // https://docs.unity3d.com/ScriptReference/Rendering.ScriptableRenderContext.html
         // You don't have to call ScriptableRenderContext.submit, the render pipeline will call it at specific points in the pipeline.
+        [Obsolete]
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
         }
@@ -154,10 +153,11 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         if (_shader == null) return;
 
         Material material = new Material(_shader);
-        m_ScriptablePass = new CustomShadingRenderPass(material, _settings);
-
-        // Configures where the render pass should be injected.
-        m_ScriptablePass.renderPassEvent = RenderPassEvent.AfterRenderingOpaques;
+        m_ScriptablePass = new CustomShadingRenderPass(material, _settings)
+        {
+            // Configures where the render pass should be injected.
+            renderPassEvent = RenderPassEvent.AfterRenderingOpaques
+        };
     }
 
     // Here you can inject one or multiple render passes in the renderer.

@@ -1,27 +1,38 @@
 using Reflex.Attributes;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerPickup))]
 public class InteractionDetector : MonoBehaviour
 {
-    [Inject] private readonly UIManager _uiManager;
-
     public bool CanInteract { get; set; } = true;
     public Interactable CurrentInteractable { get; private set; }
+
+    [Inject] private readonly UIManager _uiManager;
 
     [SerializeField] private float _detectionRange = 1.0f;
     [SerializeField] private float _detectionRadius = 0.5f;
     [SerializeField] private float _height = 1.0f;
     [SerializeField] private LayerMask _detectionLayer;
 
+    private PlayerPickup _pickup;
+
+    private void Awake()
+    {
+        _pickup = GetComponent<PlayerPickup>();
+    }
+
     public void DetectInteractable()
     {
         if (Camera.main == null) return;
 
         Vector3 cameraForward = Camera.main.transform.forward;
-        Vector3 detectionOrigin = transform.position + Vector3.up * _height + cameraForward * _detectionRange;
+        Vector3 capsuleStart = transform.position + Vector3.up * _height;
+        Vector3 capsuleEnd = capsuleStart + cameraForward * _detectionRange;
 
-        Collider[] results = Physics.OverlapSphere(detectionOrigin, _detectionRadius, _detectionLayer);
+        if (_pickup.HeldObject != null)
+            return;
 
+        Collider[] results = Physics.OverlapCapsule(capsuleStart, capsuleEnd, _detectionRadius, _detectionLayer);
         Interactable firstInteractable = null;
 
         // Iterate through results to find the first valid interactable
@@ -50,6 +61,16 @@ public class InteractionDetector : MonoBehaviour
         }
     }
 
+    public void SetHeldObject(PickupInteractable pickup)
+    {
+        CurrentInteractable = pickup;
+
+        if (pickup != null)
+            _uiManager.Gameplay.SetInteractPrompt("Drop");
+        else
+            _uiManager.Gameplay.HideInteractPrompt();
+    }
+
     private void ClearCurrentInteractable()
     {
         CurrentInteractable = null;
@@ -61,11 +82,10 @@ public class InteractionDetector : MonoBehaviour
 
         Gizmos.color = CurrentInteractable != null ? Color.green : Color.blue;
 
-        // Use the camera's forward direction instead of the player's forward direction
         Vector3 cameraForward = Camera.main.transform.forward;
-        Vector3 center = transform.position + Vector3.up * _height + cameraForward * _detectionRange;
+        Vector3 capsuleStart = transform.position + Vector3.up * _height;
+        Vector3 capsuleEnd = capsuleStart + cameraForward * _detectionRange;
 
-        Gizmos.DrawWireSphere(center, _detectionRadius);
+        GizmoExtensions.DrawWireCapsule(capsuleStart, capsuleEnd, _detectionRadius);
     }
-
 }
