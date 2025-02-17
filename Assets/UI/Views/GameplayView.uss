@@ -12,7 +12,7 @@
     color: rgb(255, 255, 255);
     font-size: 32px;
     text-shadow: 1px 1px 3.2px rgba(0, 0, 0, 0.68);
-    top: 145px;
+    top: 165px;
     -unity-font-style: bold;
     -unity-text-align: middle-center;
     -unity-text-outline-color: rgb(0, 0, 0);

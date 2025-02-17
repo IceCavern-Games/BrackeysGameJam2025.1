@@ -1,0 +1,11 @@
+﻿title: Test
+tags:
+---
+<<if visited_count("Test") < 2>>
+Wow, we've got dialogue again!
+Should have all of our <b>neat</b> <color="blue">doodads</color> and <i>whistles</i>!
+<<else>>
+Please stop calling.
+This is an emergency number.
+<<endif>>
+===

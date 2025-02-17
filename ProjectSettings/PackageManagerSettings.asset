@@ -34,6 +34,7 @@ MonoBehaviour:
     - com.gustavopsantos.reflex
     - com.eflatun.scenereference
     - com.wooshii.hierarchydecorator
+    - dev.yarnspinner
     m_IsDefault: 0
     m_Capabilities: 0
     m_ConfigSource: 4
@@ -42,6 +43,6 @@ MonoBehaviour:
   m_RegistryInfoDraft:
     m_Modified: 0
     m_ErrorMessage: 
-    m_UserModificationsInstanceId: -888
-    m_OriginalInstanceId: -890
+    m_UserModificationsInstanceId: -868
+    m_OriginalInstanceId: -872
   m_LoadAssets: 0
