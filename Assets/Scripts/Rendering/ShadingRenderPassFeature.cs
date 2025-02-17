@@ -20,6 +20,9 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
     
     class CustomShadingRenderPass : ScriptableRenderPass
     {
+        // Shader Properties
+        private static readonly int _whiteCutoffId = Shader.PropertyToID("_WhiteCutoff");
+        
         // Pass Resources
         private Material _material;
         private ShadingSettings _settings;
@@ -43,6 +46,7 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         // It is used to execute draw commands.
         private void ExecutePass(PassData data, RasterGraphContext context)
         {
+            _material.SetFloat(_whiteCutoffId, _settings.WhiteCutoff);
             Blitter.BlitTexture(context.cmd, data._cameraColor, new Vector4(1, 1, 0, 0), _material, 0);
         }
 
