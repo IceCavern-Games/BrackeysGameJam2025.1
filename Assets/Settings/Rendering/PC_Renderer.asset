@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d712c1ae1a117084cbfbdd4f0bb3da75, type: 3}
   m_Name: ShadingRenderPassFeature
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   _settings:
     WhiteCutoff: 0.306
     NormalThreshold: 0.7
