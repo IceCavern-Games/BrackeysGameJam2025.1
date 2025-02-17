@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
 public class FirstPersonController : MonoBehaviour
@@ -54,16 +53,17 @@ public class FirstPersonController : MonoBehaviour
     private float _rotationVelocity;
     private float _verticalVelocity;
     private float _terminalVelocity = 53.0f;
+    private bool _canInteract = true;
 
     // timeout deltatime
     private float _jumpTimeoutDelta;
     private float _fallTimeoutDelta;
 
-
     private PlayerInput _playerInput;
     private CharacterController _controller;
     private PlayerInputReader _input;
     private GameObject _mainCamera;
+    private InteractionDetector _interactionDetector;
 
     private const float _threshold = 0.01f;
 
@@ -89,6 +89,7 @@ public class FirstPersonController : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         _input = GetComponent<PlayerInputReader>();
         _playerInput = GetComponent<PlayerInput>();
+        _interactionDetector = GetComponent<InteractionDetector>();
 
         // reset our timeouts on start
         _jumpTimeoutDelta = JumpTimeout;
@@ -97,9 +98,13 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+        if (_interactionDetector != null)
+            _interactionDetector.DetectInteractable();
+
         JumpAndGravity();
         GroundedCheck();
         Move();
+        Interact();
     }
 
     private void LateUpdate()
@@ -208,6 +213,8 @@ public class FirstPersonController : MonoBehaviour
             {
                 _jumpTimeoutDelta -= Time.deltaTime;
             }
+
+            _canInteract = true;
         }
         else
         {
@@ -222,6 +229,8 @@ public class FirstPersonController : MonoBehaviour
 
             // if we are not grounded, do not jump
             _input.jump = false;
+
+            _canInteract = false;
         }
 
         // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
@@ -229,6 +238,14 @@ public class FirstPersonController : MonoBehaviour
         {
             _verticalVelocity += Gravity * Time.deltaTime;
         }
+    }
+
+    private void Interact()
+    {
+        if (_interactionDetector.CurrentInteractable != null && _canInteract && _input.interact)
+            _interactionDetector.CurrentInteractable.Interact(gameObject);
+
+        _input.interact = false;
     }
 
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)

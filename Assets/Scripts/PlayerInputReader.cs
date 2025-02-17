@@ -9,6 +9,7 @@ public class PlayerInputReader : MonoBehaviour
     public Vector2 look;
     public bool jump;
     public bool sprint;
+    public bool interact;
 
     [Header("Movement Settings")]
     public bool analogMovement;
@@ -40,6 +41,11 @@ public class PlayerInputReader : MonoBehaviour
         SprintInput(value.isPressed);
     }
 
+    public void OnInteract(InputValue value)
+    {
+        InteractInput(value.isPressed);
+    }
+
     public void MoveInput(Vector2 newMoveDirection)
     {
         move = newMoveDirection;
@@ -58,6 +64,11 @@ public class PlayerInputReader : MonoBehaviour
     public void SprintInput(bool newSprintState)
     {
         sprint = newSprintState;
+    }
+
+    public void InteractInput(bool newInteractState)
+    {
+        interact = newInteractState;
     }
 
     private void OnApplicationFocus(bool hasFocus)
