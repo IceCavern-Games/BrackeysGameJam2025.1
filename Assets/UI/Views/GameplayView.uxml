@@ -1,0 +1,8 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Views/GameplayView.uss?fileID=7433441132597879392&amp;guid=29e4abec63adc4f7291dddb6b07c4b68&amp;type=3#GameplayView" />
+    <engine:VisualElement name="gameplay-view">
+        <engine:VisualElement name="interact-prompt">
+            <engine:Label text="Interact" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
