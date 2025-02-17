@@ -5,6 +5,7 @@ public class InteractionDetector : MonoBehaviour
 {
     [Inject] private readonly UIManager _uiManager;
 
+    public bool CanInteract { get; set; } = true;
     public Interactable CurrentInteractable { get; private set; }
 
     [SerializeField] private float _detectionRange = 1.0f;

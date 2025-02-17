@@ -1,0 +1,12 @@
+#dialogue-view {
+    flex-grow: 1;
+}
+
+#dialogue-view DialogueBox {
+    top: 500px;
+    flex-grow: 0;
+    height: 26.6666%;
+    margin: 0 auto 0 auto;
+    max-width: 100%;
+    width: 80%;
+}

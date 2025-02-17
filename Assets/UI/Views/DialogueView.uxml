@@ -1,0 +1,5 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="DialogueBox" src="project://database/Assets/UI/Components/DialogueBox/DialogueBox.uxml?fileID=9197481963319205126&amp;guid=6fe7fa5e741de4ec88bf90dfa45a576d&amp;type=3#DialogueBox" />
+    <Style src="project://database/Assets/UI/Views/DialogueView.uss?fileID=7433441132597879392&amp;guid=9235d7bc1b93349d483d2cf7407e4b10&amp;type=3#DialogueView" />
+    <engine:Instance template="DialogueBox" name="dialogue-view" />
+</engine:UXML>

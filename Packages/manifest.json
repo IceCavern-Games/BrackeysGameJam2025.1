@@ -20,6 +20,7 @@
     "com.unity.ugui": "2.0.0",
     "com.unity.visualscripting": "1.9.4",
     "com.wooshii.hierarchydecorator": "0.10.1",
+    "dev.yarnspinner.unity": "2.5.1",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
@@ -60,7 +61,8 @@
       "scopes": [
         "com.gustavopsantos.reflex",
         "com.eflatun.scenereference",
-        "com.wooshii.hierarchydecorator"
+        "com.wooshii.hierarchydecorator",
+        "dev.yarnspinner"
       ],
       "overrideBuiltIns": false
     }
