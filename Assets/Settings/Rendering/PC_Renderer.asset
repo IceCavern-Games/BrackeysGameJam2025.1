@@ -68,7 +68,10 @@ MonoBehaviour:
   m_Active: 1
   _settings:
     WhiteCutoff: 0.516
-    BlackCutoff: 0.3
+    NormalThreshold: 0.7
+    DepthThreshold: 1
+    DepthDistanceModulation: 4.11
+    DepthModulationPower: 2.8
   _shader: {fileID: 4800000, guid: e65adbaa5e654988925afc403a3b8f4e, type: 3}
 --- !u!114 &7833122117494664109
 MonoBehaviour:

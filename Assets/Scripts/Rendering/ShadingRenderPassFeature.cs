@@ -12,7 +12,10 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
     public class ShadingSettings
     {
         [Range(0, 1)] public float WhiteCutoff = 0.8f;
-        [Range(0, 1)] public float BlackCutoff = 0.3f;
+        [Range(0, 2)] public float NormalThreshold = 0.0f;
+        [Range(0, 1)] public float DepthThreshold = 0.0f;
+        public float DepthDistanceModulation = 1.0f;
+        public float DepthModulationPower = 1.0f;
     }
 
     [SerializeField] private ShadingSettings _settings;
@@ -22,6 +25,11 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
     {
         // Shader Properties
         private static readonly int _whiteCutoffId = Shader.PropertyToID("_WhiteCutoff");
+        private static readonly int _NormalThresholdId = Shader.PropertyToID("_NormalThreshold");
+        private static readonly int _DepthThresholdId = Shader.PropertyToID("_DepthThreshold");
+        private static readonly int _DepthDistanceModulationId = Shader.PropertyToID("_DepthDistanceModulation");
+        private static readonly int _DepthModulationPowerId = Shader.PropertyToID("_DepthModulationPower");
+
         
         // Pass Resources
         private Material _material;
@@ -47,6 +55,11 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         private void ExecutePass(PassData data, RasterGraphContext context)
         {
             _material.SetFloat(_whiteCutoffId, _settings.WhiteCutoff);
+            _material.SetFloat(_NormalThresholdId, _settings.NormalThreshold);
+            _material.SetFloat(_DepthThresholdId, _settings.DepthThreshold);
+            _material.SetFloat(_DepthDistanceModulationId, _settings.DepthDistanceModulation);
+            _material.SetFloat(_DepthModulationPowerId, _settings.DepthModulationPower);
+            
             Blitter.BlitTexture(context.cmd, data._cameraColor, new Vector4(1, 1, 0, 0), _material, 0);
         }
 
