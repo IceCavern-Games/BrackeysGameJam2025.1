@@ -17,22 +17,22 @@
         4.0 / 17.0, 12.0 / 17.0,  2.0 / 17.0, 10.0 / 17.0,
         16.0 / 17.0,  8.0 / 17.0, 14.0 / 17.0,  6.0 / 17.0
     };
-    
+
     float4 GetZBufferParam()
     {
         float n = _ProjectionParams.y;
         float f = _ProjectionParams.z;
         float oneOverF = _ProjectionParams.w;
-        
+
         #if UNITY_REVERSED_Z
-            return float4(f/n - 1, 1, 1/n - oneOverF, oneOverF);       
+            return float4(f/n - 1, 1, 1/n - oneOverF, oneOverF);
         #else
             return float4(1 - f/n, f/n, 1/f - 1/n, 1/n);
         #endif
     }
-    
+
     ENDHLSL
-    
+
     SubShader
     {
         Tags
@@ -42,14 +42,14 @@
         }
         LOD 100
         ZWrite Off Cull Off
-        
+
         Pass
         {
             Name "ShadePass"
-            
+
             HLSLPROGRAM
 
-            #pragma vertex Vert
+            #pragma vertex VertWithView
             #pragma fragment Frag
 
             float _WhiteCutoff;
@@ -61,7 +61,7 @@
 
             sampler2D _DitherTexture;
             float4 _DitherTextureSize;
-            
+
 
             struct VaryingsWithView
             {
@@ -78,7 +78,7 @@
                 samples[1] = SampleSceneNormals(uv + float2(offset.x, -offset.y), sampler_PointClamp);
                 samples[2] = SampleSceneNormals(uv + float2(-offset.x, offset.y), sampler_PointClamp);
                 samples[3] = SampleSceneNormals(uv + offset, sampler_PointClamp);
-        
+
                 float3 horizontal = samples[0] * RobertsCrossX[0];
                 horizontal += samples[3] * RobertsCrossX[3];
 
@@ -95,7 +95,7 @@
                 samples[1] = SampleSceneDepth(uv + float2(offset.x, -offset.y));
                 samples[2] = SampleSceneDepth(uv + float2(-offset.x, offset.y));
                 samples[3] = SampleSceneDepth(uv + offset);
-        
+
                 float horizontal = samples[0] * RobertsCrossX[0];
                 horizontal += samples[3] * RobertsCrossX[3];
 
@@ -103,7 +103,7 @@
                 vertical += samples[1] * RobertsCrossY[1];
 
                 depth = Linear01Depth(max(max(max(samples[0], samples[1]), samples[2]), samples[3]), GetZBufferParam());
-                
+
                 return sqrt(dot(horizontal, horizontal) + dot(vertical, vertical));
             }
 
@@ -141,13 +141,13 @@
 
                 output.viewDir = mul(unity_CameraInvProjection, pos.xyzz).xyz;
                 output.viewDir.x *= -1;
-                output.viewDir = mul(unity_CameraToWorld, output.viewDir.xyz);
+                output.viewDir = mul(unity_CameraToWorld, output.viewDir).xyz;
                 output.positionCS = pos;
                 output.texcoord   = DYNAMIC_SCALING_APPLY_SCALEBIAS(uv);
 
                 return output;
             }
-            
+
             float4 Frag(VaryingsWithView input) : SV_TARGET
             {
                 // do edge detection
@@ -162,7 +162,7 @@
                 edgeColor.r = CalculateEdge(input.texcoord, offsetNormal) > _NormalThreshold ? 1 : 0;
                 edgeColor.g = CalculateEdgeDepth(input.texcoord, offsetDepth, depth) > _DepthThreshold ? 1 : 0;
                 edgeColor.b = edgeColor.r > 0 || edgeColor.g > 0 ? 1 : 0;
-                
+
                 float4 camColor = SAMPLE_TEXTURE2D(_BlitTexture, sampler_LinearClamp, input.texcoord);
                 float luma = dot(camColor.rgb, float3(0.2126729, 0.7151522, 0.0721750));
                 // dither cam color
@@ -170,10 +170,10 @@
                 float3 ditherTex = TriplanarMapping(_DitherTexture, SampleSceneNormals(input.texcoord.xy), worldPos, _DitherSize, 1);
                 //float3 ditherTex = tex2D(_DitherTexture, worldPos.xy * _DitherSize /* * _ScreenParams.xy*/ / _DitherTextureSize.xy);
                 float4 dithered = float4(luma.xxx * ditherTex, 1);
-                
+
                 float output = step(_WhiteCutoff, edgeColor.b) + step(_WhiteCutoff, dithered / (1 - luma));
-                
-                
+
+
                 return float4(output.xxx, 1);
             }
 
@@ -183,7 +183,7 @@
         Pass
         {
             Name "Copy to Color"
-            
+
             HLSLPROGRAM
 
             #pragma vertex Vert
