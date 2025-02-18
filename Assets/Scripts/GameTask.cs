@@ -11,8 +11,10 @@ public class GameTask : ScriptableObject
 
     private bool _isActive;
     private bool _isComplete;
-    
 
+    public string TaskName => _name;
+    public string TaskDescription => _description;
+    
     public bool CheckTask()
     {
         return FetchTarget.IsPositionInside(FetchObject.transform.position);

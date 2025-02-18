@@ -177,7 +177,6 @@
                 if (edge > 0)
                     return float4(edge.xxx, 1);
                 
-                
                 return float4(ditheredFinal.xxx * camColor.rgb, 1);
             }
 
