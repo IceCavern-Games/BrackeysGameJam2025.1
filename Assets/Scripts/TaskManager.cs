@@ -17,7 +17,7 @@ public class TaskManager : MonoBehaviour
     {
         _clock = new Timer(90, false);
         _currentTaskIndex = 0;
-        _tasks[_currentTaskIndex].SetTaskActive(true);
+        _tasks[_currentTaskIndex].StartTask();
         _uiManager.Gameplay.SetTaskBox(_tasks[_currentTaskIndex]);
     }
     
@@ -30,7 +30,7 @@ public class TaskManager : MonoBehaviour
 
         if (_tasks[_currentTaskIndex].CheckTask())
         {
-            _tasks[_currentTaskIndex].SetTaskActive(false);
+            _tasks[_currentTaskIndex].FinishTask();
             _currentTaskIndex++;
             
 
@@ -41,7 +41,7 @@ public class TaskManager : MonoBehaviour
             }
             else
             {
-                _tasks[_currentTaskIndex].SetTaskActive(true);
+                _tasks[_currentTaskIndex].StartTask();
                 _uiManager.Gameplay.SetTaskBox(_tasks[_currentTaskIndex]);
             }
         }

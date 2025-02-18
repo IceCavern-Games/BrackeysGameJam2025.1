@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FetchTarget : MonoBehaviour
 {
-    [SerializeField] private GameTask _gameTask;
+    [SerializeField] private FetchTask _gameTask;
 
     private Collider _collider;
     private MeshRenderer _meshRenderer;

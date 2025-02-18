@@ -1,28 +1,28 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Task", menuName = "Scriptable Objects/Task")]
-public class GameTask : ScriptableObject
+public abstract class GameTask : ScriptableObject
 {
-    [SerializeField] private string _name;
-    [SerializeField] private string _description;
-    [HideInInspector] public FetchObject FetchObject;
-    [HideInInspector] public FetchTarget FetchTarget;
+    [SerializeField] protected string _name;
+    [SerializeField] protected string _description;
 
-    private bool _isActive;
-    private bool _isComplete;
+
+    protected bool _isActive;
+    protected bool _isComplete = true;
 
     public string TaskName => _name;
     public string TaskDescription => _description;
-    
-    public bool CheckTask()
+
+    public virtual bool CheckTask() { return false; }
+
+    public virtual void StartTask()
     {
-        return FetchTarget.IsPositionInside(FetchObject.transform.position);
+        _isActive = true;
     }
 
-    public void SetTaskActive(bool active)
+    public virtual void FinishTask()
     {
-        _isActive = active;
-        FetchTarget.SetEnabled(active);
+        _isActive = false;
+        _isComplete = true;
     }
 }
