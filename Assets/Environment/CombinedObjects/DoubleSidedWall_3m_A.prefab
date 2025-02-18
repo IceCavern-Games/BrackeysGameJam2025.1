@@ -45,6 +45,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_3m_A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1718229891699152, guid: ffd84ed5789294d47ac95d8054ac98b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4233851531927038, guid: ffd84ed5789294d47ac95d8054ac98b5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3
@@ -85,6 +89,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23576459500075878, guid: ffd84ed5789294d47ac95d8054ac98b5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23576459500075878, guid: ffd84ed5789294d47ac95d8054ac98b5, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ea53b0b9495dc8644b69895a758b4f2c, type: 2}
+    - target: {fileID: 1678497783427222432, guid: ffd84ed5789294d47ac95d8054ac98b5, type: 3}
+      propertyPath: _paintDrawShader
+      value: 
+      objectReference: {fileID: 4800000, guid: c91b86e2b3f54187bc3b22f2e16e7b0b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -106,6 +122,10 @@ PrefabInstance:
     - target: {fileID: 1718229891699152, guid: ffd84ed5789294d47ac95d8054ac98b5, type: 3}
       propertyPath: m_Name
       value: Wall_3m_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718229891699152, guid: ffd84ed5789294d47ac95d8054ac98b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4233851531927038, guid: ffd84ed5789294d47ac95d8054ac98b5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -147,6 +167,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23576459500075878, guid: ffd84ed5789294d47ac95d8054ac98b5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23576459500075878, guid: ffd84ed5789294d47ac95d8054ac98b5, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ea53b0b9495dc8644b69895a758b4f2c, type: 2}
+    - target: {fileID: 1678497783427222432, guid: ffd84ed5789294d47ac95d8054ac98b5, type: 3}
+      propertyPath: _paintDrawShader
+      value: 
+      objectReference: {fileID: 4800000, guid: c91b86e2b3f54187bc3b22f2e16e7b0b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
