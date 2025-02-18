@@ -16,7 +16,6 @@ public class Paintable : MonoBehaviour
     
     private Material _baseMaterial;
     private Material _paintableMaterial;
-    private Camera _mainCamera;
     private CommandBuffer _commandBuffer;
     private Texture _baseTexture;
 
@@ -26,7 +25,6 @@ public class Paintable : MonoBehaviour
     
     private void Start()
     {
-        _mainCamera = Camera.main;
         _baseMaterial = GetComponent<Renderer>().material;
         _baseTexture = _baseMaterial.mainTexture;
 
