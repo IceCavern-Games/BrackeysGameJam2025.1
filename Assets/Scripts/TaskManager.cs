@@ -4,4 +4,39 @@ using UnityEngine;
 public class TaskManager : MonoBehaviour
 {
     [SerializeField] private List<GameTask> _tasks;
+
+    private int _currentTaskIndex;
+    private Timer _clock;
+
+    private bool _allTasksDone = false;
+
+    private void Start()
+    {
+        _clock = new Timer(90, false);
+        _currentTaskIndex = 0;
+        _tasks[_currentTaskIndex].SetTaskActive(true);
+    }
+    
+    private void Update()
+    {
+        if (_allTasksDone)
+            return;
+        
+        _clock.Tick(Time.deltaTime);
+
+        if (_tasks[_currentTaskIndex].CheckTask())
+        {
+            _tasks[_currentTaskIndex].SetTaskActive(false);
+            _currentTaskIndex++;
+
+            if (_currentTaskIndex >= _tasks.Count)
+            {
+                _allTasksDone = true;
+            }
+            else
+            {
+                _tasks[_currentTaskIndex].SetTaskActive(true);
+            }
+        }
+    }
 }
