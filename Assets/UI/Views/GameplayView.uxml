@@ -1,8 +1,15 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="Task" src="project://database/Assets/UI/Components/Task/Task.uxml?fileID=9197481963319205126&amp;guid=470f82f7979a23441b790b6ea335ac98&amp;type=3#Task" />
     <Style src="project://database/Assets/UI/Views/GameplayView.uss?fileID=7433441132597879392&amp;guid=29e4abec63adc4f7291dddb6b07c4b68&amp;type=3#GameplayView" />
     <engine:VisualElement name="gameplay-view">
         <engine:VisualElement name="interact-prompt">
             <engine:Label text="Interact" />
+        </engine:VisualElement>
+        <engine:VisualElement name="task-container">
+            <engine:Instance template="Task" />
+        </engine:VisualElement>
+        <engine:VisualElement name="clock-container" class="clock-container">
+            <engine:Label text="Label" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
