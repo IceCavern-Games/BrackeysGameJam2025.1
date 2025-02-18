@@ -3,26 +3,34 @@ using UnityEngine;
 
 public abstract class GameTask : ScriptableObject
 {
+    public enum TaskStatus
+    {
+        Inactive,
+        InProgress,
+        Completed,
+        Failed
+    }
+    
     [SerializeField] protected string _name;
     [SerializeField] protected string _description;
-
-
-    protected bool _isActive;
-    protected bool _isComplete = true;
+    [SerializeField] protected int _deadline;
+    
+    protected TaskStatus _status = TaskStatus.Inactive;
 
     public string TaskName => _name;
     public string TaskDescription => _description;
+    public int Deadline => _deadline;
+    public TaskStatus Status => _status;
 
-    public virtual bool CheckTask() { return false; }
+    public virtual TaskStatus CheckTask(float time) { return TaskStatus.Inactive; }
 
     public virtual void StartTask()
     {
-        _isActive = true;
+        _status = TaskStatus.InProgress;
     }
 
-    public virtual void FinishTask()
+    public virtual void FinishTask(bool isSuccess)
     {
-        _isActive = false;
-        _isComplete = true;
+        _status = isSuccess ? TaskStatus.Completed : TaskStatus.Failed;
     }
 }

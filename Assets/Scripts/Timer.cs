@@ -7,6 +7,8 @@ public class Timer
 
     public bool IsActive { get; private set; } = false;
     public float Time { get; private set; }
+    
+    public float ElapsedTime { get; private set; }
 
     private readonly float _initialTimeInSeconds;
 
@@ -23,6 +25,7 @@ public class Timer
     public void Reset()
     {
         Time = _initialTimeInSeconds;
+        ElapsedTime = 0;
     }
 
     /// <summary>
@@ -50,6 +53,7 @@ public class Timer
             return;
 
         Time = Mathf.Max(Time - delta, 0.0f);
+        ElapsedTime += delta;
 
         if (Time == 0.0f)
         {

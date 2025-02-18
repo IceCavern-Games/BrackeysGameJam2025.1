@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Can you do it?
   _description: Bring the can upstairs.
+  _deadline: 60
   FetchObject: {fileID: 0}
   FetchTarget: {fileID: 0}

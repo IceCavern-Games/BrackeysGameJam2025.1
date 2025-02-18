@@ -5,8 +5,11 @@
         <engine:VisualElement name="interact-prompt">
             <engine:Label text="Interact" />
         </engine:VisualElement>
-        <engine:VisualElement name="task-container" style="flex-grow: 1; width: 100%; height: 100%; position: absolute;">
+        <engine:VisualElement name="task-container">
             <engine:Instance template="Task" />
+        </engine:VisualElement>
+        <engine:VisualElement name="clock-container" class="clock-container">
+            <engine:Label text="Label" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

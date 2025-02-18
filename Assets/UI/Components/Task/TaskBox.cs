@@ -24,6 +24,8 @@ public partial class TaskBox : VisualElement
 
     private readonly Label _taskName;
     private readonly Label _taskDescription;
+    private readonly Label _taskDeadline;
+    private readonly Label _failedLabel;
 
     #endregion
 
@@ -32,9 +34,15 @@ public partial class TaskBox : VisualElement
         _taskName = new Label { name = "TaskBox__taskName" };
         Add(_taskName);
 
-        _taskDescription = new Label { name = "TaskBox__taskDescription" };
-        
+        _taskDescription = new Label { name = "TaskBox__taskDescription" }; 
         Add(_taskDescription);
+        
+        _taskDeadline = new Label { name = "TaskBox__taskDeadline" };
+        Add(_taskDeadline);
+        
+        _failedLabel = new Label { name = "TaskBox__taskFailed" };
+        _failedLabel.text = "FAILED";
+        Add(_failedLabel);
     }
 
     public void SetTaskName(string text)

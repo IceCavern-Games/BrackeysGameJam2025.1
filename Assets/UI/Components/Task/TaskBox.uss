@@ -15,3 +15,8 @@ TaskBox #TaskBox__taskName {
 TaskBox #TaskBox__taskDescription {
     font-size: 24px;
 }
+
+TaskBox #TaskBox__taskFailed {
+    font-size: 24px;
+    color: red;
+}

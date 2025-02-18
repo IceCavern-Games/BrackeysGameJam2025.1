@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Can 2 Electric Boogaloo
   _description: No way...
+  _deadline: 75
   FetchObject: {fileID: 0}
   FetchTarget: {fileID: 0}

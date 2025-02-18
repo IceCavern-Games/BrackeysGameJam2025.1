@@ -6,9 +6,14 @@ public class FetchTask : GameTask
     [HideInInspector] public FetchObject FetchObject;
     [HideInInspector] public FetchTarget FetchTarget;
     
-    public override bool CheckTask()
+    public override TaskStatus CheckTask(float time)
     {
-        return FetchTarget.IsPositionInside(FetchObject.transform.position);
+        if (time > _deadline)
+            FinishTask(false);
+        else if (FetchTarget.IsPositionInside(FetchObject.transform.position))
+            FinishTask(true);
+
+        return _status;
     }
     
     public override void StartTask()
@@ -17,9 +22,9 @@ public class FetchTask : GameTask
         FetchTarget.SetEnabled(true);
     }
 
-    public override void FinishTask()
+    public override void FinishTask(bool isSuccess)
     {
-        base.FinishTask();
+        base.FinishTask(isSuccess);
         FetchTarget.SetEnabled(false);
     }
 }
