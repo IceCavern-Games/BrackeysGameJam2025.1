@@ -254,6 +254,8 @@ public class FirstPersonController : MonoBehaviour
     {
         if (_input.paint)
             _playerPaint.Paint();
+        else if (_input.erase)
+            _playerPaint.Erase();
     }
 
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)

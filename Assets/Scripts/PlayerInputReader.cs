@@ -11,6 +11,7 @@ public class PlayerInputReader : MonoBehaviour
     public bool sprint;
     public bool interact;
     public bool paint;
+    public bool erase;
 
     [Header("Movement Settings")]
     public bool analogMovement;
@@ -52,6 +53,11 @@ public class PlayerInputReader : MonoBehaviour
         PaintInput(value.isPressed);
     }
 
+    public void OnErase(InputValue value)
+    {
+        EraseInput(value.isPressed);
+    }
+
     public void MoveInput(Vector2 newMoveDirection)
     {
         move = newMoveDirection;
@@ -80,6 +86,11 @@ public class PlayerInputReader : MonoBehaviour
     public void PaintInput(bool newPaintState)
     {
         paint = newPaintState;
+    }
+    
+    public void EraseInput(bool newEraseState)
+    {
+        erase = newEraseState;
     }
 
     private void OnApplicationFocus(bool hasFocus)
