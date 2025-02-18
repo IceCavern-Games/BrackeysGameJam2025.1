@@ -290,8 +290,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameTasks:
-  - {fileID: 11400000, guid: e2da01a7e18525348a288cfe8902e656, type: 2}
-  - {fileID: 11400000, guid: 95a517a9bcb3e024499c6956d7d3fe8c, type: 2}
+  - {fileID: 11400000, guid: 175caf0d845e9c34c8e2e3971c675eca, type: 2}
+  - {fileID: 11400000, guid: c1c5a3030360dac41a5461c799a8ed0e, type: 2}
 --- !u!1001 &784005424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -949,8 +949,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tasks:
-  - {fileID: 11400000, guid: e2da01a7e18525348a288cfe8902e656, type: 2}
-  - {fileID: 11400000, guid: 95a517a9bcb3e024499c6956d7d3fe8c, type: 2}
+  - {fileID: 11400000, guid: 175caf0d845e9c34c8e2e3971c675eca, type: 2}
+  - {fileID: 11400000, guid: c1c5a3030360dac41a5461c799a8ed0e, type: 2}
 --- !u!4 &1499012082
 Transform:
   m_ObjectHideFlags: 0
@@ -1086,7 +1086,7 @@ PrefabInstance:
     - target: {fileID: 381304607451094118, guid: f7fa9a38c470e2b4798dad722279a25a, type: 3}
       propertyPath: _gameTask
       value: 
-      objectReference: {fileID: 11400000, guid: 95a517a9bcb3e024499c6956d7d3fe8c, type: 2}
+      objectReference: {fileID: 11400000, guid: c1c5a3030360dac41a5461c799a8ed0e, type: 2}
     - target: {fileID: 7640646753279478955, guid: f7fa9a38c470e2b4798dad722279a25a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.2381315
@@ -1516,7 +1516,7 @@ PrefabInstance:
     - target: {fileID: 381304607451094118, guid: f7fa9a38c470e2b4798dad722279a25a, type: 3}
       propertyPath: _gameTask
       value: 
-      objectReference: {fileID: 11400000, guid: e2da01a7e18525348a288cfe8902e656, type: 2}
+      objectReference: {fileID: 11400000, guid: 175caf0d845e9c34c8e2e3971c675eca, type: 2}
     - target: {fileID: 7640646753279478955, guid: f7fa9a38c470e2b4798dad722279a25a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.966
