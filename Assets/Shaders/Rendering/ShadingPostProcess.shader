@@ -170,11 +170,15 @@
                 float3 ditherTex = TriplanarMapping(_DitherTexture, SampleSceneNormals(input.texcoord.xy), worldPos, _DitherSize, 1);
                 //float3 ditherTex = tex2D(_DitherTexture, worldPos.xy * _DitherSize /* * _ScreenParams.xy*/ / _DitherTextureSize.xy);
                 float4 dithered = float4(luma.xxx * ditherTex, 1);
+                
+                float edge = step(_WhiteCutoff, edgeColor.b);
+                float ditheredFinal = step(_WhiteCutoff, dithered / (1 - luma));
 
-                float output = step(_WhiteCutoff, edgeColor.b) + step(_WhiteCutoff, dithered / (1 - luma));
-
-
-                return float4(output.xxx, 1);
+                if (edge > 0)
+                    return float4(edge.xxx, 1);
+                
+                
+                return float4(ditheredFinal.xxx * camColor.rgb, 1);
             }
 
             ENDHLSL

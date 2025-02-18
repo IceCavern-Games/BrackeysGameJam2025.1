@@ -66,7 +66,7 @@
             float4 Frag(Varyings input) : SV_TARGET
             {
                 if (_PrepareUV > 0)
-                    return float4(0, 0, 1, 1);
+                    return float4(0, 0, 0, 1);
 
                 float4 color = tex2D(_MaskTex, input.texcoord);
                 float f = mask(input.worldPos, _PainterPosition, _Radius, _Hardness);

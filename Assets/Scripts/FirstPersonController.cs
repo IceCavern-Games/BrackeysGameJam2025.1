@@ -63,6 +63,7 @@ public class FirstPersonController : MonoBehaviour
     private PlayerInputReader _input;
     private GameObject _mainCamera;
     private InteractionDetector _interactionDetector;
+    private PlayerPaint _playerPaint;
 
     private const float _threshold = 0.01f;
 
@@ -89,6 +90,7 @@ public class FirstPersonController : MonoBehaviour
         _input = GetComponent<PlayerInputReader>();
         _playerInput = GetComponent<PlayerInput>();
         _interactionDetector = GetComponent<InteractionDetector>();
+        _playerPaint = GetComponent<PlayerPaint>();
 
         // reset our timeouts on start
         _jumpTimeoutDelta = JumpTimeout;
@@ -104,6 +106,7 @@ public class FirstPersonController : MonoBehaviour
         GroundedCheck();
         Move();
         Interact();
+        Paint();
     }
 
     private void LateUpdate()
@@ -245,6 +248,12 @@ public class FirstPersonController : MonoBehaviour
             _interactionDetector.CurrentInteractable.Interact(gameObject);
 
         _input.interact = false;
+    }
+
+    private void Paint()
+    {
+        if (_input.paint)
+            _playerPaint.Paint();
     }
 
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)

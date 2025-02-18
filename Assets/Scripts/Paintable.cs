@@ -5,7 +5,6 @@ using UnityEngine.Serialization;
 public class Paintable : MonoBehaviour
 {
     [SerializeField] private Shader _paintableShader;
-    [SerializeField] private Material _preview;
     
     private static readonly int _prepareUVId = Shader.PropertyToID("_PrepareUV");
     private static readonly int _textureId = Shader.PropertyToID("_MaskTex");
@@ -31,8 +30,8 @@ public class Paintable : MonoBehaviour
         _baseMaterial = GetComponent<Renderer>().material;
         _baseTexture = _baseMaterial.mainTexture;
 
-        int width = _baseTexture ? _baseTexture.width : 1024;
-        int height = _baseTexture ? _baseTexture.height : 1024;
+        int width = _baseTexture ? _baseTexture.width : 512;
+        int height = _baseTexture ? _baseTexture.height : 512;
         
         _mask = new RenderTexture(width, height, 0, RenderTextureFormat.Default);
         _support = new RenderTexture(width, height, 0, RenderTextureFormat.Default);
@@ -49,7 +48,8 @@ public class Paintable : MonoBehaviour
         Graphics.ExecuteCommandBuffer(_commandBuffer);
         _commandBuffer.Clear();
         
-        _preview.SetTexture("_BaseMap", _support);
+        //_preview.SetTexture("_BaseMap", _support);
+        _baseMaterial.SetTexture("_MaskTexture", _support);
     }
 
     public void Paint(Vector3 position, float radius, float hardness, float strength, Color color)
