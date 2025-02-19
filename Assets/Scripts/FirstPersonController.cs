@@ -253,9 +253,6 @@ public class FirstPersonController : MonoBehaviour
 
     private void Paint()
     {
-        if (_input.erase)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        
         if (_input.paint)
             _playerPaint.Paint();
         else if (_input.erase)
