@@ -10,6 +10,7 @@ public class GameServiceProvider : MonoBehaviour, IInstaller
     [SerializeField] private GameObject _inputManagerPrefab;
     [SerializeField] private GameObject _taskManagerPrefab;
     [SerializeField] private GameObject _uiManagerPrefab;
+    [SerializeField] private GameObject _paintTextureManagerPrefab;
 
     public void InstallBindings(ContainerBuilder builder)
     {
@@ -20,6 +21,7 @@ public class GameServiceProvider : MonoBehaviour, IInstaller
         GameObject inputManagerInstance = Instantiate(_inputManagerPrefab);
         GameObject taskManagerInstance = Instantiate(_taskManagerPrefab);
         GameObject uiManagerInstance = Instantiate(_uiManagerPrefab);
+        GameObject paintTextureManagerInstance = Instantiate(_paintTextureManagerPrefab);
 
         // Bind Global Managers.
         builder.AddSingleton(audioManagerInstance.GetComponent<AudioManager>(), typeof(AudioManager));
@@ -28,6 +30,7 @@ public class GameServiceProvider : MonoBehaviour, IInstaller
         builder.AddSingleton(inputManagerInstance.GetComponent<InputManager>(), typeof(InputManager));
         builder.AddSingleton(taskManagerInstance.GetComponent<TaskManager>(), typeof(TaskManager));
         builder.AddSingleton(uiManagerInstance.GetComponent<UIManager>(), typeof(UIManager));
+        builder.AddSingleton(paintTextureManagerInstance.GetComponent<PaintTextureManager>(), typeof(PaintTextureManager));
 
         // Build the container.
         var container = builder.Build();
@@ -39,5 +42,6 @@ public class GameServiceProvider : MonoBehaviour, IInstaller
         GameObjectInjector.InjectRecursive(inputManagerInstance, container);
         GameObjectInjector.InjectRecursive(taskManagerInstance, container);
         GameObjectInjector.InjectRecursive(uiManagerInstance, container);
+        GameObjectInjector.InjectRecursive(paintTextureManagerInstance, container);
     }
 }

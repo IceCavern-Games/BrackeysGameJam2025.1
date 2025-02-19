@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23576459500075878}
   - component: {fileID: 64247493734417104}
   - component: {fileID: 1678497783427222432}
+  - component: {fileID: 1699467728683607367}
   m_Layer: 0
   m_Name: Wall_3m_A
   m_TagString: Untagged
@@ -124,3 +125,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _paintableShader: {fileID: 4800000, guid: b8d76d4e901440b2974df15a4e39dcd5, type: 3}
+--- !u!114 &1699467728683607367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718229891699152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42b1610e8bafec4cb8e7e32612a7f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 
