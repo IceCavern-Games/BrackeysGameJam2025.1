@@ -11,5 +11,8 @@
         <engine:VisualElement name="clock-container" class="clock-container">
             <engine:Label text="Label" />
         </engine:VisualElement>
+        <engine:VisualElement name="cursor-container">
+            <engine:Label text="+" />
+        </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
