@@ -26,6 +26,11 @@
     position: absolute;
 }
 
+#task-container ListView {
+    flex-grow: 1;
+    width: 505px;
+}
+
 #clock-container {
     flex-grow: 1;
     width: 100%;

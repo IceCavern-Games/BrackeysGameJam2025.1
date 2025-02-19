@@ -6,7 +6,9 @@ public class GameServiceProvider : MonoBehaviour, IInstaller
 {
     [SerializeField] private GameObject _audioManagerPrefab;
     [SerializeField] private GameObject _dialogueManagerPrefab;
+    [SerializeField] private GameObject _gameManagerPrefab;
     [SerializeField] private GameObject _inputManagerPrefab;
+    [SerializeField] private GameObject _taskManagerPrefab;
     [SerializeField] private GameObject _uiManagerPrefab;
 
     public void InstallBindings(ContainerBuilder builder)
@@ -14,13 +16,17 @@ public class GameServiceProvider : MonoBehaviour, IInstaller
         // Instantiate Global Manager.
         GameObject audioManagerInstance = Instantiate(_audioManagerPrefab);
         GameObject dialogueManagerInstance = Instantiate(_dialogueManagerPrefab);
+        GameObject gameManagerInstance = Instantiate(_gameManagerPrefab);
         GameObject inputManagerInstance = Instantiate(_inputManagerPrefab);
+        GameObject taskManagerInstance = Instantiate(_taskManagerPrefab);
         GameObject uiManagerInstance = Instantiate(_uiManagerPrefab);
 
         // Bind Global Managers.
         builder.AddSingleton(audioManagerInstance.GetComponent<AudioManager>(), typeof(AudioManager));
         builder.AddSingleton(dialogueManagerInstance.GetComponent<DialogueManager>(), typeof(DialogueManager));
+        builder.AddSingleton(gameManagerInstance.GetComponent<GameManager>(), typeof(GameManager));
         builder.AddSingleton(inputManagerInstance.GetComponent<InputManager>(), typeof(InputManager));
+        builder.AddSingleton(taskManagerInstance.GetComponent<TaskManager>(), typeof(TaskManager));
         builder.AddSingleton(uiManagerInstance.GetComponent<UIManager>(), typeof(UIManager));
 
         // Build the container.
@@ -29,7 +35,9 @@ public class GameServiceProvider : MonoBehaviour, IInstaller
         // Inject any of the top-level manager that have co-dependencies.
         GameObjectInjector.InjectRecursive(audioManagerInstance, container);
         GameObjectInjector.InjectRecursive(dialogueManagerInstance, container);
+        GameObjectInjector.InjectRecursive(gameManagerInstance, container);
         GameObjectInjector.InjectRecursive(inputManagerInstance, container);
+        GameObjectInjector.InjectRecursive(taskManagerInstance, container);
         GameObjectInjector.InjectRecursive(uiManagerInstance, container);
     }
 }

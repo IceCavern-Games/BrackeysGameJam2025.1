@@ -4,61 +4,72 @@ using UnityEngine;
 
 public class TaskManager : MonoBehaviour
 {
-    [Inject] private readonly UIManager _uiManager;
-    
-    [SerializeField] private List<GameTask> _tasks;
+    public List<GameTask> ActiveTasks { get; private set; } = new();
 
-    private int _currentTaskIndex;
-    private Timer _clock;
-    
-    private bool _allTasksDone = false;
+    [Inject] private readonly GameManager _gameManager;
 
-    private void Start()
+    [SerializeField] private List<GameTask> _taskData;
+
+    private readonly List<GameTask> _tasks = new();
+
+    private void Awake()
     {
-        _clock = new Timer(480, true);
-        _currentTaskIndex = 0;
-        _tasks[_currentTaskIndex].StartTask();
-        _uiManager.Gameplay.SetTaskBox(_tasks[_currentTaskIndex]);
+        DontDestroyOnLoad(gameObject);
+        SubscribeToTaskEvents();
     }
-    
+
     private void Update()
     {
-        if (_allTasksDone)
-            return;
-        
-        _clock.Tick(Time.deltaTime);
-        CalculateClockTime();
-        
-        GameTask.TaskStatus status = _tasks[_currentTaskIndex].CheckTask(_clock.ElapsedTime);
-
-        if (status == GameTask.TaskStatus.Completed)
+        if (_tasks != null)
         {
-            _currentTaskIndex++;
-            
-            if (_currentTaskIndex >= _tasks.Count)
-            {
-                _allTasksDone = true;
-                _uiManager.Gameplay.HideTaskContainer();
-            }
-            else
-            {
-                _tasks[_currentTaskIndex].StartTask();
-                _uiManager.Gameplay.SetTaskBox(_tasks[_currentTaskIndex]);
-            }
-        }
-        else if (status == GameTask.TaskStatus.Failed)
-        {
-            _uiManager.Gameplay.SetTaskBox(_tasks[_currentTaskIndex]);   
+            foreach (var task in _tasks)
+                task.Check(_gameManager.Clock.ElapsedTime);
         }
     }
 
-    private void CalculateClockTime()
+    private void OnTaskFailed(GameTask task)
     {
-        int clockHours = 9 + (int)_clock.ElapsedTime / 60;
-        int clockMinutes = (int)_clock.ElapsedTime % 60;
-        
-        _uiManager.Gameplay.SetClockText($"{clockHours.ToString("D2")}:{clockMinutes.ToString("D2")}");
+        Debug.Log($"Task \"{task.Name}\" failed!");
+
+        task.Failed -= OnTaskFailed;
+        task.Finished -= OnTaskFinished;
+
+        ActiveTasks.Remove(task);
+        _gameManager.EndAttempt();
     }
-    
-    
+
+    private void OnTaskFinished(GameTask task)
+    {
+        Debug.Log($"Task \"{task.Name}\" finished!");
+
+        task.Failed -= OnTaskFailed;
+        task.Finished -= OnTaskFinished;
+
+        // Finished task out of order. End the game. 😈
+        if (ActiveTasks[0] != task)
+            _gameManager.EndAttempt();
+
+        ActiveTasks.Remove(task);
+    }
+
+    private void OnTaskStarted(GameTask task)
+    {
+        Debug.Log($"Task \"{task.Name}\" started!");
+
+        task.Started -= OnTaskStarted;
+        task.Failed += OnTaskFailed;
+        task.Finished += OnTaskFinished;
+
+        ActiveTasks.Add(task);
+    }
+
+    private void SubscribeToTaskEvents()
+    {
+        foreach (var taskData in _taskData)
+        {
+            var task = taskData.Clone();
+            _tasks.Add(task);
+            task.Started += OnTaskStarted;
+        }
+    }
 }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public abstract class GameTask : ScriptableObject
+public class GameTask : ScriptableObject
 {
     public enum TaskStatus
     {
@@ -10,27 +10,42 @@ public abstract class GameTask : ScriptableObject
         Completed,
         Failed
     }
-    
-    [SerializeField] protected string _name;
-    [SerializeField] protected string _description;
-    [SerializeField] protected int _deadline;
-    
-    protected TaskStatus _status = TaskStatus.Inactive;
 
-    public string TaskName => _name;
-    public string TaskDescription => _description;
-    public int Deadline => _deadline;
-    public TaskStatus Status => _status;
+    public event Action<GameTask> Failed;
+    public event Action<GameTask> Finished;
+    public event Action<GameTask> Started;
 
-    public virtual TaskStatus CheckTask(float time) { return TaskStatus.Inactive; }
+    public string Name;
+    public string Description;
+    public int Deadline;
+    public int StartsAt;
 
-    public virtual void StartTask()
+    public TaskStatus Status { get; private set; } = TaskStatus.Inactive;
+
+    public virtual void Check(float time)
     {
-        _status = TaskStatus.InProgress;
+        if (Status == TaskStatus.Inactive && time >= StartsAt)
+            Start();
+
+        if (Status == TaskStatus.InProgress && time >= Deadline)
+            Fail();
     }
 
-    public virtual void FinishTask(bool isSuccess)
+    public virtual void Start()
     {
-        _status = isSuccess ? TaskStatus.Completed : TaskStatus.Failed;
+        Started?.Invoke(this);
+        Status = TaskStatus.InProgress;
+    }
+
+    public virtual void Fail()
+    {
+        Failed?.Invoke(this);
+        Status = TaskStatus.Failed;
+    }
+
+    public virtual void Finish()
+    {
+        Finished?.Invoke(this);
+        Status = TaskStatus.Completed;
     }
 }

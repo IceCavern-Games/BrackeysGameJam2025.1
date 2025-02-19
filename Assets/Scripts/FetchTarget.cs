@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class FetchTarget : MonoBehaviour
@@ -7,15 +6,15 @@ public class FetchTarget : MonoBehaviour
 
     private Collider _collider;
     private MeshRenderer _meshRenderer;
-    
+
     private void OnEnable()
     {
-        if (_gameTask)
+        if (_gameTask != null)
             _gameTask.FetchTarget = this;
-        
+
         _collider = GetComponent<Collider>();
         _meshRenderer = GetComponent<MeshRenderer>();
-        
+
         SetEnabled(false);
     }
 

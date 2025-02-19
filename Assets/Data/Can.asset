@@ -11,9 +11,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a010233834fb53f4bac856a7e202a271, type: 3}
   m_Name: Can
-  m_EditorClassIdentifier: 
-  _name: Can you do it?
-  _description: Bring the can upstairs.
-  _deadline: 60
-  FetchObject: {fileID: 0}
-  FetchTarget: {fileID: 0}
+  m_EditorClassIdentifier:
+  Name: Can you do it?
+  Description: Bring the can upstairs.
+  Deadline: 60
+  StartsAt: 0

@@ -5,26 +5,33 @@ public class FetchTask : GameTask
 {
     [HideInInspector] public FetchObject FetchObject;
     [HideInInspector] public FetchTarget FetchTarget;
-    
-    public override TaskStatus CheckTask(float time)
-    {
-        if (time > _deadline)
-            FinishTask(false);
-        else if (FetchTarget.IsPositionInside(FetchObject.transform.position))
-            FinishTask(true);
 
-        return _status;
-    }
-    
-    public override void StartTask()
+    public override void Check(float time)
     {
-        base.StartTask();
+        base.Check(time);
+
+        if (FetchTarget == null)
+            return;
+
+        if (FetchTarget.IsPositionInside(FetchObject.transform.position))
+            Finish();
+    }
+
+    public override void Start()
+    {
+        base.Start();
         FetchTarget.SetEnabled(true);
     }
 
-    public override void FinishTask(bool isSuccess)
+    public override void Fail()
     {
-        base.FinishTask(isSuccess);
+        base.Fail();
+        FetchTarget.SetEnabled(false);
+    }
+
+    public override void Finish()
+    {
+        base.Finish();
         FetchTarget.SetEnabled(false);
     }
 }
