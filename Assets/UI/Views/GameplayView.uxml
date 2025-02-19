@@ -10,5 +10,8 @@
         <engine:VisualElement name="clock-container" class="clock-container">
             <engine:Label text="09:00 AM" />
         </engine:VisualElement>
+        <engine:VisualElement name="cursor-container">
+            <engine:Label text="+" />
+        </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

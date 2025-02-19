@@ -49,3 +49,21 @@
     -unity-text-outline-color: rgb(0, 0, 0);
     -unity-text-outline-width: 2px;
 }
+
+#cursor-container {
+    flex-grow: 1;
+    position: absolute;
+    top: auto;
+    width: 100%;
+    height: 100%;
+}
+
+#cursor-container Label {
+    font-size: 42px;
+    -unity-text-align: middle-center;
+    width: 100%;
+    height: 100%;
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
