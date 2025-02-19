@@ -16,3 +16,4 @@ MonoBehaviour:
   Description: Bring the can upstairs.
   Deadline: 60
   StartsAt: 0
+  _followUpTask: {fileID: 11400000, guid: c1c5a3030360dac41a5461c799a8ed0e, type: 2}

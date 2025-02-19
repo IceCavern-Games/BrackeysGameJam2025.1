@@ -26,4 +26,9 @@ public class GameManager : MonoBehaviour
     {
         // @TODO
     }
+
+    public void Win()
+    {
+        Debug.Log("All tasks completed. You win!");
+    }
 }

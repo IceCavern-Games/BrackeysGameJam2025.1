@@ -11,8 +11,8 @@ public class GameTask : ScriptableObject
         Failed
     }
 
+    public event Action<GameTask> Completed;
     public event Action<GameTask> Failed;
-    public event Action<GameTask> Finished;
     public event Action<GameTask> Started;
 
     public string Name;
@@ -20,32 +20,35 @@ public class GameTask : ScriptableObject
     public int Deadline;
     public int StartsAt;
 
+    public GameTask FollowUpTask => _followUpTask;
     public TaskStatus Status { get; private set; } = TaskStatus.Inactive;
+
+    [SerializeField] private GameTask _followUpTask;
 
     public virtual void Check(float time)
     {
-        if (Status == TaskStatus.Inactive && time >= StartsAt)
+        if (Status == TaskStatus.Inactive && time >= StartsAt && StartsAt != -1)
             Start();
 
         if (Status == TaskStatus.InProgress && time >= Deadline)
             Fail();
     }
 
-    public virtual void Start()
+    public virtual void Complete()
     {
-        Started?.Invoke(this);
-        Status = TaskStatus.InProgress;
+        Status = TaskStatus.Completed;
+        Completed?.Invoke(this);
     }
 
     public virtual void Fail()
     {
-        Failed?.Invoke(this);
         Status = TaskStatus.Failed;
+        Failed?.Invoke(this);
     }
 
-    public virtual void Finish()
+    public virtual void Start()
     {
-        Finished?.Invoke(this);
-        Status = TaskStatus.Completed;
+        Status = TaskStatus.InProgress;
+        Started?.Invoke(this);
     }
 }

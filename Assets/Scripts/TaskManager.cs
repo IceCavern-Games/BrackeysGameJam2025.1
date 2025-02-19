@@ -1,16 +1,16 @@
 using Reflex.Attributes;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TaskManager : MonoBehaviour
 {
     public List<GameTask> ActiveTasks { get; private set; } = new();
+    public List<GameTask> Tasks { get; private set; } = new();
 
     [Inject] private readonly GameManager _gameManager;
 
     [SerializeField] private List<GameTask> _taskData;
-
-    private readonly List<GameTask> _tasks = new();
 
     private void Awake()
     {
@@ -20,11 +20,8 @@ public class TaskManager : MonoBehaviour
 
     private void Update()
     {
-        if (_tasks != null)
-        {
-            foreach (var task in _tasks)
-                task.Check(_gameManager.Clock.ElapsedTime);
-        }
+        foreach (var task in Tasks.ToArray())
+            task.Check(_gameManager.Clock.ElapsedTime);
     }
 
     private void OnTaskFailed(GameTask task)
@@ -32,24 +29,35 @@ public class TaskManager : MonoBehaviour
         Debug.Log($"Task \"{task.Name}\" failed!");
 
         task.Failed -= OnTaskFailed;
-        task.Finished -= OnTaskFinished;
+        task.Completed -= OnTaskCompleted;
 
         ActiveTasks.Remove(task);
         _gameManager.EndAttempt();
     }
 
-    private void OnTaskFinished(GameTask task)
+    private void OnTaskCompleted(GameTask task)
     {
-        Debug.Log($"Task \"{task.Name}\" finished!");
+        Debug.Log($"Task \"{task.Name}\" completed!");
 
         task.Failed -= OnTaskFailed;
-        task.Finished -= OnTaskFinished;
+        task.Completed -= OnTaskCompleted;
 
         // Finished task out of order. End the game. 😈
         if (ActiveTasks[0] != task)
             _gameManager.EndAttempt();
 
+        if (task.FollowUpTask != null)
+        {
+            var newTask = Tasks.Find((t) => t.Name == task.FollowUpTask.Name);
+            ActiveTasks.Insert(0, newTask);
+            newTask.Start();
+        }
+
         ActiveTasks.Remove(task);
+
+        // Check if all tasks have been completed.
+        if (Tasks.All(t => t.Status == GameTask.TaskStatus.Completed))
+            _gameManager.Win();
     }
 
     private void OnTaskStarted(GameTask task)
@@ -58,9 +66,10 @@ public class TaskManager : MonoBehaviour
 
         task.Started -= OnTaskStarted;
         task.Failed += OnTaskFailed;
-        task.Finished += OnTaskFinished;
+        task.Completed += OnTaskCompleted;
 
-        ActiveTasks.Add(task);
+        if (!ActiveTasks.Contains(task))
+            ActiveTasks.Add(task);
     }
 
     private void SubscribeToTaskEvents()
@@ -68,7 +77,7 @@ public class TaskManager : MonoBehaviour
         foreach (var taskData in _taskData)
         {
             var task = taskData.Clone();
-            _tasks.Add(task);
+            Tasks.Add(task);
             task.Started += OnTaskStarted;
         }
     }

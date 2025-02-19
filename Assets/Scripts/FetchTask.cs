@@ -3,35 +3,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FetchTask", menuName = "Tasks/FetchTask")]
 public class FetchTask : GameTask
 {
-    [HideInInspector] public FetchObject FetchObject;
-    [HideInInspector] public FetchTarget FetchTarget;
+    public FetchObject FetchObject { get; set; }
+    public FetchTarget FetchTarget { get; set; }
 
     public override void Check(float time)
     {
-        base.Check(time);
-
-        if (FetchTarget == null)
+        if (FetchObject == null || FetchTarget == null)
             return;
 
-        if (FetchTarget.IsPositionInside(FetchObject.transform.position))
-            Finish();
-    }
+        base.Check(time);
 
-    public override void Start()
-    {
-        base.Start();
-        FetchTarget.SetEnabled(true);
-    }
-
-    public override void Fail()
-    {
-        base.Fail();
-        FetchTarget.SetEnabled(false);
-    }
-
-    public override void Finish()
-    {
-        base.Finish();
-        FetchTarget.SetEnabled(false);
+        if (Status == TaskStatus.InProgress && FetchTarget.IsPositionInside(FetchObject.transform.position))
+            Complete();
     }
 }
