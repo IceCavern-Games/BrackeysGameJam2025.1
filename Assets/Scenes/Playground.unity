@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InteractionPrompt: Call 911
+  _outlineMaterial: {fileID: 2100000, guid: ff0dd0e1955d5b3429ec8757bd4ee048, type: 2}
   _converstationStartNode: Test
   _dialogueSFX: {fileID: 0}
 --- !u!1001 &156968553
@@ -147,6 +148,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7428391111227995468, guid: 35011c3735829ba4f8a00061a166c4e9, type: 3}
+      propertyPath: _outlineMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ff0dd0e1955d5b3429ec8757bd4ee048, type: 2}
     - target: {fileID: 1968352392311598, guid: 35011c3735829ba4f8a00061a166c4e9, type: 3}
       propertyPath: m_Name
       value: Can_Taurine
@@ -195,6 +200,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 23264904720089512, guid: 35011c3735829ba4f8a00061a166c4e9, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23264904720089512, guid: 35011c3735829ba4f8a00061a166c4e9, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ff0dd0e1955d5b3429ec8757bd4ee048, type: 2}
     - target: {fileID: 65285173635454616, guid: 35011c3735829ba4f8a00061a166c4e9, type: 3}
       propertyPath: m_Enabled
       value: 1
