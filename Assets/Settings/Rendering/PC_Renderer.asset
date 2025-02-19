@@ -67,7 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   _settings:
-    WhiteCutoff: 0.306
+    WhiteCutoff: 0.104
     NormalThreshold: 0.7
     DepthThreshold: 0.101
     DepthDistanceModulation: 6.85

@@ -15,17 +15,22 @@ public class Paintable : MonoBehaviour
     private static readonly int _colorId = Shader.PropertyToID("_PainterColor");
     
     private Material _baseMaterial;
+    private Material _paintDrawMaterial;
     private Material _paintableMaterial;
     private CommandBuffer _commandBuffer;
     private Texture _baseTexture;
 
     private RenderTexture _mask;
     private RenderTexture _support;
+
+    private Renderer _renderer;
     
     
     private void Start()
     {
-        _baseMaterial = GetComponent<Renderer>().material;
+        _renderer = GetComponent<Renderer>();
+        _baseMaterial = _renderer.materials[0];
+        _paintDrawMaterial = _renderer.materials[1];
         _baseTexture = _baseMaterial.mainTexture;
 
         int width = _baseTexture ? _baseTexture.width : 512;
@@ -40,14 +45,13 @@ public class Paintable : MonoBehaviour
         
         _commandBuffer.name = $"Paintable Command Buffer: {gameObject.name}";
         _commandBuffer.SetRenderTarget(_mask);
-        _commandBuffer.DrawRenderer(GetComponent<Renderer>(), _paintableMaterial, 0);
+        _commandBuffer.DrawRenderer(_renderer, _paintableMaterial, 0);
         _commandBuffer.SetRenderTarget(_support);
         _commandBuffer.Blit(_mask, _support);
         Graphics.ExecuteCommandBuffer(_commandBuffer);
         _commandBuffer.Clear();
         
-        //_preview.SetTexture("_BaseMap", _support);
-        _baseMaterial.SetTexture("_MaskTexture", _support);
+        _paintDrawMaterial.SetTexture("_MaskTexture", _support);
     }
 
     public void Paint(Vector3 position, float radius, float hardness, float strength, Color color)
@@ -61,7 +65,7 @@ public class Paintable : MonoBehaviour
         _paintableMaterial.SetTexture(_textureId, _support);
         
         _commandBuffer.SetRenderTarget(_mask);
-        _commandBuffer.DrawRenderer(GetComponent<Renderer>(), _paintableMaterial, 0);
+        _commandBuffer.DrawRenderer(_renderer, _paintableMaterial, 0);
         
         _commandBuffer.SetRenderTarget(_support);
         _commandBuffer.Blit(_mask, _support);
