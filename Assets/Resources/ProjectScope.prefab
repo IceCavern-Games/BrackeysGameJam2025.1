@@ -63,3 +63,4 @@ MonoBehaviour:
   _inputManagerPrefab: {fileID: 1414727366675225165, guid: 8cf088e09cc344ad7a6f973c4e493870, type: 3}
   _taskManagerPrefab: {fileID: 2289974368939544688, guid: 417980af773874e909197ceb42fb6a64, type: 3}
   _uiManagerPrefab: {fileID: 1720066117832891585, guid: 5e1f1d5c361914b44922ffac4add0b08, type: 3}
+  _paintTextureManagerPrefab: {fileID: 6575730570786712536, guid: 4a1483b3056bf9d4088e94a8a16daa8d, type: 3}

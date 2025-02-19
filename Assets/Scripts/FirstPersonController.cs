@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
@@ -252,6 +253,9 @@ public class FirstPersonController : MonoBehaviour
 
     private void Paint()
     {
+        if (_input.erase)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
         if (_input.paint)
             _playerPaint.Paint();
         else if (_input.erase)
