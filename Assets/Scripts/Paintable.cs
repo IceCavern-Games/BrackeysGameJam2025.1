@@ -22,6 +22,7 @@ public class Paintable : MonoBehaviour
     private CommandBuffer _commandBuffer;
 
     private PaintTextureManager.PaintTexture _paintTexture;
+    private bool _hasPaintTexture = false;
 
     private Renderer _renderer;
     private UniqueObject _uniqueObject;
@@ -33,26 +34,22 @@ public class Paintable : MonoBehaviour
         
         _paintDrawMaterial = _renderer.materials[1];
         _paintableMaterial = new Material(_paintableShader);
-        _commandBuffer = new CommandBuffer();
-
-        if (!_paintTextureManager.GetOrCreateTexture(_uniqueObject.Id, out _paintTexture))
-        {
-            _paintableMaterial.SetFloat(_prepareUVId, 1);
         
-            _commandBuffer.name = $"Paintable Command Buffer: {gameObject.name}";
-            _commandBuffer.SetRenderTarget(_paintTexture.Mask);
-            _commandBuffer.DrawRenderer(_renderer, _paintableMaterial, 0);
-            _commandBuffer.SetRenderTarget(_paintTexture.Support);
-            _commandBuffer.Blit(_paintTexture.Mask, _paintTexture.Support);
-            Graphics.ExecuteCommandBuffer(_commandBuffer);
-            _commandBuffer.Clear();
+
+        if (_paintTextureManager.GetTexture(_uniqueObject.Id, out _paintTexture))
+        {
+            _commandBuffer = new CommandBuffer();
+            _hasPaintTexture = true;
+            _paintDrawMaterial.SetTexture("_MaskTexture", _paintTexture.Support);
         }
         
-        _paintDrawMaterial.SetTexture("_MaskTexture", _paintTexture.Support);
     }
 
     public void Paint(Vector3 position, float radius, float hardness, float strength, Color color)
     {
+        if (!_hasPaintTexture)
+            InitializePaintTexture();
+        
         _paintableMaterial.SetFloat(_prepareUVId, 0);
         _paintableMaterial.SetVector(_positionId, position);
         _paintableMaterial.SetFloat(_radiusId, radius);
@@ -69,5 +66,23 @@ public class Paintable : MonoBehaviour
         
         Graphics.ExecuteCommandBuffer(_commandBuffer);
         _commandBuffer.Clear();
+    }
+
+    private void InitializePaintTexture()
+    {
+        _paintTextureManager.CreateTexture(_uniqueObject.Id, out _paintTexture);
+        
+        _paintableMaterial.SetFloat(_prepareUVId, 1);
+        _commandBuffer = new CommandBuffer();
+        _commandBuffer.name = $"Paintable Command Buffer: {gameObject.name}";
+        _commandBuffer.SetRenderTarget(_paintTexture.Mask);
+        _commandBuffer.DrawRenderer(_renderer, _paintableMaterial, 0);
+        _commandBuffer.SetRenderTarget(_paintTexture.Support);
+        _commandBuffer.Blit(_paintTexture.Mask, _paintTexture.Support);
+        Graphics.ExecuteCommandBuffer(_commandBuffer);
+        _commandBuffer.Clear();
+
+        _paintDrawMaterial.SetTexture("_MaskTexture", _paintTexture.Support);
+        _hasPaintTexture = true;
     }
 }
