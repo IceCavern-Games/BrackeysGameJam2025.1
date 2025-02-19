@@ -11,9 +11,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a010233834fb53f4bac856a7e202a271, type: 3}
   m_Name: Can2
-  m_EditorClassIdentifier: 
-  _name: Can 2 Electric Boogaloo
-  _description: No way...
-  _deadline: 75
-  FetchObject: {fileID: 0}
-  FetchTarget: {fileID: 0}
+  m_EditorClassIdentifier:
+  Name: Can 2 Electric Boogaloo
+  Description: No way...
+  Deadline: 75
+  StartsAt: -1

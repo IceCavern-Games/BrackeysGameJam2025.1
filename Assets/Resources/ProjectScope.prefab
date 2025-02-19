@@ -59,5 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioManagerPrefab: {fileID: 2165523662357830935, guid: 6ea38e8a7c8e44d13893d24df81d6fa3, type: 3}
   _dialogueManagerPrefab: {fileID: 1192670032591354966, guid: a3ebb6aa554f6427f990e8c243749622, type: 3}
+  _gameManagerPrefab: {fileID: 4915805371841572211, guid: 543ae1513ddb3493caf82945a136000d, type: 3}
   _inputManagerPrefab: {fileID: 1414727366675225165, guid: 8cf088e09cc344ad7a6f973c4e493870, type: 3}
+  _taskManagerPrefab: {fileID: 2289974368939544688, guid: 417980af773874e909197ceb42fb6a64, type: 3}
   _uiManagerPrefab: {fileID: 1720066117832891585, guid: 5e1f1d5c361914b44922ffac4add0b08, type: 3}

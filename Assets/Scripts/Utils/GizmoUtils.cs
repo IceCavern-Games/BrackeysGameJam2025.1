@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class GizmoExtensions
+public static class GizmoUtils
 {
     /// <summary>
     /// Helper method to draw a capsule in Gizmos

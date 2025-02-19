@@ -86,6 +86,6 @@ public class InteractionDetector : MonoBehaviour
         Vector3 capsuleStart = transform.position + Vector3.up * _height;
         Vector3 capsuleEnd = capsuleStart + cameraForward * _detectionRange;
 
-        GizmoExtensions.DrawWireCapsule(capsuleStart, capsuleEnd, _detectionRadius);
+        GizmoUtils.DrawWireCapsule(capsuleStart, capsuleEnd, _detectionRadius);
     }
 }
