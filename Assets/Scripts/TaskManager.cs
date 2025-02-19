@@ -15,13 +15,23 @@ public class TaskManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        SubscribeToTaskEvents();
+        Reset();
     }
 
     private void Update()
     {
+        if (!_gameManager.Clock.IsActive)
+            return;
+
         foreach (var task in Tasks.ToArray())
             task.Check(_gameManager.Clock.ElapsedTime);
+    }
+
+    public void Reset()
+    {
+        ActiveTasks.Clear();
+        Tasks.Clear();
+        SubscribeToTaskEvents();
     }
 
     private void OnTaskFailed(GameTask task)
@@ -32,7 +42,7 @@ public class TaskManager : MonoBehaviour
         task.Completed -= OnTaskCompleted;
 
         ActiveTasks.Remove(task);
-        _gameManager.EndAttempt();
+        _gameManager.Fail();
     }
 
     private void OnTaskCompleted(GameTask task)
@@ -44,7 +54,7 @@ public class TaskManager : MonoBehaviour
 
         // Finished task out of order. End the game. 😈
         if (ActiveTasks[0] != task)
-            _gameManager.EndAttempt();
+            _gameManager.Fail();
 
         if (task.FollowUpTask != null)
         {

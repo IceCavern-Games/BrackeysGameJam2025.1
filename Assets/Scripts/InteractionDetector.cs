@@ -57,7 +57,7 @@ public class InteractionDetector : MonoBehaviour
         else if (firstInteractable == null)
         {
             ClearCurrentInteractable();
-            _uiManager.Gameplay.HideInteractPrompt();
+            _uiManager.Gameplay.SetInteractPrompt(string.Empty);
         }
     }
 
@@ -65,10 +65,7 @@ public class InteractionDetector : MonoBehaviour
     {
         CurrentInteractable = pickup;
 
-        if (pickup != null)
-            _uiManager.Gameplay.SetInteractPrompt("Drop");
-        else
-            _uiManager.Gameplay.HideInteractPrompt();
+        _uiManager.Gameplay.SetInteractPrompt(pickup != null ? "Drop" : string.Empty);
     }
 
     private void ClearCurrentInteractable()

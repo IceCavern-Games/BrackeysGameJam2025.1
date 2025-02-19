@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerInputReader))]
 public class FirstPersonController : MonoBehaviour
 {
     [Header("Player")]

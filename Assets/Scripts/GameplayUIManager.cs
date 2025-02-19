@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(UIDocument))]
 public class GameplayUIManager : MonoBehaviour
 {
+    public string CurrentPrompt => _interactLabel.text;
+
     [Inject] private readonly TaskManager _taskManager;
 
     private UIDocument _document;

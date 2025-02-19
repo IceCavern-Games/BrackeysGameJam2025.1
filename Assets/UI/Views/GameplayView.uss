@@ -26,6 +26,10 @@
     position: absolute;
 }
 
+#task-container .unity-list-view__empty-label {
+    display: none;
+}
+
 #task-container ListView {
     flex-grow: 1;
     padding-left: 10px;

@@ -13,17 +13,13 @@ public class YarnInteractable : Interactable
     public override void Interact(GameObject interactor)
     {
         var detector = interactor.GetComponent<InteractionDetector>();
-        var input = interactor.GetComponent<PlayerInput>();
 
-        input.enabled = false;
         detector.CanInteract = false;
-        _uiManager.Gameplay.HideInteractPrompt();
 
         _dialogueManager.StartConversation(_converstationStartNode, () =>
         {
             _uiManager.Gameplay.SetInteractPrompt(InteractionPrompt);
             detector.CanInteract = true;
-            input.enabled = true;
         }, _dialogueSFX);
     }
 }
