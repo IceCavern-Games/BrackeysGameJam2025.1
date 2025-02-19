@@ -6,6 +6,11 @@ GameTaskElement {
     padding: 10px;
 }
 
+GameTaskElement Label {
+    margin: 0;
+    padding: 0;
+}
+
 GameTaskElement #name {
     color: rgb(0, 255, 121);
     font-size: 32px;
