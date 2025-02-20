@@ -165,6 +165,10 @@
 
                 float4 camColor = SAMPLE_TEXTURE2D(_BlitTexture, sampler_LinearClamp, input.texcoord);
                 float luma = dot(camColor.rgb, float3(0.2126729, 0.7151522, 0.0721750));
+                luma = sqrt(luma) * 10;
+                luma = floor(luma);
+                luma /= 6;
+                // return float4(luma.xxx, 1);
                 // dither cam color
                 float3 worldPos = ComputeWorldSpacePosition(input.texcoord, SampleSceneDepth(input.texcoord), UNITY_MATRIX_I_VP);
                 float3 ditherTex = TriplanarMapping(_DitherTexture, SampleSceneNormals(input.texcoord.xy), worldPos, _DitherSize, 1);
@@ -175,10 +179,10 @@
                 float ditheredFinal = step(_WhiteCutoff, dithered / (1 - luma));
 
                 if (edge > 0)
-                    return float4(edge.xxx, 1);
-                
-                
-                return float4(ditheredFinal.xxx * camColor.rgb, 1);
+                    return float4(0, 0, 0, 1);
+
+                return float4(luma.xxx, 1);
+                return float4(ditheredFinal.xxx * luma, 1);
             }
 
             ENDHLSL

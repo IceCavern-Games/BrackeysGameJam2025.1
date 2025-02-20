@@ -4,5 +4,14 @@
         <engine:VisualElement name="interact-prompt">
             <engine:Label text="Interact" />
         </engine:VisualElement>
+        <engine:VisualElement name="task-container">
+            <engine:ListView focusable="false" reorder-mode="Animated" show-bound-collection-size="false" binding-source-selection-mode="AutoAssign" item-template="project://database/Assets/UI/Components/GameTaskElement/GameTaskElement.uxml?fileID=9197481963319205126&amp;guid=470f82f7979a23441b790b6ea335ac98&amp;type=3#GameTaskElement" show-add-remove-footer="false" virtualization-method="FixedHeight" name="ListView" fixed-item-height="168" selection-type="None" style="flex-grow: 1;" />
+        </engine:VisualElement>
+        <engine:VisualElement name="clock-container" class="clock-container">
+            <engine:Label text="09:00 AM" />
+        </engine:VisualElement>
+        <engine:VisualElement name="cursor-container">
+            <engine:Label text="+" />
+        </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

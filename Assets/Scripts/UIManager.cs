@@ -1,8 +1,11 @@
+using Reflex.Attributes;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
     public GameplayUIManager Gameplay => _gameplay;
+
+    [Inject] private readonly GameManager _gameManager;
 
     [SerializeField] private GameplayUIManager _gameplay;
 
@@ -11,6 +14,11 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         Debug.Assert(_gameplay != null, "Gameplay UI Manager not set!");
+    }
+
+    private void Update()
+    {
+        _gameplay.SetClockText(_gameManager.ClockTime);
     }
 
     /// <summary>

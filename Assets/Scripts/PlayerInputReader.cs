@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerInputReader : MonoBehaviour
 {
     [Header("Character Input Values")]
@@ -87,7 +87,7 @@ public class PlayerInputReader : MonoBehaviour
     {
         paint = newPaintState;
     }
-    
+
     public void EraseInput(bool newEraseState)
     {
         erase = newEraseState;

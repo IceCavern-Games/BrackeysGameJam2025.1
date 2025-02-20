@@ -8,7 +8,7 @@ public class PickupInteractable : Interactable
     private Transform _holdPosition;
     private bool _isHeld = false;
 
-    private readonly float _correctionForce = 100.0f;
+    private readonly float _correctionForce = 200.0f;
 
     private void Awake()
     {
