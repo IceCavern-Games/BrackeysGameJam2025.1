@@ -38,10 +38,11 @@ public class GameServiceProvider : MonoBehaviour, IInstaller
         // Inject any of the top-level manager that have co-dependencies.
         GameObjectInjector.InjectRecursive(audioManagerInstance, container);
         GameObjectInjector.InjectRecursive(dialogueManagerInstance, container);
-        GameObjectInjector.InjectRecursive(gameManagerInstance, container);
         GameObjectInjector.InjectRecursive(inputManagerInstance, container);
         GameObjectInjector.InjectRecursive(taskManagerInstance, container);
         GameObjectInjector.InjectRecursive(uiManagerInstance, container);
         GameObjectInjector.InjectRecursive(paintTextureManagerInstance, container);
+
+        GameObjectInjector.InjectRecursive(gameManagerInstance, container);
     }
 }

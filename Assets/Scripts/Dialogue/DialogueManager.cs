@@ -7,7 +7,10 @@ using Yarn.Unity;
 public class DialogueManager : MonoBehaviour
 {
     [Inject] private readonly AudioManager _audioManager;
+    [Inject] private readonly GameManager _gameManager;
+    [Inject] private readonly InputManager _inputManager;
     // [Inject] private readonly SaveManager _saveManager;
+    [Inject] private readonly UIManager _uiManager;
 
     [SerializeField] private AudioClip _defaultDialogueSFX;
 
@@ -71,6 +74,8 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     public void StartConversation(string startNode, UnityAction callback = null, AudioClip dialogueSFX = null)
     {
+        Debug.Log($"Running dialogue node {startNode}");
+
         if (callback != null)
         {
             _currentConversationCallback = callback;
@@ -80,6 +85,9 @@ public class DialogueManager : MonoBehaviour
         if (dialogueSFX != null)
             _dialogueSFX = dialogueSFX;
 
+        _gameManager.Clock.Stop();
+        _uiManager.Gameplay.HideInteractPrompt();
+        _inputManager.Input.DeactivateInput();
         _dialogueRunner.StartDialogue(startNode);
     }
 
@@ -107,6 +115,12 @@ public class DialogueManager : MonoBehaviour
         //     _saveManager.Scene.SetTrigger(triggerID);
 
         _queuedTriggerActivations.Clear();
+
+        if (_uiManager.Gameplay.CurrentPrompt != string.Empty)
+            _uiManager.Gameplay.SetInteractPrompt(_uiManager.Gameplay.CurrentPrompt);
+
+        _inputManager.Input.ActivateInput();
+        _gameManager.Clock.Start();
     }
 
     private void DialogueView_CharacterTyped()
