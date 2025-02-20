@@ -1,0 +1,60 @@
+﻿title: CanStart
+tags:
+---
+Let's start by having you bring the can upstairs.
+===
+
+title: CanComplete
+tags:
+---
+Hmm...
+===
+
+title: Can2Start
+tags:
+---
+I changed my mind, can you put it back?
+===
+
+title: Can2Complete
+tags:
+---
+Good work.
+===
+
+title: ReportToManagementStart
+tags:
+---
+First off, come to management to get your first task.
+===
+
+title: ReportToManagementComplete
+tags:
+---
+Hello, nice to meet you.
+===
+
+title: SetupTheProjectorStart
+tags:
+---
+A very important meeting is about to take place in the conference room.
+Go and setup the projector.
+===
+
+title: SetupTheProjectorComplete
+tags:
+---
+Management is pleased.
+===
+
+title: ReportToManagement2Start
+tags:
+---
+Come on back to management.
+===
+
+title: ReportToManagement2Complete
+tags:
+---
+Welcome back.
+===

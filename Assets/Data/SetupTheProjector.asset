@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a010233834fb53f4bac856a7e202a271, type: 3}
+  m_Name: SetupTheProjector
+  m_EditorClassIdentifier: 
+  Name: Setup the Projector
+  Description: A very important meeting is about to start.
+  Deadline: 120
+  StartsAt: -1
+  _startDialogueNode: SetupTheProjectorStart
+  _completeDialogueNode: SetupTheProjectorComplete
+  _followUpTask: {fileID: 11400000, guid: 30e99823ab3434aa79613b5faa45d757, type: 2}
