@@ -74,8 +74,6 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     public void StartConversation(string startNode, UnityAction callback = null, AudioClip dialogueSFX = null)
     {
-        Debug.Log($"Running dialogue node {startNode}");
-
         if (callback != null)
         {
             _currentConversationCallback = callback;
@@ -88,7 +86,11 @@ public class DialogueManager : MonoBehaviour
         _gameManager.Clock.Stop();
         _uiManager.Gameplay.HideInteractPrompt();
         _inputManager.Input.DeactivateInput();
-        _dialogueRunner.StartDialogue(startNode);
+
+        StartCoroutine(CoroutineUtils.WaitOneFrame(() =>
+        {
+            _dialogueRunner.StartDialogue(startNode);
+        }));
     }
 
     /// <summary>
