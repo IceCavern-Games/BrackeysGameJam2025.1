@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public const string MUSIC_CHANNEL = "Music";
     public const string SFX_CHANNEL = "SFX";
 
+    public const string PITCH_KEY = "PitchShifter";
     public const string VOLUME_KEY = "Volume";
 
     [Header("Audio References")]
@@ -18,6 +19,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _dialogueSource;
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _sfxSource;
+
+    private readonly Dictionary<string, float> _pitchMap = new() {
+        { MUSIC_CHANNEL, 1 }
+    };
 
     private readonly Dictionary<string, float> _volumeMap = new() {
         { MASTER_CHANNEL, 0 },
@@ -31,13 +36,13 @@ public class AudioManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
-        // Cache originally configured volume values.
-        LoadMixerVolumes();
+        // Cache originally configured mixer values.
+        LoadMixerValues();
     }
 
     private void Start()
     {
-        // Re-set mixer volumes after options data has been loaded.
+        // Re-set mixer values after options data has been loaded.
         foreach (var key in _volumeMap.Keys.ToList())
             SetVolume(key, _volumeMap[key]);
     }
@@ -56,6 +61,15 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(AudioClip sound)
     {
         _sfxSource.PlayOneShot(sound);
+    }
+
+    /// <summary>
+    /// Set the pitch for a channel by percentage (0.5 to 2.0).
+    /// </summary>
+    public void SetPitch(string channelKey, float value)
+    {
+        _pitchMap[channelKey] = Mathf.Clamp(value, 0.5f, 2f);
+        _audioMixer.SetFloat($"{channelKey}{PITCH_KEY}", _pitchMap[channelKey]);
     }
 
     /// <summary>
@@ -94,8 +108,14 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// Load volume levels from the audio mixer and set the appropriate level.
     /// </summary>
-    private void LoadMixerVolumes()
+    private void LoadMixerValues()
     {
+        foreach (var key in _pitchMap.Keys.ToList())
+        {
+            _audioMixer.GetFloat($"{key}{PITCH_KEY}", out var pitch);
+            _pitchMap[key] = pitch;
+        }
+
         foreach (var key in _volumeMap.Keys.ToList())
         {
             _audioMixer.GetFloat($"{key}{VOLUME_KEY}", out var mixerVolume);
