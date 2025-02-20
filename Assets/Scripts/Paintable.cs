@@ -1,8 +1,8 @@
 using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Serialization;
 
+[RequireComponent(typeof(UniqueObject))]
 public class Paintable : MonoBehaviour
 {
     [Inject] private PaintTextureManager _paintTextureManager;
