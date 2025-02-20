@@ -2,7 +2,7 @@
 tags:
 ---
 Good morning, and welcome to your first day at Maze Corp.
-Our work is very mysterious and important.
+Our work is <b>very</b> mysterious and important.
 <i>Nothing can go wrong...</i>
 ===
 
@@ -15,5 +15,5 @@ Congratulations on completing your first day.
 title: Fail
 tags:
 ---
-I can't belive you've done this.
+I can't believe you've done this.
 ===
