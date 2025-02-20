@@ -7,6 +7,7 @@ using Yarn.Unity;
 public class DialogueManager : MonoBehaviour
 {
     [Inject] private readonly AudioManager _audioManager;
+    [Inject] private readonly GameManager _gameManager;
     [Inject] private readonly InputManager _inputManager;
     // [Inject] private readonly SaveManager _saveManager;
     [Inject] private readonly UIManager _uiManager;
@@ -84,6 +85,7 @@ public class DialogueManager : MonoBehaviour
         if (dialogueSFX != null)
             _dialogueSFX = dialogueSFX;
 
+        _gameManager.Clock.Stop();
         _uiManager.Gameplay.HideInteractPrompt();
         _inputManager.Input.DeactivateInput();
         _dialogueRunner.StartDialogue(startNode);
@@ -118,6 +120,7 @@ public class DialogueManager : MonoBehaviour
             _uiManager.Gameplay.SetInteractPrompt(_uiManager.Gameplay.CurrentPrompt);
 
         _inputManager.Input.ActivateInput();
+        _gameManager.Clock.Start();
     }
 
     private void DialogueView_CharacterTyped()
