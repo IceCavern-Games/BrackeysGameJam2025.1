@@ -13131,7 +13131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 599545453}
   m_Layer: 0
-  m_Name: '- First Floor Task Objects'
+  m_Name: '- Task Objects'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

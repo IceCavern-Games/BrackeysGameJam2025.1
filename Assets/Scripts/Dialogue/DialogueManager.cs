@@ -127,7 +127,8 @@ public class DialogueManager : MonoBehaviour
 
     private void DialogueView_CharacterTyped()
     {
-        _audioManager.PlayDialogue(_dialogueSFX);
+        if (_dialogueSFX != null)
+            _audioManager.PlayDialogue(_dialogueSFX);
     }
 
     #endregion
