@@ -20,9 +20,13 @@ public class GameTask : ScriptableObject
     public int Deadline;
     public int StartsAt;
 
+    public string CompleteDialogueNode => _completeDialogueNode;
     public GameTask FollowUpTask => _followUpTask;
+    public string StartDialogueNode => _startDialogueNode;
     public TaskStatus Status { get; private set; } = TaskStatus.Inactive;
 
+    [SerializeField] private string _startDialogueNode = string.Empty;
+    [SerializeField] private string _completeDialogueNode = string.Empty;
     [SerializeField] private GameTask _followUpTask;
 
     public virtual void Check(float time)

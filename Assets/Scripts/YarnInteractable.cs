@@ -1,6 +1,5 @@
 using Reflex.Attributes;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class YarnInteractable : Interactable
 {
@@ -18,7 +17,6 @@ public class YarnInteractable : Interactable
 
         _dialogueManager.StartConversation(_converstationStartNode, () =>
         {
-            _uiManager.Gameplay.SetInteractPrompt(InteractionPrompt);
             detector.CanInteract = true;
         }, _dialogueSFX);
     }

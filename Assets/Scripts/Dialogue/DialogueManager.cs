@@ -73,6 +73,8 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     public void StartConversation(string startNode, UnityAction callback = null, AudioClip dialogueSFX = null)
     {
+        Debug.Log($"Running dialogue node {startNode}");
+
         if (callback != null)
         {
             _currentConversationCallback = callback;

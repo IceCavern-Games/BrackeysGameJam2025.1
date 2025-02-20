@@ -8,6 +8,7 @@ public class TaskManager : MonoBehaviour
     public List<GameTask> ActiveTasks { get; private set; } = new();
     public List<GameTask> Tasks { get; private set; } = new();
 
+    [Inject] private readonly DialogueManager _dialogueManager;
     [Inject] private readonly GameManager _gameManager;
 
     [SerializeField] private List<GameTask> _taskData;
@@ -56,6 +57,28 @@ public class TaskManager : MonoBehaviour
         if (ActiveTasks[0] != task)
             _gameManager.Fail();
 
+        if (task.CompleteDialogueNode != string.Empty)
+        {
+            _dialogueManager.StartConversation(task.CompleteDialogueNode, () => { TaskComplete(task); });
+            return;
+        }
+
+        TaskComplete(task);
+    }
+
+    private void OnTaskStarted(GameTask task)
+    {
+        if (task.StartDialogueNode != string.Empty)
+        {
+            _dialogueManager.StartConversation(task.StartDialogueNode, () => { TaskStart(task); });
+            return;
+        }
+
+        TaskStart(task);
+    }
+
+    private void TaskComplete(GameTask task)
+    {
         if (task.FollowUpTask != null)
         {
             var newTask = Tasks.Find((t) => t.Name == task.FollowUpTask.Name);
@@ -70,7 +93,7 @@ public class TaskManager : MonoBehaviour
             _gameManager.Win();
     }
 
-    private void OnTaskStarted(GameTask task)
+    private void TaskStart(GameTask task)
     {
         Debug.Log($"Task \"{task.Name}\" started!");
 
