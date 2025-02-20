@@ -15,12 +15,6 @@ public class GameInitializer : MonoBehaviour
 
         // Easy way of just starting an attempt every time the scene loads.
         // @TODO: Will probably eventually make this trigger after a fade out/in or whatever.
-        StartCoroutine(WaitOneFrame(() => { _gameManager.StartAttempt(); }));
-    }
-
-    private IEnumerator WaitOneFrame(Action callback)
-    {
-        yield return null; // Waits for the next frame
-        callback();
+        StartCoroutine(CoroutineUtils.WaitOneFrame(() => { _gameManager.StartAttempt(); }));
     }
 }
