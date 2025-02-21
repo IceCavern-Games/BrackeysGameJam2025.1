@@ -1,0 +1,23 @@
+.unity-base-selector-field__input {
+    flex-direction: row;
+}
+
+.unity-base-selector-field__nextArrow,
+.unity-button.unity-base-selector-field__nextArrow {
+    background-image: var(--unity-icons-arrow_right);
+    flex-shrink: 1;
+    margin-right: 0;
+}
+
+.unity-base-selector-field__prevArrow,
+.unity-button.unity-base-selector-field__prevArrow {
+    background-image: var(--unity-icons-arrow_left);
+    flex-shrink: 1;
+    margin-left: 0;
+}
+
+.unity-base-selector-field__text,
+.unity-label.unity-base-selector-field__text {
+    flex-grow: 1;
+    -unity-text-align: middle-center;
+}

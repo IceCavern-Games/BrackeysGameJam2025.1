@@ -1,0 +1,94 @@
+.menu-screen {
+    flex-grow: 1;
+}
+
+.menu-screen-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    left: 3.5%;
+    height: 100%;
+    width: 46%;
+}
+
+.menu-screen-header {
+    display: flex;
+    height: 10%;
+    justify-content: center;
+    padding: 0 25px;
+}
+
+.menu-screen-header Label {
+    color: white;
+    font-size: 40px;
+    -unity-font-style: bold;
+}
+
+.menu-screen-content {
+    flex-grow: 1;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+.menu-screen-footer {
+    height: 15%;
+    padding: 10px 25px;
+}
+
+.menu-screen-footer Label {
+    color: white;
+    white-space: normal;
+}
+
+.menu-screen #unity-content-viewport {
+    overflow: visible;
+}
+
+.menu-screen #unity-low-button {
+    display: none;
+}
+
+.menu-screen #unity-high-button {
+    display: none;
+}
+
+.menu-screen .unity-scroller {
+    right: -33px;
+}
+
+.menu-screen #unity-slider {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    min-width: 8px;
+    width: 8px;
+}
+
+.menu-screen #unity-tracker {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.menu-screen #unity-dragger {
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 8px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    left: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.menu-screen .unity-scroller.unity-scroller--horizontal {
+    display: none;
+}
