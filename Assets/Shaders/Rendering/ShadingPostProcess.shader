@@ -52,6 +52,7 @@
             #pragma vertex VertWithView
             #pragma fragment Frag
 
+            float4 _Color;
             float _WhiteCutoff;
             float _NormalThreshold;
             float _DepthThreshold;
@@ -181,7 +182,7 @@
                 if (edge > 0)
                     return float4(0, 0, 0, 1);
 
-                return float4(luma.xxx, 1);
+                return float4(luma.xxx * _Color, 1);
                 return float4(ditheredFinal.xxx * luma, 1);
             }
 
