@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a010233834fb53f4bac856a7e202a271, type: 3}
+  m_Name: PickUpLaptop
+  m_EditorClassIdentifier: 
+  Name: Retrieve Laptop
+  Description: Bring your laptop to your workspace.
+  Deadline: 180
+  StartsAt: -1
+  _startDialogueNode: PickUpLaptopStart
+  _completeDialogueNode: PickUpLaptopEnd
+  _followUpTasks:
+  - {fileID: 11400000, guid: 084887fd54397a949a9b121d5e36fcc2, type: 2}
+  - {fileID: 11400000, guid: 2287c007a4096dd4382e6eee8a8164d4, type: 2}
+  - {fileID: 11400000, guid: 63445eec7a26a408399baf8d1e0eac22, type: 2}
