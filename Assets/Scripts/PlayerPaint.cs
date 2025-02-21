@@ -21,15 +21,15 @@ public class PlayerPaint : MonoBehaviour
 
     public void Paint()
     {
-        Draw(Color.green);
+        Draw(Color.green, _radius);
     }
 
     public void Erase()
     {
-        Draw(new Color(0, 0, 0, 0));
+        Draw(new Color(0, 0, 0, 0), _radius * 1.5f);
     }
 
-    private void Draw(Color color)
+    private void Draw(Color color, float radius)
     {
         Vector3 position = Input.mousePosition;
         Ray ray = _mainCamera.ScreenPointToRay(position);
@@ -41,7 +41,7 @@ public class PlayerPaint : MonoBehaviour
             Paintable paintable = hit.collider.GetComponent<Paintable>();
 
             if (paintable)
-                paintable.Paint(hit.point, _radius, _strength, _hardness, color);
+                paintable.Paint(hit.point, radius, _strength, _hardness, color);
         }
     }
 }
