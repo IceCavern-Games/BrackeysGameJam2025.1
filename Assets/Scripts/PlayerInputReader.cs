@@ -1,3 +1,4 @@
+using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,8 +19,10 @@ public class PlayerInputReader : MonoBehaviour
     public bool analogMovement;
 
     [Header("Mouse Cursor Settings")]
-    public bool cursorLocked = true;
     public bool cursorInputForLook = true;
+
+    [Inject] private readonly GameManager _gameManager;
+    [Inject] private readonly InputManager _input;
 
     public void OnMove(InputValue value)
     {
@@ -29,9 +32,7 @@ public class PlayerInputReader : MonoBehaviour
     public void OnLook(InputValue value)
     {
         if (cursorInputForLook)
-        {
             LookInput(value.Get<Vector2>());
-        }
     }
 
     public void OnJump(InputValue value)
@@ -106,11 +107,9 @@ public class PlayerInputReader : MonoBehaviour
 
     private void OnApplicationFocus(bool hasFocus)
     {
-        SetCursorState(cursorLocked);
-    }
+        if (_gameManager.Pause.IsOpen)
+            hasFocus = false;
 
-    private void SetCursorState(bool newState)
-    {
-        Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+        _input.SetCursorLock(hasFocus);
     }
 }

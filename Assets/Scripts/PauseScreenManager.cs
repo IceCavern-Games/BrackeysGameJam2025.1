@@ -17,6 +17,7 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
         );
 
     [Inject] private readonly GameManager _gameManager;
+    [Inject] private readonly InputManager _input;
     private OptionsManager _options;
 
     private bool _suppressNavigationCancel = false;
@@ -54,6 +55,8 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
     public void Pause()
     {
         Time.timeScale = 0f;
+        _input.Input.DeactivateInput();
+        _input.SetCursorLock(false);
         Open();
     }
 
@@ -63,6 +66,8 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
     public void Unpause()
     {
         Time.timeScale = 1f;
+        _input.SetCursorLock(true);
+        _input.Input.ActivateInput();
         Close();
     }
 
