@@ -27,5 +27,5 @@
 }
 
 .menu-item.selected {
-    color: rgb(0, 99, 255);
+    color: rgb(0, 255, 121);
 }

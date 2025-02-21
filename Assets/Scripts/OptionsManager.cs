@@ -37,6 +37,13 @@ public class OptionsManager : MonoBehaviour
             return;
         }
 
+        // Audio
+        SetMasterVolume(options.Audio.MasterVolume);
+        SetAmbienceVolume(options.Audio.AmbienceVolume);
+        SetDialogueVolume(options.Audio.DialogueVolume);
+        SetMusicVolume(options.Audio.MusicVolume);
+        SetSFXVolume(options.Audio.SFXVolume);
+
         // Video
         if (applyVideo)
         {
@@ -121,7 +128,7 @@ public class OptionsManager : MonoBehaviour
     /// </summary>
     public void SetAmbienceVolume(int value)
     {
-        Options.Audio.MasterVolume = value;
+        Options.Audio.AmbienceVolume = value;
         _audioManager.SetVolume(AudioManager.AMBIENCE_CHANNEL, value);
     }
 

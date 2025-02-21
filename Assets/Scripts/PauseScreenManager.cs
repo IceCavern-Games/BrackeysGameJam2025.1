@@ -93,6 +93,7 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
             case "pause-view-quit":
                 Unpause();
                 // _gameManager.ReturnToTitleScreen();
+                _gameManager.ExitGame();
                 break;
         }
     }
