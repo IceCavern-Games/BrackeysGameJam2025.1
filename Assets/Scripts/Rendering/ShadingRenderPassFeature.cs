@@ -10,6 +10,7 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
     [Serializable]
     public class ShadingSettings
     {
+        public Color color = Color.white;
         [Range(0, 1)] public float WhiteCutoff = 0.8f;
         [Range(0, 2)] public float NormalThreshold = 0.0f;
         [Range(0, 1)] public float DepthThreshold = 0.0f;
@@ -20,12 +21,13 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         public Texture2D DitherTexture;
     }
 
-    [SerializeField] private ShadingSettings _settings;
+    public ShadingSettings _settings;
     [SerializeField] private Shader _shader;
 
     class CustomShadingRenderPass : ScriptableRenderPass
     {
         // Shader Properties
+        private static readonly int _colorId = Shader.PropertyToID("_Color");
         private static readonly int _whiteCutoffId = Shader.PropertyToID("_WhiteCutoff");
         private static readonly int _NormalThresholdId = Shader.PropertyToID("_NormalThreshold");
         private static readonly int _DepthThresholdId = Shader.PropertyToID("_DepthThreshold");
@@ -60,6 +62,7 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         // It is used to execute draw commands.
         private void ExecutePass(PassData data, RasterGraphContext context)
         {
+            _material.SetColor(_colorId, _settings.color);
             _material.SetFloat(_whiteCutoffId, _settings.WhiteCutoff);
             _material.SetFloat(_NormalThresholdId, _settings.NormalThreshold);
             _material.SetFloat(_DepthThresholdId, _settings.DepthThreshold);

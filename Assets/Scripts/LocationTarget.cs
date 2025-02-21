@@ -10,7 +10,7 @@ public class LocationTarget : TaskTarget
     {
         var task = _taskManager.Tasks.Find((task) => task.Name == _gameTask.Name);
 
-        Debug.Assert(task != null, "LocationTask not defined in Task Manager prefab.");
+        Debug.Assert(task != null, $"{gameObject.name}: LocationTask not defined in Task Manager prefab.");
 
         task.Completed += OnTaskCompleted;
         task.Failed += OnTaskFailed;
