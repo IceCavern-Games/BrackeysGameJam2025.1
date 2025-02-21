@@ -1,3 +1,4 @@
+using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,13 +13,16 @@ public class PlayerInputReader : MonoBehaviour
     public bool interact;
     public bool paint;
     public bool erase;
+    public bool pause;
 
     [Header("Movement Settings")]
     public bool analogMovement;
 
     [Header("Mouse Cursor Settings")]
-    public bool cursorLocked = true;
     public bool cursorInputForLook = true;
+
+    [Inject] private readonly GameManager _gameManager;
+    [Inject] private readonly InputManager _input;
 
     public void OnMove(InputValue value)
     {
@@ -28,9 +32,7 @@ public class PlayerInputReader : MonoBehaviour
     public void OnLook(InputValue value)
     {
         if (cursorInputForLook)
-        {
             LookInput(value.Get<Vector2>());
-        }
     }
 
     public void OnJump(InputValue value)
@@ -56,6 +58,11 @@ public class PlayerInputReader : MonoBehaviour
     public void OnErase(InputValue value)
     {
         EraseInput(value.isPressed);
+    }
+
+    public void OnPause(InputValue value)
+    {
+        PauseInput(value.isPressed);
     }
 
     public void MoveInput(Vector2 newMoveDirection)
@@ -93,13 +100,16 @@ public class PlayerInputReader : MonoBehaviour
         erase = newEraseState;
     }
 
-    private void OnApplicationFocus(bool hasFocus)
+    public void PauseInput(bool newPauseState)
     {
-        SetCursorState(cursorLocked);
+        pause = newPauseState;
     }
 
-    private void SetCursorState(bool newState)
+    private void OnApplicationFocus(bool hasFocus)
     {
-        Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+        if (_gameManager.Pause.IsOpen)
+            hasFocus = false;
+
+        _input.SetCursorLock(hasFocus);
     }
 }

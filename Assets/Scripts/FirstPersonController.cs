@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Reflex.Attributes;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
@@ -45,6 +46,8 @@ public class FirstPersonController : MonoBehaviour
     public float TopClamp = 90.0f;
     [Tooltip("How far in degrees can you move the camera down")]
     public float BottomClamp = -90.0f;
+
+    [Inject] private readonly GameManager _gameManager;
 
     // cinemachine
     private float _cinemachineTargetPitch;
@@ -108,6 +111,7 @@ public class FirstPersonController : MonoBehaviour
         Move();
         Interact();
         Paint();
+        Pause();
     }
 
     private void LateUpdate()
@@ -257,6 +261,19 @@ public class FirstPersonController : MonoBehaviour
             _playerPaint.Paint();
         else if (_input.erase)
             _playerPaint.Erase();
+    }
+
+    private void Pause()
+    {
+        if (_input.pause)
+        {
+            if (_gameManager.Pause.IsOpen && _gameManager.Pause.CanClose)
+                _gameManager.Pause.Unpause();
+            else if (!_gameManager.Pause.IsOpen)
+                _gameManager.Pause.Pause();
+        }
+
+        _input.pause = false;
     }
 
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)

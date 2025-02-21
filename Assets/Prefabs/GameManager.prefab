@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7763101882682163585}
   - component: {fileID: 7204356132113563655}
+  - component: {fileID: 5696623818461154656}
+  - component: {fileID: 1773204158209227880}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,3 +46,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631304050fb2b4c5b810bb39e32b4bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5696623818461154656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4915805371841572211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 52964a8b072314b539ad772f6d821992, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 0c4a1baec8aa5499f95912f8c3df4717, type: 3}
+  m_SortingOrder: 95
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+--- !u!114 &1773204158209227880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4915805371841572211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3f7ff244f8449d795c92e95234de4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerQuerySelector: '#pause-view-menu'
+  _listItemsQuerySelector: .menu-item

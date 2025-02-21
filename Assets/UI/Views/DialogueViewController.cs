@@ -6,6 +6,7 @@ public class DialogueViewController
     #region UI Element References
 
     private VisualElement _dialogueBox;
+    private VisualElement _visualElement;
 
     #endregion
 
@@ -15,6 +16,7 @@ public class DialogueViewController
 
     public void Initialize(VisualElement visualElement, Action callback)
     {
+        _visualElement = visualElement;
         _callback = callback;
         _dialogueBox = visualElement.Q<DialogueBox>();
 
@@ -34,6 +36,7 @@ public class DialogueViewController
             _dialogueBox.RegisterCallback<NavigationMoveEvent>(OnNavigationMove);
             _dialogueBox.RegisterCallback<NavigationSubmitEvent>(OnNavigationSubmit);
             _dialogueBox.RegisterCallback<NavigationCancelEvent>(OnNavigationCancel);
+            _visualElement.RegisterCallback<ClickEvent>(OnClick);
 
             _dialogueBox.focusable = true;
             _dialogueBox.Focus();
@@ -43,9 +46,15 @@ public class DialogueViewController
             _dialogueBox.UnregisterCallback<NavigationMoveEvent>(OnNavigationMove);
             _dialogueBox.UnregisterCallback<NavigationSubmitEvent>(OnNavigationSubmit);
             _dialogueBox.UnregisterCallback<NavigationCancelEvent>(OnNavigationCancel);
+            _visualElement.UnregisterCallback<ClickEvent>(OnClick);
 
             _dialogueBox.focusable = false;
         }
+    }
+
+    private void OnClick(ClickEvent evt)
+    {
+        _callback?.Invoke();
     }
 
     private void OnNavigationMove(NavigationMoveEvent evt)

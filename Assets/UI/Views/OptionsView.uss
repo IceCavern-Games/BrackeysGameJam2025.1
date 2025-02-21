@@ -1,0 +1,196 @@
+#options-nav {
+    flex-direction: row;
+    margin: 4px 0;
+    min-height: 44px;
+}
+
+#options-nav-left {
+    align-items: center;
+    justify-content: center;
+}
+
+#options-nav-right {
+    align-items: center;
+    justify-content: center;
+}
+
+#options-nav-left VisualElement {
+    height: 28px;
+    width: 28px;
+}
+
+#options-nav-right VisualElement {
+    height: 28px;
+    width: 28px;
+}
+
+#options-nav-tabs {
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-around;
+}
+
+.options-nav-tab {
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    width: 40px;
+}
+
+.options-nav-tab.selected {
+    border-color: rgb(211, 211, 211);
+    border-bottom-width: 2px;
+    padding-bottom: 0;
+}
+
+.options-nav-tab VisualElement {
+    height: 32px;
+    opacity: 0.75;
+    width: 32px;
+    -unity-background-image-tint-color: rgb(211, 211, 211);
+}
+
+.options-nav-tab VisualElement:hover,
+.options-nav-tab.selected VisualElement {
+    opacity: 1;
+}
+
+#options-tab-view {
+    flex-grow: 1;
+}
+
+.options-tab-content {
+    flex-grow: 1;
+    padding: 10px 25px;
+    padding-bottom: 0;
+}
+
+.options-tab-content.hidden {
+    display: none;
+}
+
+.options-menu-item {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(211, 211, 211, 0.25);
+    border-radius: 8px;
+    border-width: 2px;
+    flex-direction: row;
+    font-size: 14px;
+    height: 40px;
+    margin-bottom: 12px;
+    padding: 4px 8px;
+}
+
+.options-menu-item.selected {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-color: rgb(211, 211, 211);
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.options-menu-item Label {
+    color: rgb(211, 211, 211);
+    margin: 0;
+    padding: 0;
+}
+
+.options-menu-item > Label {
+    font-size: 20px;
+    -unity-text-align: middle-left;
+}
+
+.options-menu-item Toggle {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.options-menu-item SliderInt {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.options-menu-item .unity-toggle__input {
+    flex-direction: row-reverse;
+    padding-right: 4px;
+}
+
+.options-menu-item #unity-checkmark {
+    background-color: transparent;
+    border-color: rgba(211, 211, 211, 0.25);
+    border-radius: 2px;
+    border-width: 2px;
+    -unity-background-image-tint-color: rgb(211, 211, 211);
+}
+
+.options-menu-item .unity-base-field__label {
+    color: rgb(211, 211, 211);
+    font-size: 16px;
+    margin: 0;
+    min-width: 200px;
+    padding: 0;
+    -unity-text-align: middle-left;
+}
+
+.options-menu-item #unity-tracker {
+    border-width: 0;
+    height: 4px;
+    margin-top: -2px;
+}
+
+.options-menu-item #unity-dragger {
+    background-color: rgb(211, 211, 211);
+    border-radius: 50%;
+    border-width: 0;
+    height: 24px;
+    width: 24px;
+}
+
+.options-menu-item #unity-text-input {
+    background-color: transparent;
+    border-width: 0;
+    color: rgb(211, 211, 211);
+    margin: 0;
+    padding: 0;
+    -unity-text-align: middle-center;
+}
+
+.options-menu-item TextElement {
+    font-size: 24px;
+    margin-top: -4px;
+    -unity-text-align: middle-center;
+}
+
+.options-menu-item .unity-base-selector-field__nextArrow {
+    align-self: center;
+    background-color: transparent;
+    border-width: 0;
+    height: 28px;
+    margin: 0;
+    padding: 0;
+    width: 28px;
+    background-image: url("project://database/Assets/UI/Themes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&guid=b23c418b787b3415aa55cf58eb377f80&type=3#arrow-right@2x");
+}
+
+.options-menu-item .unity-base-selector-field__prevArrow {
+    align-self: center;
+    background-color: transparent;
+    border-width: 0;
+    height: 28px;
+    margin: 0;
+    padding: 0;
+    width: 28px;
+    background-image: url("project://database/Assets/UI/Themes/UnityDefaultRuntimeTheme.tss?fileID=-2236324273849735119&guid=b23c418b787b3415aa55cf58eb377f80&type=3#arrow-left@2x");
+}
+
+.options-menu-item .unity-base-selector-field__text {
+    flex-grow: 1;
+    font-size: 20px;
+    -unity-text-align: middle-center;
+}
+
+#options-list {
+    padding: 0 25px;
+    width: 100%;
+}
