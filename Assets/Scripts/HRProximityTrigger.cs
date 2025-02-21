@@ -1,11 +1,10 @@
-using System;
-using TMPro;
+using Reflex.Attributes;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 
 public class HRProximityTrigger : MonoBehaviour
 {
+    [Inject] private AudioManager _audioManager;
+    
     [SerializeField] private ShadingRenderPassFeature _renderPassFeature;
     [SerializeField] private float _radius = 15;
     [SerializeField] private float _maxValueRadius = 5.0f;
@@ -32,6 +31,8 @@ public class HRProximityTrigger : MonoBehaviour
         
         Color lerpedColor = Color.Lerp(Color.white, Color.red, t);
         _renderPassFeature._settings.color = lerpedColor;
+        
+        _audioManager.SetPitch(AudioManager.MUSIC_CHANNEL, Mathf.Lerp(1, 0.5f, t));
     }
 
     private void OnDestroy()

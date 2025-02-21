@@ -9767,7 +9767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderPassFeature: {fileID: 6655731472698943787, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
   _radius: 20
-  _maxValueRadius: 7.5
+  _maxValueRadius: 5
 --- !u!1001 &198426904
 PrefabInstance:
   m_ObjectHideFlags: 0
