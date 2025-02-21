@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: PickUpLaptop
   m_EditorClassIdentifier: 
   Name: Retrieve Laptop
-  Description: Bring your laptop to your workspace
+  Description: Bring your laptop to your workspace.
   Deadline: 180
   StartsAt: -1
   _startDialogueNode: PickUpLaptopStart
   _completeDialogueNode: PickUpLaptopEnd
   _followUpTasks:
+  - {fileID: 11400000, guid: 084887fd54397a949a9b121d5e36fcc2, type: 2}
   - {fileID: 11400000, guid: 2287c007a4096dd4382e6eee8a8164d4, type: 2}
   - {fileID: 11400000, guid: 63445eec7a26a408399baf8d1e0eac22, type: 2}

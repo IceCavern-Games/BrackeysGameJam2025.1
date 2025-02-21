@@ -62,6 +62,9 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         // It is used to execute draw commands.
         private void ExecutePass(PassData data, RasterGraphContext context)
         {
+            if (_material == null)
+                return;
+            
             _material.SetColor(_colorId, _settings.color);
             _material.SetFloat(_whiteCutoffId, _settings.WhiteCutoff);
             _material.SetFloat(_NormalThresholdId, _settings.NormalThreshold);

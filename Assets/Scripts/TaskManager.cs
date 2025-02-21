@@ -53,10 +53,6 @@ public class TaskManager : MonoBehaviour
         task.Failed -= OnTaskFailed;
         task.Completed -= OnTaskCompleted;
 
-        // Finished task out of order. End the game. 😈
-        if (ActiveTasks[0] != task)
-            _gameManager.Fail();
-
         if (task.CompleteDialogueNode != string.Empty)
         {
             _dialogueManager.StartConversation(task.CompleteDialogueNode, () => { TaskComplete(task); });

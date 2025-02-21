@@ -20,6 +20,9 @@ public class HRProximityTrigger : MonoBehaviour
 
     private void Update()
     {
+        if (Mathf.Abs(_player.transform.position.y - transform.position.y) > 1)
+            return;
+        
         Vector2 playerPosXZ = new Vector2(_player.transform.position.x, _player.transform.position.z);
         float distance = Vector2.Distance(_positionXZ, playerPosXZ);
         
@@ -27,7 +30,6 @@ public class HRProximityTrigger : MonoBehaviour
             return;
 
         float t = Mathf.Clamp01(1 - (distance - _maxValueRadius) / (_radius - _maxValueRadius));
-        Debug.Log(t);
         
         Color lerpedColor = Color.Lerp(Color.white, Color.red, t);
         _renderPassFeature._settings.color = lerpedColor;

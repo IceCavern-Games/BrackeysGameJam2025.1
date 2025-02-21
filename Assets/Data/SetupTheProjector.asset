@@ -16,6 +16,6 @@ MonoBehaviour:
   Description: A very important meeting is about to start.
   Deadline: 415
   StartsAt: -1
-  _startDialogueNode: SetupTheProjectorStart
+  _startDialogueNode: 
   _completeDialogueNode: SetupTheProjectorComplete
   _followUpTasks: []

@@ -17,6 +17,6 @@ MonoBehaviour:
   Deadline: 360
   StartsAt: -1
   _startDialogueNode: 
-  _completeDialogueNode: 
+  _completeDialogueNode: MeetDianeEnd
   _followUpTasks:
   - {fileID: 11400000, guid: 985e79b46c4579a4ebd8b70bb75c28ca, type: 2}

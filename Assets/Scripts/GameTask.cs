@@ -29,7 +29,7 @@ public class GameTask : ScriptableObject
 
     [SerializeField] private string _startDialogueNode = string.Empty;
     [SerializeField] private string _completeDialogueNode = string.Empty;
-    [FormerlySerializedAs("_followUpTask")] [SerializeField] private List<GameTask> _followUpTasks;
+    [SerializeField] private List<GameTask> _followUpTasks;
 
     public virtual void Check(float time)
     {

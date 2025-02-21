@@ -16,6 +16,6 @@ MonoBehaviour:
   Description: Strangely the government still requires these.
   Deadline: 240
   StartsAt: -1
-  _startDialogueNode: 
+  _startDialogueNode: LunchBreakStart
   _completeDialogueNode: 
   _followUpTasks: []
