@@ -12,7 +12,7 @@ public abstract class NavigatableListViewUI : NavigatableUI
     /// <inheritdoc />
     protected override void Bind()
     {
-        _list = _uiDocument.rootVisualElement.Q<ListView>(_listQuerySelector);
+        _list = UIUtils.QueryElement<ListView>(_uiDocument.rootVisualElement, _listQuerySelector);
         Debug.Assert(_list != null, "Specified ListView not found in the UI Document.");
 
         _manipulator = new NavigatableUIManipulator(OnNavigate, OnNavigateSubmit, OnNavigateCancel, BindItem);

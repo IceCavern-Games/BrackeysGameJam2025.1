@@ -77,5 +77,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3f7ff244f8449d795c92e95234de4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _containerQuerySelector: pause-view-menu
-  _listItemsQuerySelector: menu-item
+  _containerQuerySelector: '#pause-view-menu'
+  _listItemsQuerySelector: .menu-item

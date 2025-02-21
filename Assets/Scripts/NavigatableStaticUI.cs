@@ -15,8 +15,11 @@ public class NavigatableStaticUI<TTarget, TItem> : NavigatableUI where TTarget :
     /// <inheritdoc />
     protected override void Bind()
     {
-        _target = _uiDocument.rootVisualElement.Q<TTarget>(_containerQuerySelector);
-        _items = _listItemsQuerySelector != null ? _target.Query<TItem>(className: _listItemsQuerySelector).ToList() : _target.Query<TItem>().ToList();
+        _target = UIUtils.QueryElement<TTarget>(_uiDocument.rootVisualElement, _containerQuerySelector);
+
+        Debug.Assert(_target != null, "Specified element not found in the UI Document.");
+
+        _items = UIUtils.QueryElements<TItem>(_target, _listItemsQuerySelector);
 
         _manipulator = new NavigatableUIManipulator(OnNavigate, OnNavigateSubmit, OnNavigateCancel);
         _target.AddManipulator(_manipulator);
@@ -95,6 +98,8 @@ public class NavigatableStaticUI<TTarget, TItem> : NavigatableUI where TTarget :
             _items[i].UnregisterCallback<FocusEvent>(OnItemFocus);
             _items[i].UnregisterCallback<ClickEvent>(OnItemClick);
             _items[i].UnregisterCallback<PointerEnterEvent>(OnItemPointerEnter);
+
+            OnUnbindItem(_items[i], i);
         }
     }
 }

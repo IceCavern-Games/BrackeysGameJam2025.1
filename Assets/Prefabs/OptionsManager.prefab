@@ -90,5 +90,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649ae60d80b0c414e9d9114f8e26b3f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _containerQuerySelector: options-tab-view
-  _listItemsQuerySelector: options-menu-item
+  _containerQuerySelector: .options-tab-content .selected
+  _listItemsQuerySelector: .options-menu-item

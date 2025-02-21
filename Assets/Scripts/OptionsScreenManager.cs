@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(OptionsManager))]
@@ -14,8 +16,14 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
     public bool IsOpen => _uiDocument.rootVisualElement.style.display == DisplayStyle.Flex;
 
     private Label _footerLabel;
+    private readonly Dictionary<VisualElement, IManipulator> _manipulators = new();
     private OptionsManager _optionsManager;
+    private List<VisualElement> _tabs;
+    private List<VisualElement> _tabViews;
     private bool _suppressNavigationCancel = false;
+
+    private InputAction _nextTabAction;
+    private InputAction _prevTabAction;
 
     protected override void Awake()
     {
@@ -23,7 +31,28 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
 
         _optionsManager = GetComponent<OptionsManager>();
         _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
+
+        _nextTabAction = InputSystem.actions.FindAction("NextTab");
+        _prevTabAction = InputSystem.actions.FindAction("PrevTab");
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
         _footerLabel = _uiDocument.rootVisualElement.Q<Label>(name = "options-footer-text");
+        BindTabs();
+
+        _nextTabAction.performed += OnNextTabPressed;
+        _prevTabAction.performed += OnPrevTabPressed;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+
+        _nextTabAction.performed -= OnNextTabPressed;
+        _prevTabAction.performed -= OnPrevTabPressed;
     }
 
     /// <summary>
@@ -63,32 +92,50 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
     /// <inheritdoc />
     protected override void OnBindItem(VisualElement item, int index)
     {
-        switch (item.name)
+        if (item is SliderInt slider)
         {
-            case "video-display-mode":
-                var displayField = item as CarouselField;
+            var volumeSettings = new Dictionary<string, (Func<int> getValue, Action<int> setValue)>
+            {
+                { "audio-master-volume",   (() => _optionsManager.Options.Audio.MasterVolume,  _optionsManager.SetMasterVolume) },
+                { "audio-ambience-volume", (() => _optionsManager.Options.Audio.AmbienceVolume, _optionsManager.SetAmbienceVolume) },
+                { "audio-dialogue-volume", (() => _optionsManager.Options.Audio.DialogueVolume, _optionsManager.SetDialogueVolume) },
+                { "audio-music-volume",    (() => _optionsManager.Options.Audio.MusicVolume,    _optionsManager.SetMusicVolume) },
+                { "audio-sfx-volume",      (() => _optionsManager.Options.Audio.SFXVolume,      _optionsManager.SetSFXVolume) }
+            };
 
-                displayField.index = _optionsManager.Options.Video.DisplayMode switch
-                { // 0 = Fullscreen, 1 = Borderless, 2 = Windowed
-                    FullScreenMode.ExclusiveFullScreen => 0,
-                    FullScreenMode.FullScreenWindow => 1,
-                    FullScreenMode.MaximizedWindow => 0,
-                    FullScreenMode.Windowed => 2,
-                    _ => 2
-                };
+            if (volumeSettings.TryGetValue(item.name, out var setting))
+            {
+                slider.value = setting.getValue();
+                var manipulator = new SliderIntNavigationManipulator(slider, setting.setValue);
+                item.AddManipulator(manipulator);
+                _manipulators[item] = manipulator; // Store for removal
+            }
+        }
+        else if (item is CarouselField carouselField)
+        {
+            switch (item.name)
+            {
+                case "video-display-mode":
+                    carouselField.index = _optionsManager.Options.Video.DisplayMode switch
+                    {
+                        FullScreenMode.ExclusiveFullScreen => 0,
+                        FullScreenMode.FullScreenWindow => 1,
+                        FullScreenMode.MaximizedWindow => 0,
+                        FullScreenMode.Windowed => 2,
+                        _ => 2
+                    };
+                    item.RegisterCallback<ChangeEvent<string>>(OnVideoDisplayModeChanged);
+                    break;
 
-                item.RegisterCallback<ChangeEvent<string>>(OnVideoDisplayModeChanged);
-                break;
-            case "video-resolution":
-                var resField = item as CarouselField;
-
-                // Fill out available resolutions.
-                resField.choices = _optionsManager.AvailableResolutions.Select((resolution) => $"{resolution.width} x {resolution.height}").ToList();
-                string currentRes = $"{_optionsManager.Options.Video.Resolution.Width} x {_optionsManager.Options.Video.Resolution.Height}";
-                resField.index = resField.choices.IndexOf(currentRes);
-
-                item.RegisterCallback<ChangeEvent<string>>(OnVideoResolutionChanged);
-                break;
+                case "video-resolution":
+                    carouselField.choices = _optionsManager.AvailableResolutions
+                        .Select(resolution => $"{resolution.width} x {resolution.height}")
+                        .ToList();
+                    string currentRes = $"{_optionsManager.Options.Video.Resolution.Width} x {_optionsManager.Options.Video.Resolution.Height}";
+                    carouselField.index = carouselField.choices.IndexOf(currentRes);
+                    item.RegisterCallback<ChangeEvent<string>>(OnVideoResolutionChanged);
+                    break;
+            }
         }
     }
 
@@ -108,6 +155,53 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
             Close();
     }
 
+    /// <inheritdoc />
+    protected override void OnUnbindItem(VisualElement item, int index)
+    {
+        if (_manipulators.TryGetValue(item, out var manipulator))
+        {
+            item.RemoveManipulator(manipulator);
+            _manipulators.Remove(item);
+        }
+
+        item.UnregisterCallback<ChangeEvent<string>>(OnVideoDisplayModeChanged);
+        item.UnregisterCallback<ChangeEvent<string>>(OnVideoResolutionChanged);
+    }
+
+    private void BindTabs()
+    {
+        _tabs = _uiDocument.rootVisualElement.Query<VisualElement>().Class("options-nav-tab").ToList();
+        _tabViews = _uiDocument.rootVisualElement.Query<VisualElement>().Class("options-tab-content").ToList();
+
+        Debug.Assert(_tabs.Count != 0 && _tabViews.Count != 0 && _tabs.Count == _tabViews.Count, "Tabs and Tab Views are not setup correct!");
+    }
+
+    private void CycleTab(int direction)
+    {
+        var currentTab = _tabs.FirstOrDefault(tab => tab.ClassListContains("selected"));
+        var currentTabView = _tabViews.FirstOrDefault(view => view.ClassListContains("selected"));
+
+        int currentIndex = _tabs.IndexOf(currentTab);
+        int nextIndex = (currentIndex + direction + _tabs.Count) % _tabs.Count;
+
+        var nextTab = _tabs[nextIndex];
+        var nextView = _tabViews[nextIndex];
+
+        Unbind();
+
+        // Update classes
+        currentTab.RemoveFromClassList("selected");
+        currentTabView.RemoveFromClassList("selected");
+        currentTabView.AddToClassList("hidden");
+
+        nextTab.AddToClassList("selected");
+        nextView.AddToClassList("selected");
+        nextView.RemoveFromClassList("hidden");
+
+        Bind();
+        Focus();
+    }
+
     /// <summary>
     /// Display the tooltip of the focused menu item in the footer.
     /// </summary>
@@ -124,6 +218,20 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
         yield return null; // Wait for one frame
         _suppressNavigationCancel = false;
     }
+
+    #region Event Handlers
+
+    private void OnNextTabPressed(InputAction.CallbackContext ctx)
+    {
+        CycleTab(1);
+    }
+
+    private void OnPrevTabPressed(InputAction.CallbackContext ctx)
+    {
+        CycleTab(-1);
+    }
+
+    #endregion
 
     #region Option Changed Events
 

@@ -28,11 +28,11 @@
                         <CarouselField name="video-display-mode" label="Display Mode" choices="Fullscreen, Borderless, Windowed" index="0" tooltip="Set the display mode." class="options-menu-item" />
                     </engine:VisualElement>
                     <engine:VisualElement name="options-tab-view-audio" tooltip="Audio Options" class="options-tab-content hidden">
-                        <engine:SliderInt name="audio-master-volume" label="Master Volume" value="75" high-value="100" page-size="5" class="options-menu-item" />
-                        <engine:SliderInt name="audio-music-volume" label="Music Volume" value="100" high-value="100" page-size="5" class="options-menu-item" />
-                        <engine:SliderInt name="audio-sfx-volume" label="SFX Volume" value="100" high-value="100" page-size="5" class="options-menu-item" />
-                        <engine:SliderInt name="audio-dialogue-volume" label="Dialogue Volume" value="100" high-value="100" page-size="5" class="options-menu-item" />
-                        <engine:SliderInt name="audio-ambience-volume" label="Ambience Volume" value="100" high-value="100" page-size="5" class="options-menu-item" />
+                        <engine:SliderInt name="audio-master-volume" label="Master Volume" value="75" high-value="100" page-size="5" show-input-field="true" tooltip="Set the master volume." class="options-menu-item" />
+                        <engine:SliderInt name="audio-music-volume" label="Music Volume" value="100" high-value="100" page-size="5" show-input-field="true" tooltip="Set the music volume." class="options-menu-item" />
+                        <engine:SliderInt name="audio-sfx-volume" label="SFX Volume" value="100" high-value="100" page-size="5" show-input-field="true" tooltip="Set the sound effect volume." class="options-menu-item" />
+                        <engine:SliderInt name="audio-dialogue-volume" label="Dialogue Volume" value="100" high-value="100" page-size="5" show-input-field="true" tooltip="Set the dialogue boop volume." class="options-menu-item" />
+                        <engine:SliderInt name="audio-ambience-volume" label="Ambience Volume" value="100" high-value="100" page-size="5" show-input-field="true" tooltip="Set the ambience volume." class="options-menu-item" />
                     </engine:VisualElement>
                 </engine:VisualElement>
             </engine:VisualElement>

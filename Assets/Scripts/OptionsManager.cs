@@ -11,6 +11,8 @@ public class OptionsManager : MonoBehaviour
     public Options Options { get; private set; }
     public OptionsScreenManager OptionsScreen { get; private set; }
 
+    [Inject] private readonly AudioManager _audioManager;
+
     [SerializeField] private string _fileName = "config";
     [SerializeField] private Options _defaultOptions;
 
@@ -105,32 +107,50 @@ public class OptionsManager : MonoBehaviour
 
     #region Audio Options
 
-    // /// <summary>
-    // /// Set the master volume by percentage integer (0 to 100).
-    // /// </summary>
-    // public void SetMasterVolume(int value)
-    // {
-    //     Options.Audio.MasterVolume = value;
-    //     _audioManager.SetMasterVolume(value);
-    // }
+    /// <summary>
+    /// Set the master volume by percentage integer (0 to 100).
+    /// </summary>
+    public void SetMasterVolume(int value)
+    {
+        Options.Audio.MasterVolume = value;
+        _audioManager.SetVolume(AudioManager.MASTER_CHANNEL, value);
+    }
 
-    // /// <summary>
-    // /// Set the music volume by percentage integer (0 to 100).
-    // /// </summary>
-    // public void SetMusicVolume(int value)
-    // {
-    //     Options.Audio.MusicVolume = value;
-    //     _audioManager.SetMusicVolume(value);
-    // }
+    /// <summary>
+    /// Set the ambience volume by percentage integer (0 to 100).
+    /// </summary>
+    public void SetAmbienceVolume(int value)
+    {
+        Options.Audio.MasterVolume = value;
+        _audioManager.SetVolume(AudioManager.AMBIENCE_CHANNEL, value);
+    }
 
-    // /// <summary>
-    // /// Set the sound effect volume by percentage integer (0 to 100).
-    // /// </summary>
-    // public void SetSFXVolume(int value)
-    // {
-    //     Options.Audio.SFXVolume = value;
-    //     _audioManager.SetSFXVolume(value);
-    // }
+    /// <summary>
+    /// Set the dialogue volume by percentage integer (0 to 100).
+    /// </summary>
+    public void SetDialogueVolume(int value)
+    {
+        Options.Audio.DialogueVolume = value;
+        _audioManager.SetVolume(AudioManager.DIALOGUE_CHANNEL, value);
+    }
+
+    /// <summary>
+    /// Set the music volume by percentage integer (0 to 100).
+    /// </summary>
+    public void SetMusicVolume(int value)
+    {
+        Options.Audio.MusicVolume = value;
+        _audioManager.SetVolume(AudioManager.MUSIC_CHANNEL, value);
+    }
+
+    /// <summary>
+    /// Set the sound effect volume by percentage integer (0 to 100).
+    /// </summary>
+    public void SetSFXVolume(int value)
+    {
+        Options.Audio.SFXVolume = value;
+        _audioManager.SetVolume(AudioManager.SFX_CHANNEL, value);
+    }
 
     #endregion
 
