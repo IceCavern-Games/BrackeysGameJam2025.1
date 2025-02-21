@@ -1,0 +1,19 @@
+#badge {
+    width: 400px;
+    height: 500px;
+}
+
+#badge Label {
+    position: absolute;
+    left: 95px;
+    font-size: 22px;
+    -unity-font-style: bold;
+}
+
+#badge #name {
+    top: 240px;
+}
+
+#badge #number {
+    top: 300px;
+}

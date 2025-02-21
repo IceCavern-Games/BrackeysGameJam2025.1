@@ -72,3 +72,13 @@
     -unity-text-outline-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
 }
+
+#badge-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#badge-container #badge {
+    right: -50px;
+}

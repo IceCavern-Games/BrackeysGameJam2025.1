@@ -2,15 +2,24 @@ using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public class BadgeData
+{
+    public string Attempts = "0000000";
+    public string Name = "Mark S.";
+}
+
 public class GameManager : MonoBehaviour
 {
-    [Inject] private readonly DialogueManager _dialogueManager;
-    [Inject] private readonly TaskManager _taskManager;
-
-    public int Attempts { get; private set; } = 0;
+    public BadgeData BadgeData { get; private set; } = new();
     public Timer Clock { get; private set; }
     public string ClockTime => TimeUtils.ElapsedTimeToDisplay(Clock.ElapsedTime);
     public PauseScreenManager Pause { get; private set; }
+
+    [Inject] private readonly DialogueManager _dialogueManager;
+    [Inject] private readonly TaskManager _taskManager;
+
+    private int _attempts = 0;
+    private RandomNameGenerator _nameGenerator;
 
     private void Awake()
     {
@@ -18,6 +27,7 @@ public class GameManager : MonoBehaviour
 
         Clock = new Timer(480, false); // Will tick for 8 in-game hours.
         Pause = GetComponent<PauseScreenManager>();
+        _nameGenerator = new();
     }
 
     private void Update()
@@ -52,9 +62,10 @@ public class GameManager : MonoBehaviour
 
     public void StartAttempt()
     {
+        UpdateBadge();
+
         _dialogueManager.StartConversation("Intro", () =>
         {
-            Attempts++;
             Clock.Start();
         });
     }
@@ -66,5 +77,13 @@ public class GameManager : MonoBehaviour
             // @TODO: Idk, end the game or whatever.
             EndAttempt();
         });
+    }
+
+    private void UpdateBadge()
+    {
+        _attempts++;
+
+        BadgeData.Name = _nameGenerator.GetRandomName();
+        BadgeData.Attempts = _attempts.ToString("D6");
     }
 }

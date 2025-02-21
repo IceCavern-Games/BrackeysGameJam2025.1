@@ -22,6 +22,10 @@ public class GameplayUIManager : MonoBehaviour
     private VisualElement _clockContainer;
     private Label _clockLabel;
 
+    // Badge
+    private VisualElement _badgeContainer;
+    private VisualElement _badge;
+
     private void Awake()
     {
         _document = GetComponent<UIDocument>();
@@ -38,6 +42,9 @@ public class GameplayUIManager : MonoBehaviour
         _clockContainer = _document.rootVisualElement.Q<VisualElement>(name: "clock-container");
         _clockLabel = _clockContainer.Q<Label>();
 
+        _badgeContainer = _document.rootVisualElement.Q<VisualElement>(name: "badge-container");
+        _badge = _badgeContainer.Q<VisualElement>(name: "badge");
+
         if (_interactLabel.text == "Interact")
             HideInteractPrompt();
     }
@@ -45,6 +52,12 @@ public class GameplayUIManager : MonoBehaviour
     private void Start()
     {
         _taskList.itemsSource = _taskManager.ActiveTasks;
+    }
+
+    [Inject]
+    private void BindBadgeData(GameManager gameManager)
+    {
+        _badge.dataSource = gameManager.BadgeData;
     }
 
     #region Clock UI

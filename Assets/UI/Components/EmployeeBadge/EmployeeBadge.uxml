@@ -1,0 +1,15 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Components/EmployeeBadge/EmployeeBadge.uss?fileID=7433441132597879392&amp;guid=63a94f82d615942c1a1b5e38680f1125&amp;type=3#EmployeeBadge" />
+    <engine:VisualElement name="badge" style="background-image: url(&quot;project://database/Assets/UI/Textures/badge.png?fileID=2800000&amp;guid=34de712d7ad864bb0b9326071f766c60&amp;type=3#badge&quot;);">
+        <engine:Label text="Mark S." name="name">
+            <Bindings>
+                <engine:DataBinding property="text" data-source-path="Name" binding-mode="ToTarget" data-source-type="BadgeData, Assembly-CSharp" />
+            </Bindings>
+        </engine:Label>
+        <engine:Label text="0000001" name="number">
+            <Bindings>
+                <engine:DataBinding property="text" data-source-path="Attempts" binding-mode="ToTarget" data-source-type="BadgeData, Assembly-CSharp" />
+            </Bindings>
+        </engine:Label>
+    </engine:VisualElement>
+</engine:UXML>
