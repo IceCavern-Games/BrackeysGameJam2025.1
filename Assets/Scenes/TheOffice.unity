@@ -95434,6 +95434,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 235639863}
     m_Modifications:
+    - target: {fileID: 4819161461211177782, guid: fda4754476a6b43c68988ef507dda48e, type: 3}
+      propertyPath: _gameTask
+      value: 
+      objectReference: {fileID: 11400000, guid: 084887fd54397a949a9b121d5e36fcc2, type: 2}
     - target: {fileID: 7640646753279478955, guid: fda4754476a6b43c68988ef507dda48e, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
