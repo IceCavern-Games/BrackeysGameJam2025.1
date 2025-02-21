@@ -35,6 +35,7 @@ public class Options
 
         public FullScreenMode DisplayMode;
         public ResolutionOptions Resolution;
+        public bool Vsync = false;
     }
 
     public AudioOptions Audio;
