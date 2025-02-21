@@ -15,7 +15,8 @@ public class PlayerPaint : MonoBehaviour
         _mainCamera = Camera.main;
         _ignoreLayers = LayerMask.GetMask("Triggers") 
                         | LayerMask.GetMask("AudioZone")
-                        | LayerMask.GetMask("Interactable");
+                        | LayerMask.GetMask("Interactable")
+                        | LayerMask.GetMask("HeldObject");
     }
 
     public void Paint()
@@ -34,20 +35,13 @@ public class PlayerPaint : MonoBehaviour
         Ray ray = _mainCamera.ScreenPointToRay(position);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 5.0f, ~_ignoreLayers))
+        if (Physics.Raycast(ray, out hit, 7.0f, ~_ignoreLayers))
         {
             Debug.DrawRay(ray.origin, hit.point - ray.origin, Color.red);
             Paintable paintable = hit.collider.GetComponent<Paintable>();
 
             if (paintable)
-            {
-                // Debug.Log("Painting");
                 paintable.Paint(hit.point, _radius, _strength, _hardness, color);
-            }
-            else
-            {
-                Debug.Log(hit.collider.gameObject.name);
-            }
         }
     }
 }
