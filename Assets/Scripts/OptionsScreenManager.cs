@@ -15,6 +15,8 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
 
     public bool IsOpen => _uiDocument.rootVisualElement.style.display == DisplayStyle.Flex;
 
+    private VisualElement _currentTab;
+    private VisualElement _currentTabView;
     private Label _footerLabel;
     private readonly Dictionary<VisualElement, IManipulator> _manipulators = new();
     private OptionsManager _optionsManager;
@@ -53,6 +55,12 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
 
         _nextTabAction.performed -= OnNextTabPressed;
         _prevTabAction.performed -= OnPrevTabPressed;
+
+        for (int i = 0; i < _tabs.Count; i++)
+        {
+            int tabIndex = i;
+            _tabs[i].UnregisterCallback<ClickEvent>(evt => OnTabClicked(tabIndex));
+        }
     }
 
     /// <summary>
@@ -172,35 +180,49 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
     {
         _tabs = _uiDocument.rootVisualElement.Query<VisualElement>().Class("options-nav-tab").ToList();
         _tabViews = _uiDocument.rootVisualElement.Query<VisualElement>().Class("options-tab-content").ToList();
+        _currentTab = _tabs.FirstOrDefault(tab => tab.ClassListContains("selected"));
+        _currentTabView = _tabViews.FirstOrDefault(view => view.ClassListContains("selected"));
 
         Debug.Assert(_tabs.Count != 0 && _tabViews.Count != 0 && _tabs.Count == _tabViews.Count, "Tabs and Tab Views are not setup correct!");
+        Debug.Assert(_currentTab != null && _currentTabView != null, "Current selected tab could not be found.");
+
+        for (int i = 0; i < _tabs.Count; i++)
+        {
+            int tabIndex = i;
+            _tabs[i].RegisterCallback<ClickEvent>(evt => OnTabClicked(tabIndex));
+        }
     }
 
     private void CycleTab(int direction)
     {
-        var currentTab = _tabs.FirstOrDefault(tab => tab.ClassListContains("selected"));
-        var currentTabView = _tabViews.FirstOrDefault(view => view.ClassListContains("selected"));
-
-        int currentIndex = _tabs.IndexOf(currentTab);
+        int currentIndex = _tabs.IndexOf(_currentTab);
         int nextIndex = (currentIndex + direction + _tabs.Count) % _tabs.Count;
 
-        var nextTab = _tabs[nextIndex];
-        var nextView = _tabViews[nextIndex];
+        CycleTabToIndex(nextIndex);
+    }
+
+    private void CycleTabToIndex(int index)
+    {
+        var nextTab = _tabs[index];
+        var nextView = _tabViews[index];
 
         Unbind();
 
-        // Update classes
-        currentTab.RemoveFromClassList("selected");
-        currentTabView.RemoveFromClassList("selected");
-        currentTabView.AddToClassList("hidden");
+        _currentTab.RemoveFromClassList("selected");
+        _currentTabView.RemoveFromClassList("selected");
+        _currentTabView.AddToClassList("hidden");
 
         nextTab.AddToClassList("selected");
         nextView.AddToClassList("selected");
         nextView.RemoveFromClassList("hidden");
 
+        _currentTab = nextTab;
+        _currentTabView = nextView;
+
         Bind();
         Focus();
     }
+
 
     /// <summary>
     /// Display the tooltip of the focused menu item in the footer.
@@ -229,6 +251,11 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
     private void OnPrevTabPressed(InputAction.CallbackContext ctx)
     {
         CycleTab(-1);
+    }
+
+    private void OnTabClicked(int index)
+    {
+        CycleTabToIndex(index);
     }
 
     #endregion

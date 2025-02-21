@@ -50,6 +50,7 @@
     -unity-background-image-tint-color: rgb(211, 211, 211);
 }
 
+.options-nav-tab VisualElement:hover,
 .options-nav-tab.selected VisualElement {
     opacity: 1;
 }
