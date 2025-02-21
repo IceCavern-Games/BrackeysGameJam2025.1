@@ -79,9 +79,9 @@ public class TaskManager : MonoBehaviour
 
     private void TaskComplete(GameTask task)
     {
-        if (task.FollowUpTask != null)
+        foreach (GameTask followupTask in task.FollowUpTasks)
         {
-            var newTask = Tasks.Find((t) => t.Name == task.FollowUpTask.Name);
+            var newTask = Tasks.Find((t) => t.Name == followupTask.Name);
             ActiveTasks.Insert(0, newTask);
             newTask.Start();
         }

@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a010233834fb53f4bac856a7e202a271, type: 3}
-  m_Name: SetupTheProjector
+  m_Name: PickUpLaptop
   m_EditorClassIdentifier: 
-  Name: Setup the Projector
-  Description: A very important meeting is about to start.
-  Deadline: 415
+  Name: Retrieve Laptop
+  Description: Bring your laptop to your workspace
+  Deadline: 180
   StartsAt: -1
-  _startDialogueNode: SetupTheProjectorStart
-  _completeDialogueNode: SetupTheProjectorComplete
-  _followUpTasks: []
+  _startDialogueNode: PickUpLaptopStart
+  _completeDialogueNode: PickUpLaptopEnd
+  _followUpTasks:
+  - {fileID: 11400000, guid: 2287c007a4096dd4382e6eee8a8164d4, type: 2}
+  - {fileID: 11400000, guid: 63445eec7a26a408399baf8d1e0eac22, type: 2}
