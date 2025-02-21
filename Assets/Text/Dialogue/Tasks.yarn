@@ -58,3 +58,55 @@ tags:
 ---
 Welcome back.
 ===
+
+title: LunchBreakStart
+tags:
+---
+Some tasks have been emailed to you. Please complete them before the deadlines.
+Unfortunately government regulations still mandate 30 minute lunch breaks for all employees.
+Take your lunch break before 1 pm.
+Sincerly, Management
+===
+
+title: LunchBreakEnd
+tags:
+---
+Management is not pleased.
+But at least regulations are being followed.
+===
+
+title: PickUpLaptopStart
+tags:
+---
+Visit IT in the hall behind me to retrieve your laptop.
+Please bring it to your workstation.
+===
+
+title: PickUpLaptopEnd
+tags:
+---
+Many important emails have flooded your inbox.
+The first one reads
+===
+
+title: MeetDianeEnd
+tags:
+---
+Welcome to HR. 
+Please sign this form agreeing to waive all past, present, and future complaints against Maze Corp.
+===
+
+title: FeedBobStart
+tags:
+---
+By the way, can you be a dear and feed my precious darling Bob?
+His food is in the storage closet.
+He should be hanging out somewhere in the basement.
+===
+
+title: FeedBobEnd
+tags:
+---
+His collar says Beezelbob?
+At least he seems happy.
+===

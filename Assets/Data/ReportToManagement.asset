@@ -18,4 +18,5 @@ MonoBehaviour:
   StartsAt: 0
   _startDialogueNode: ReportToManagementStart
   _completeDialogueNode: ReportToManagementComplete
-  _followUpTask: {fileID: 11400000, guid: 63445eec7a26a408399baf8d1e0eac22, type: 2}
+  _followUpTasks:
+  - {fileID: 11400000, guid: 948c999901cb817429ad97dab02f4818, type: 2}

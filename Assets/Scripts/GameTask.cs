@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameTask : ScriptableObject
 {
@@ -21,13 +23,13 @@ public class GameTask : ScriptableObject
     public int StartsAt;
 
     public string CompleteDialogueNode => _completeDialogueNode;
-    public GameTask FollowUpTask => _followUpTask;
+    public List<GameTask> FollowUpTasks => _followUpTasks;
     public string StartDialogueNode => _startDialogueNode;
     public TaskStatus Status { get; private set; } = TaskStatus.Inactive;
 
     [SerializeField] private string _startDialogueNode = string.Empty;
     [SerializeField] private string _completeDialogueNode = string.Empty;
-    [SerializeField] private GameTask _followUpTask;
+    [SerializeField] private List<GameTask> _followUpTasks;
 
     public virtual void Check(float time)
     {
