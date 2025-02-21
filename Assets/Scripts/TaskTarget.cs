@@ -7,11 +7,13 @@ public class TaskTarget : MonoBehaviour
 
     private Collider _collider;
     private MeshRenderer _meshRenderer;
+    private YarnInteractable _interactable;
 
     private void Awake()
     {
         _collider = GetComponent<Collider>();
         _meshRenderer = GetComponent<MeshRenderer>();
+        _interactable = GetComponent<YarnInteractable>();
     }
 
     private void OnEnable()
@@ -23,6 +25,8 @@ public class TaskTarget : MonoBehaviour
     public void SetEnabled(bool isEnabled)
     {
         _meshRenderer.enabled = isEnabled;
+        if (_interactable)
+            _interactable.enabled = isEnabled;
     }
 
     public bool IsPositionInside(Vector3 position)
