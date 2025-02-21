@@ -1,0 +1,44 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Views/OptionsView.uss?fileID=7433441132597879392&amp;guid=18ba1cd77b3f64513a73638bfef74696&amp;type=3#OptionsView" />
+    <engine:VisualElement name="options-view" class="menu-screen">
+        <engine:VisualElement name="options-container" class="menu-screen-container">
+            <engine:VisualElement name="options-header" class="menu-screen-header">
+                <engine:Label text="Options" />
+            </engine:VisualElement>
+            <engine:VisualElement name="options-content" class="menu-screen-content">
+                <engine:VisualElement name="options-nav">
+                    <engine:VisualElement name="options-nav-left" style="display: none;">
+                        <engine:VisualElement style="background-image: url(&quot;project://database/Assets/UI/Textures/kf_prompts_gamepad.png?fileID=-768465245&amp;guid=ec45ee927ad13114f874ec0b8d8e7111&amp;type=3#kf_prompts_ps_l1&quot;);" />
+                    </engine:VisualElement>
+                    <engine:VisualElement name="options-nav-tabs">
+                        <engine:VisualElement name="options-nav-tab-video" class="options-nav-tab selected">
+                            <engine:VisualElement style="background-image: url(&quot;project://database/Assets/UI/Textures/optionsicons.png?fileID=299020580&amp;guid=e3fd6a0812a57408692413dc0c8f746d&amp;type=3#options_video&quot;);" />
+                        </engine:VisualElement>
+                        <engine:VisualElement name="options-nav-tab-audio" class="options-nav-tab">
+                            <engine:VisualElement style="background-image: url(&quot;project://database/Assets/UI/Textures/optionsicons.png?fileID=791432910&amp;guid=e3fd6a0812a57408692413dc0c8f746d&amp;type=3#options_audio&quot;);" />
+                        </engine:VisualElement>
+                    </engine:VisualElement>
+                    <engine:VisualElement name="options-nav-right" style="display: none;">
+                        <engine:VisualElement style="background-image: url(&quot;project://database/Assets/UI/Textures/kf_prompts_gamepad.png?fileID=-1254993917&amp;guid=ec45ee927ad13114f874ec0b8d8e7111&amp;type=3#kf_prompts_ps_r1&quot;);" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+                <engine:VisualElement name="options-tab-view">
+                    <engine:VisualElement name="options-tab-view-video" tooltip="Video Options" class="options-tab-content selected">
+                        <CarouselField name="video-resolution" label="Resolution" choices="1280x720,1920x1080,3840x2160" index="0" tooltip="Set the resolution." class="options-menu-item" />
+                        <CarouselField name="video-display-mode" label="Display Mode" choices="Fullscreen, Borderless, Windowed" index="0" tooltip="Set the display mode." class="options-menu-item" />
+                    </engine:VisualElement>
+                    <engine:VisualElement name="options-tab-view-audio" tooltip="Audio Options" class="options-tab-content hidden">
+                        <engine:SliderInt name="audio-master-volume" label="Master Volume" value="75" high-value="100" page-size="5" class="options-menu-item" />
+                        <engine:SliderInt name="audio-music-volume" label="Music Volume" value="100" high-value="100" page-size="5" class="options-menu-item" />
+                        <engine:SliderInt name="audio-sfx-volume" label="SFX Volume" value="100" high-value="100" page-size="5" class="options-menu-item" />
+                        <engine:SliderInt name="audio-dialogue-volume" label="Dialogue Volume" value="100" high-value="100" page-size="5" class="options-menu-item" />
+                        <engine:SliderInt name="audio-ambience-volume" label="Ambience Volume" value="100" high-value="100" page-size="5" class="options-menu-item" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement name="options-footer" class="menu-screen-footer">
+                <engine:Label name="options-footer-text" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor erat non velit dapibus vulputate. Donec dictum risus arcu, facilisis dictum enim imperdiet sed. In sagittis dolor ornare enim semper rhoncus. Vivamus aliquet efficitur eros, sit amet aliquet turpis rutrum ut." />
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
