@@ -2,7 +2,6 @@ ButtonPrompt {
     align-items: center;
     color: white;
     flex-direction: row;
-    margin-right: 10px;
 }
 
 ButtonPrompt #image {
@@ -13,6 +12,7 @@ ButtonPrompt #image {
 }
 
 ButtonPrompt #text {
+    display: none;
     font-size: 24px;
     margin-left: 4px;
     -unity-text-align: middle-left;

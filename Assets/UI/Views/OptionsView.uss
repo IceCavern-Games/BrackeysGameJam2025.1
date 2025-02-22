@@ -50,7 +50,10 @@
     -unity-background-image-tint-color: rgb(211, 211, 211);
 }
 
-.options-nav-tab VisualElement:hover,
+.options-nav-tab VisualElement:hover {
+    opacity: 1;
+}
+
 .options-nav-tab.selected VisualElement {
     opacity: 1;
 }
@@ -170,7 +173,7 @@
     margin: 0;
     padding: 0;
     width: 28px;
-    background-image: url("project://database/Assets/UI/Themes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&guid=b23c418b787b3415aa55cf58eb377f80&type=3#arrow-right@2x");
+    background-image: url("project://database/Assets/UI/Textures/arrow-right@2x.png?fileID=2800000&guid=578db31d9ffed44b28721328e01e498b&type=3#arrow-right@2x");
 }
 
 .options-menu-item .unity-base-selector-field__prevArrow {
@@ -181,7 +184,7 @@
     margin: 0;
     padding: 0;
     width: 28px;
-    background-image: url("project://database/Assets/UI/Themes/UnityDefaultRuntimeTheme.tss?fileID=-2236324273849735119&guid=b23c418b787b3415aa55cf58eb377f80&type=3#arrow-left@2x");
+    background-image: url("project://database/Assets/UI/Textures/arrow-left@2x.png?fileID=2800000&guid=f66e007d9dcd54e77baad592ecf8b958&type=3#arrow-left@2x");
 }
 
 .options-menu-item .unity-base-selector-field__text {

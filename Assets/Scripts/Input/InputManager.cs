@@ -25,12 +25,12 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Input.onActionTriggered += OnActionTriggered;
+        SubscribeToPerformedEvents(Input.actions);
     }
 
     private void OnDisable()
     {
-        Input.onActionTriggered -= OnActionTriggered;
+        UnsubscribeFromPerformedEvents(Input.actions);
     }
 
     public void SetCursorLock(bool isLocked = true)
@@ -38,9 +38,22 @@ public class InputManager : MonoBehaviour
         Cursor.lockState = isLocked ? CursorLockMode.Locked : CursorLockMode.None;
     }
 
-    private void OnActionTriggered(InputAction.CallbackContext ctx)
+    /// <summary>
+    /// Subscribe to every action's performed event so we can track the last used device.
+    /// </summary>
+    private void SubscribeToPerformedEvents(IInputActionCollection2 actions)
     {
-        UpdateLastUsedDevice(ctx.control.device);
+        foreach (InputAction action in actions)
+            action.performed += ctx => UpdateLastUsedDevice(ctx.control.device);
+    }
+
+    /// <summary>
+    /// Unsubscribe from the action's performed events.
+    /// </summary>
+    private void UnsubscribeFromPerformedEvents(IInputActionCollection2 actions)
+    {
+        foreach (InputAction action in actions)
+            action.performed -= ctx => UpdateLastUsedDevice(ctx.control.device);
     }
 
     /// <summary>

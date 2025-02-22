@@ -19,7 +19,11 @@ public partial class ButtonPrompt : VisualElement
     public string Text
     {
         get => _promptText.text;
-        set => _promptText.text = value;
+        set
+        {
+            _promptText.text = value;
+            _promptText.style.display = value != string.Empty ? DisplayStyle.Flex : DisplayStyle.None;
+        }
     }
 
     private readonly VisualElement _promptImage;

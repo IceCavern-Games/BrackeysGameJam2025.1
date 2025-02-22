@@ -16,11 +16,15 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
 
     public bool IsOpen => _uiDocument.rootVisualElement.style.display == DisplayStyle.Flex;
 
+    [Inject] private readonly InputManager _inputManager;
+
     private VisualElement _currentTab;
     private VisualElement _currentTabView;
     private Label _footerLabel;
     private readonly Dictionary<VisualElement, IManipulator> _manipulators = new();
+    private ButtonPrompt _nextTabPrompt;
     private OptionsManager _optionsManager;
+    private ButtonPrompt _prevTabPrompt;
     private List<VisualElement> _tabs;
     private List<VisualElement> _tabViews;
     private bool _suppressNavigationCancel = false;
@@ -41,6 +45,8 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
         base.OnEnable();
 
         _footerLabel = _uiDocument.rootVisualElement.Q<Label>("options-footer-text");
+        _nextTabPrompt = _uiDocument.rootVisualElement.Q<ButtonPrompt>("options-nav-right-prompt");
+        _prevTabPrompt = _uiDocument.rootVisualElement.Q<ButtonPrompt>("options-nav-left-prompt");
         BindTabs();
     }
 
@@ -56,6 +62,8 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
             int tabIndex = i;
             _tabs[i].UnregisterCallback<ClickEvent>(evt => OnTabClicked(tabIndex));
         }
+
+        _inputManager.DeviceTypeChanged -= OnDeviceChanged;
     }
 
     /// <summary>
@@ -236,19 +244,34 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
         _suppressNavigationCancel = false;
     }
 
+    private void SetPromptSprites()
+    {
+        _nextTabPrompt.Sprite = _inputManager.Prompts.GetBindingIconForAction(_nextTabAction);
+        _prevTabPrompt.Sprite = _inputManager.Prompts.GetBindingIconForAction(_prevTabAction);
+    }
+
     #region Event Handlers
 
-    [Inject]
-    private void OnInject(InputManager inputManager)
+    private void OnDeviceChanged(InputDevice device, string controlScheme)
     {
-        _nextTabAction = inputManager.Input.actions["NextTab"];
-        _prevTabAction = inputManager.Input.actions["PrevTab"];
+        SetPromptSprites();
+    }
+
+    [Inject]
+    private void OnInject()
+    {
+        _inputManager.DeviceTypeChanged += OnDeviceChanged;
+
+        _nextTabAction = _inputManager.Input.actions["NextTab"];
+        _prevTabAction = _inputManager.Input.actions["PrevTab"];
 
         _nextTabAction.Enable();
         _prevTabAction.Enable();
 
         _nextTabAction.performed += OnNextTabPressed;
         _prevTabAction.performed += OnPrevTabPressed;
+
+        SetPromptSprites();
     }
 
     private void OnNextTabPressed(InputAction.CallbackContext ctx)

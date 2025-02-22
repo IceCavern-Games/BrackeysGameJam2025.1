@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI/Views/GameplayView.uss?fileID=7433441132597879392&amp;guid=29e4abec63adc4f7291dddb6b07c4b68&amp;type=3#GameplayView" />
     <engine:VisualElement name="gameplay-view">
         <engine:VisualElement name="interact-prompt">
-            <engine:Label text="Interact" />
+            <ButtonPrompt text="Interact" sprite="project://database/Assets/UI/Textures/kf_prompts_kb.png?fileID=-580745493&amp;guid=53efe2120dcbce64a947e2fd387e1501&amp;type=3#kf_prompts_kb_e" />
         </engine:VisualElement>
         <engine:VisualElement name="task-container">
             <engine:ListView focusable="false" reorder-mode="Animated" show-bound-collection-size="false" binding-source-selection-mode="AutoAssign" item-template="project://database/Assets/UI/Components/GameTaskElement/GameTaskElement.uxml?fileID=9197481963319205126&amp;guid=470f82f7979a23441b790b6ea335ac98&amp;type=3#GameTaskElement" show-add-remove-footer="false" virtualization-method="FixedHeight" name="ListView" fixed-item-height="168" selection-type="None" style="flex-grow: 1;" />
