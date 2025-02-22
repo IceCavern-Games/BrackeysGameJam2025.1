@@ -7035,15 +7035,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4423971927455500, guid: 039759a4823ae7447ba506aac87e418d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.54
+      value: -39.75
       objectReference: {fileID: 0}
     - target: {fileID: 4423971927455500, guid: 039759a4823ae7447ba506aac87e418d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.683
+      value: 0.693
       objectReference: {fileID: 0}
     - target: {fileID: 4423971927455500, guid: 039759a4823ae7447ba506aac87e418d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -31.832
+      value: -31.834
       objectReference: {fileID: 0}
     - target: {fileID: 4423971927455500, guid: 039759a4823ae7447ba506aac87e418d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -42978,6 +42978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractionPrompt: Pick Up Laptop
   _outlineMaterial: {fileID: 2100000, guid: ff0dd0e1955d5b3429ec8757bd4ee048, type: 2}
+  _pickupMaterial: {fileID: 13400000, guid: 39dc4e0d665ac9d4fb7b3e53a53d873e, type: 2}
 --- !u!54 &869668564
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -75467,6 +75468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractionPrompt: Pick Up Projector
   _outlineMaterial: {fileID: 2100000, guid: ff0dd0e1955d5b3429ec8757bd4ee048, type: 2}
+  _pickupMaterial: {fileID: 13400000, guid: 39dc4e0d665ac9d4fb7b3e53a53d873e, type: 2}
 --- !u!54 &1616879343
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -91236,6 +91238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractionPrompt: Pick Up Food Bowl
   _outlineMaterial: {fileID: 2100000, guid: ff0dd0e1955d5b3429ec8757bd4ee048, type: 2}
+  _pickupMaterial: {fileID: 13400000, guid: 39dc4e0d665ac9d4fb7b3e53a53d873e, type: 2}
 --- !u!54 &1980046572
 Rigidbody:
   m_ObjectHideFlags: 0
