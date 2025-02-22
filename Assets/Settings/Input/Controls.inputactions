@@ -43,7 +43,7 @@
                 },
                 {
                     "name": "Sprint",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "83f5772e-f6b4-46fb-8526-83d7ea10db78",
                     "expectedControlType": "",
                     "processors": "",
@@ -52,7 +52,7 @@
                 },
                 {
                     "name": "Paint",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "84e4a59d-1e87-4da8-9972-0e7807463863",
                     "expectedControlType": "",
                     "processors": "",
@@ -61,7 +61,7 @@
                 },
                 {
                     "name": "Erase",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "48636ed0-d5a5-4db6-bbba-436e973f6ea4",
                     "expectedControlType": "",
                     "processors": "",
@@ -316,7 +316,7 @@
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "Paint",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -327,7 +327,7 @@
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "Erase",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -338,7 +338,7 @@
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "Erase",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -736,11 +736,33 @@
                 },
                 {
                     "name": "",
+                    "id": "3a699a72-00e8-43ab-ad34-50e04d3aa270",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "82627dcc-3b13-4ba9-841d-e4b746d6553e",
                     "path": "*/{Cancel}",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c23af0d-17c3-4389-a7ec-9623b48a645c",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -916,7 +938,7 @@
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "PrevTab",
                     "isComposite": false,
                     "isPartOfComposite": false

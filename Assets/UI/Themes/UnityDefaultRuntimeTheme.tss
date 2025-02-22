@@ -1,4 +1,5 @@
 @import url("unity-theme://default");
 
+@import url("/Assets/UI/Components/ButtonPrompt/ButtonPrompt.uss");
 @import url("/Assets/UI/Components/SelectorField/SelectorField.uss");
 @import url("/Assets/UI/Components/MenuScreen.uss");

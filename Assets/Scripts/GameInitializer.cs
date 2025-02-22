@@ -1,6 +1,4 @@
 using Reflex.Attributes;
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class GameInitializer : MonoBehaviour
@@ -10,7 +8,6 @@ public class GameInitializer : MonoBehaviour
 
     private void Start()
     {
-        _inputManager.FindPlayerInput();
         _inputManager.Input.DeactivateInput();
 
         // Easy way of just starting an attempt every time the scene loads.

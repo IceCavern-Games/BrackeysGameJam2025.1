@@ -17,5 +17,5 @@ MonoBehaviour:
   Deadline: 240
   StartsAt: -1
   _startDialogueNode: LunchBreakStart
-  _completeDialogueNode: 
+  _completeDialogueNode: LunchBreakEnd
   _followUpTasks: []

@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
-        Clock = new Timer(480, false); // Will tick for 8 in-game hours.
+        Clock = new Timer(510, false); // Will tick for 8.5 in-game hours.
         Pause = GetComponent<PauseScreenManager>();
         _nameGenerator = new();
     }

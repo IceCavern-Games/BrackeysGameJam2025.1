@@ -1,0 +1,246 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f9f48f61439e46ea947817a6ddf2cbf, type: 3}
+  m_Name: KeyboardDeviceDisplaySettings
+  m_EditorClassIdentifier: 
+  deviceDisplayName: Keyboard & Mouse
+  deviceDisplayColor: {r: 1, g: 0.5764706, b: 0, a: 1}
+  deviceHasContextIcons: 1
+  buttonNorthIcon: {fileID: 0}
+  buttonSouthIcon: {fileID: 0}
+  buttonWestIcon: {fileID: 0}
+  buttonEastIcon: {fileID: 0}
+  triggerRightFrontIcon: {fileID: 0}
+  triggerRightBackIcon: {fileID: 0}
+  triggerLeftFrontIcon: {fileID: 0}
+  triggerLeftBackIcon: {fileID: 0}
+  customContextIcons:
+  - customInputContextString: Arrow Keys
+    customInputContextIcon: {fileID: -1726536552, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: WASD
+    customInputContextIcon: {fileID: 1308557452, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Shift
+    customInputContextIcon: {fileID: -532479601, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Control
+    customInputContextIcon: {fileID: -534483042, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Alt
+    customInputContextIcon: {fileID: -2038918923, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Escape
+    customInputContextIcon: {fileID: 408090346, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: F1
+    customInputContextIcon: {fileID: 2044657536, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: F2
+    customInputContextIcon: {fileID: -1424556707, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: F3
+    customInputContextIcon: {fileID: -1772783077, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: F4
+    customInputContextIcon: {fileID: 1782467821, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: F5
+    customInputContextIcon: {fileID: 1977240456, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: F6
+    customInputContextIcon: {fileID: 1590138570, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: F7
+    customInputContextIcon: {fileID: -1511138211, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: F8
+    customInputContextIcon: {fileID: -702199767, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: F9
+    customInputContextIcon: {fileID: -1875481616, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: F10
+    customInputContextIcon: {fileID: 114363762, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: F11
+    customInputContextIcon: {fileID: -1517293350, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: F12
+    customInputContextIcon: {fileID: 205378983, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: '`'
+    customInputContextIcon: {fileID: 280384935, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: 1
+    customInputContextIcon: {fileID: 220582190, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: 2
+    customInputContextIcon: {fileID: -655003351, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: 3
+    customInputContextIcon: {fileID: 1665351763, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: 4
+    customInputContextIcon: {fileID: 581407258, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: 5
+    customInputContextIcon: {fileID: 755504682, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: 6
+    customInputContextIcon: {fileID: 444550569, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: 7
+    customInputContextIcon: {fileID: -1874861765, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: 8
+    customInputContextIcon: {fileID: 2013648735, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: 9
+    customInputContextIcon: {fileID: 2035853868, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: 0
+    customInputContextIcon: {fileID: 994291927, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: '-'
+    customInputContextIcon: {fileID: 610077198, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: =
+    customInputContextIcon: {fileID: 958176639, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Backspace
+    customInputContextIcon: {fileID: -128442513, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Tab
+    customInputContextIcon: {fileID: 752341709, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Q
+    customInputContextIcon: {fileID: 714006644, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: W
+    customInputContextIcon: {fileID: -1116983125, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: E
+    customInputContextIcon: {fileID: -580745493, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: R
+    customInputContextIcon: {fileID: 954302162, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: T
+    customInputContextIcon: {fileID: -1197270481, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Y
+    customInputContextIcon: {fileID: 228392766, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: U
+    customInputContextIcon: {fileID: 1424270901, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: I
+    customInputContextIcon: {fileID: -1425960328, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: O
+    customInputContextIcon: {fileID: 335583219, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: P
+    customInputContextIcon: {fileID: 872239767, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: '['
+    customInputContextIcon: {fileID: 1155502558, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: ']'
+    customInputContextIcon: {fileID: -724558598, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: \
+    customInputContextIcon: {fileID: -1851378115, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Caps Lock
+    customInputContextIcon: {fileID: 942758110, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: A
+    customInputContextIcon: {fileID: -1750128001, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: S
+    customInputContextIcon: {fileID: -122537619, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: D
+    customInputContextIcon: {fileID: -2065297245, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: F
+    customInputContextIcon: {fileID: -2104196067, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: G
+    customInputContextIcon: {fileID: 855017414, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: H
+    customInputContextIcon: {fileID: 1934047983, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: J
+    customInputContextIcon: {fileID: -1102724522, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: K
+    customInputContextIcon: {fileID: -24800208, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: L
+    customInputContextIcon: {fileID: 2072892443, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: ;
+    customInputContextIcon: {fileID: -444631284, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: ''''
+    customInputContextIcon: {fileID: -548354508, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Enter
+    customInputContextIcon: {fileID: 1249308736, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Left Shift
+    customInputContextIcon: {fileID: -618781763, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Z
+    customInputContextIcon: {fileID: -1377285911, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: X
+    customInputContextIcon: {fileID: 472829378, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: C
+    customInputContextIcon: {fileID: 783140850, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: V
+    customInputContextIcon: {fileID: 549757351, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: B
+    customInputContextIcon: {fileID: -1873974326, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: N
+    customInputContextIcon: {fileID: -454206079, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: M
+    customInputContextIcon: {fileID: -1793368615, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: ','
+    customInputContextIcon: {fileID: -1821649803, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: .
+    customInputContextIcon: {fileID: 717249733, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: /
+    customInputContextIcon: {fileID: 1997175589, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Right Shift
+    customInputContextIcon: {fileID: 298794913, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Left Control
+    customInputContextIcon: {fileID: 727399367, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Left Alt
+    customInputContextIcon: {fileID: -562054206, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Space
+    customInputContextIcon: {fileID: -380340682, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Right Alt
+    customInputContextIcon: {fileID: -188492767, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Right Control
+    customInputContextIcon: {fileID: 1989470831, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Up Arrow
+    customInputContextIcon: {fileID: 780526492, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Down Arrow
+    customInputContextIcon: {fileID: 1491401727, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Left Arrow
+    customInputContextIcon: {fileID: -558013736, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Right Arrow
+    customInputContextIcon: {fileID: -682233715, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Print Screen
+    customInputContextIcon: {fileID: 611817973, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Scroll Lock
+    customInputContextIcon: {fileID: -1855367556, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Pause Break
+    customInputContextIcon: {fileID: 1132641364, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Insert
+    customInputContextIcon: {fileID: -343432644, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Home
+    customInputContextIcon: {fileID: 1266320041, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Page Up
+    customInputContextIcon: {fileID: 1487322813, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Delete
+    customInputContextIcon: {fileID: 1419431802, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: End
+    customInputContextIcon: {fileID: 1233277165, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Page Down
+    customInputContextIcon: {fileID: -1565772306, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Num Lock
+    customInputContextIcon: {fileID: -1891967036, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad /
+    customInputContextIcon: {fileID: 830144827, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad *
+    customInputContextIcon: {fileID: 439448307, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad -
+    customInputContextIcon: {fileID: 1175732013, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad 7
+    customInputContextIcon: {fileID: 1731127395, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad 8
+    customInputContextIcon: {fileID: -712719345, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad 9
+    customInputContextIcon: {fileID: 1646691120, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad +
+    customInputContextIcon: {fileID: 48000401, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad 4
+    customInputContextIcon: {fileID: -747656452, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad 5
+    customInputContextIcon: {fileID: -1909991242, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad 6
+    customInputContextIcon: {fileID: -1774808513, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad 1
+    customInputContextIcon: {fileID: 1598898475, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad 2
+    customInputContextIcon: {fileID: 2138847972, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad 3
+    customInputContextIcon: {fileID: -1166883813, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad Enter
+    customInputContextIcon: {fileID: 224773128, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad 0
+    customInputContextIcon: {fileID: -1403687471, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Numpad .
+    customInputContextIcon: {fileID: -1066802695, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Left Button
+    customInputContextIcon: {fileID: 891560122, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Right Button
+    customInputContextIcon: {fileID: 542385010, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Submit
+    customInputContextIcon: {fileID: 1249308736, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Cancel
+    customInputContextIcon: {fileID: 408090346, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}

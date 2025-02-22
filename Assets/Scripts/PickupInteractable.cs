@@ -4,27 +4,28 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PickupInteractable : Interactable
 {
+    [SerializeField] private PhysicsMaterial _pickupMaterial;
     private Rigidbody _rigidbody;
+    private Collider _collider;
     private Transform _holdPosition;
     private bool _isHeld = false;
 
-    private readonly float _correctionForce = 200.0f;
+    private readonly float _correctionForce = 10.0f;
+    private readonly float _linearDamping = 20.0f;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _collider = GetComponent<Collider>();
         _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if (_isHeld && _holdPosition != null)
         {
             var force = _holdPosition.position - transform.position;
-
-            _rigidbody.linearVelocity = force.normalized * _rigidbody.linearVelocity.magnitude;
-            _rigidbody.AddForce(force * _correctionForce);
-            _rigidbody.linearVelocity *= Mathf.Min(1.0f, force.magnitude / 2);
+            _rigidbody.AddForce(force * _correctionForce, ForceMode.VelocityChange);
         }
     }
 
@@ -43,7 +44,9 @@ public class PickupInteractable : Interactable
         gameObject.layer = LayerMask.NameToLayer("Interactable");
 
         _holdPosition = null;
+        _collider.material = null;
         _rigidbody.useGravity = true;
+        _rigidbody.linearDamping = 0.0f;
         _rigidbody.constraints = RigidbodyConstraints.None;
         _isHeld = false;
     }
@@ -53,7 +56,9 @@ public class PickupInteractable : Interactable
         gameObject.layer = LayerMask.NameToLayer("HeldObject");
 
         _holdPosition = holdPosition;
+        _collider.material = _pickupMaterial;
         _rigidbody.useGravity = false;
+        _rigidbody.linearDamping = _linearDamping;
         _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         _rigidbody.linearVelocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
