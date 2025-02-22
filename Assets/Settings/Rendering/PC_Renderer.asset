@@ -71,7 +71,7 @@ MonoBehaviour:
     WhiteCutoff: 0.104
     NormalThreshold: 0.7
     DepthThreshold: 0.101
-    DepthDistanceModulation: 6.85
+    DepthDistanceModulation: 0.37
     DepthModulationPower: 5.3
     DitherSize: 1
     DitherTexture: {fileID: 2800000, guid: 09bc9dd0984871b4a940e7d83ab6806d, type: 3}
