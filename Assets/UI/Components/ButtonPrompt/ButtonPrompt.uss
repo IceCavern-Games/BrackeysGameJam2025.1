@@ -1,0 +1,19 @@
+ButtonPrompt {
+    align-items: center;
+    color: white;
+    flex-direction: row;
+}
+
+ButtonPrompt #image {
+    min-height: 32px;
+    min-width: 32px;
+    height: 32px;
+    width: 32px;
+}
+
+ButtonPrompt #text {
+    display: none;
+    font-size: 24px;
+    margin-left: 4px;
+    -unity-text-align: middle-left;
+}

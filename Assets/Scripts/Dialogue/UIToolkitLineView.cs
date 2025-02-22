@@ -3,7 +3,6 @@ using System.Collections;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Yarn.Markup;
 using Yarn.Unity;
 
 public static class UIToolkitEffects
@@ -165,7 +164,6 @@ public static class UIToolkitEffects
 [RequireComponent(typeof(UIDocument))]
 public class UIToolkitLineView : DialogueViewBase
 {
-    // [SerializeField] private bool _showCharacterNameInLineView = true;
     [SerializeField] private bool _useTypewriterEffect = false;
     [SerializeField][Min(0)] private float _typewriterEffectSpeed = 0f;
     [Tooltip("How many characters typed it takes to emit the CharacterTyped event.")]
@@ -176,7 +174,6 @@ public class UIToolkitLineView : DialogueViewBase
     private LocalizedLine _currentLine;
     private Effects.CoroutineInterruptToken _currentStopToken = new Effects.CoroutineInterruptToken();
     private UIDocument _document;
-    // private Coroutine _updateIconRoutine;
 
     public DialogueBoxController BoxController { get; private set; } = new();
     public DialogueViewController ViewController { get; private set; } = new();
@@ -191,7 +188,7 @@ public class UIToolkitLineView : DialogueViewBase
     private void OnEnable()
     {
         ViewController.Initialize(
-            _document.rootVisualElement.Q<VisualElement>(name = "dialogue-view"),
+            _document.rootVisualElement.Q<VisualElement>("dialogue-view"),
             ContinueButton_Clicked
         );
         BoxController.Initialize(
@@ -199,15 +196,6 @@ public class UIToolkitLineView : DialogueViewBase
         );
 
         ViewController.ShowDialogueBox(false);
-
-        // InputManager.ActionMapsChanged += InputManager_ActionMapsChanged;
-        // InputManager.DeviceTypeChanged += InputManager_DeviceTypeChanged;
-    }
-
-    private void OnDisable()
-    {
-        // InputManager.ActionMapsChanged -= InputManager_ActionMapsChanged;
-        // InputManager.DeviceTypeChanged -= InputManager_DeviceTypeChanged;
     }
 
     public override void DialogueComplete()
@@ -282,27 +270,6 @@ public class UIToolkitLineView : DialogueViewBase
 
         // Sort attributes by position.
         dialogueLine.Text.Attributes.Sort((a, b) => a.Position.CompareTo(b.Position));
-
-        // Loop backwards through attributes to avoid disrupting indices of unprocessed tags.
-        for (int i = dialogueLine.Text.Attributes.Count - 1; i >= 0; i--)
-        {
-            MarkupAttribute attr = dialogueLine.Text.Attributes[i];
-
-            if (attr.Name == "input")
-            {
-                MarkupValue action;
-                attr.Properties.TryGetValue("action", out action);
-
-                // Sprite icon = InputManager.GetBindingIconForAction(InputManager.FindAction(action.StringValue));
-
-                // if (icon == null)
-                //     continue;
-
-                // string transparent = !shouldReveal ? "color=#00000000" : "";
-
-                // text = text.Insert(attr.Position, $"<sprite=\"{icon.texture.name}\" name=\"{icon.name}\" {transparent}> ");
-            }
-        }
 
         // Handle <color> tags by injecting <alpha=#00> tags after the opening tag and after the closing tag.
         if (!shouldReveal)
@@ -395,18 +362,6 @@ public class UIToolkitLineView : DialogueViewBase
         onDialogueLineFinished();
     }
 
-    /// <summary>
-    /// Wait for the current animation to end, then rerender text to show the proper icon(s) for the device.
-    /// </summary>
-    // private IEnumerator UpdateInputSprites()
-    // {
-    //     while (!BoxController.ConfirmationShown)
-    //         yield return null;
-
-    //     BoxController.SetText(ParseCustomMarkup(_currentLine));
-    //     _updateIconRoutine = null;
-    // }
-
     #region Event Invokers
 
     private void OnCharacterTyped(int visibleCharacters)
@@ -428,18 +383,6 @@ public class UIToolkitLineView : DialogueViewBase
         // example, if a DialogueAdvanceInput had signalled us.)
         UserRequestedViewAdvancement();
     }
-
-    // private void InputManager_ActionMapsChanged(List<InputActionMap> actionMap)
-    // {
-    //     if (ViewController.Shown && _updateIconRoutine == null)
-    //         _updateIconRoutine = StartCoroutine(UpdateInputSprites());
-    // }
-
-    // private void InputManager_DeviceTypeChanged(InputDevice device, InputControlScheme? controlScheme)
-    // {
-    //     if (ViewController.Shown && _updateIconRoutine == null)
-    //         _updateIconRoutine = StartCoroutine(UpdateInputSprites());
-    // }
 
     #endregion
 }

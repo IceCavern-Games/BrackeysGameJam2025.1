@@ -7,8 +7,8 @@
             </engine:VisualElement>
             <engine:VisualElement name="options-content" class="menu-screen-content">
                 <engine:VisualElement name="options-nav">
-                    <engine:VisualElement name="options-nav-left" style="display: none;">
-                        <engine:VisualElement style="background-image: url(&quot;project://database/Assets/UI/Textures/kf_prompts_gamepad.png?fileID=-768465245&amp;guid=ec45ee927ad13114f874ec0b8d8e7111&amp;type=3#kf_prompts_ps_l1&quot;);" />
+                    <engine:VisualElement name="options-nav-left">
+                        <ButtonPrompt name="options-nav-left-prompt" sprite="project://database/Assets/UI/Textures/kf_prompts_kb.png?fileID=714006644&amp;guid=53efe2120dcbce64a947e2fd387e1501&amp;type=3#kf_prompts_kb_q" />
                     </engine:VisualElement>
                     <engine:VisualElement name="options-nav-tabs">
                         <engine:VisualElement name="options-nav-tab-video" class="options-nav-tab selected">
@@ -18,8 +18,8 @@
                             <engine:VisualElement style="background-image: url(&quot;project://database/Assets/UI/Textures/optionsicons.png?fileID=791432910&amp;guid=e3fd6a0812a57408692413dc0c8f746d&amp;type=3#options_audio&quot;);" />
                         </engine:VisualElement>
                     </engine:VisualElement>
-                    <engine:VisualElement name="options-nav-right" style="display: none;">
-                        <engine:VisualElement style="background-image: url(&quot;project://database/Assets/UI/Textures/kf_prompts_gamepad.png?fileID=-1254993917&amp;guid=ec45ee927ad13114f874ec0b8d8e7111&amp;type=3#kf_prompts_ps_r1&quot;);" />
+                    <engine:VisualElement name="options-nav-right">
+                        <ButtonPrompt name="options-nav-right-prompt" sprite="project://database/Assets/UI/Textures/kf_prompts_kb.png?fileID=-580745493&amp;guid=53efe2120dcbce64a947e2fd387e1501&amp;type=3#kf_prompts_kb_e" />
                     </engine:VisualElement>
                 </engine:VisualElement>
                 <engine:VisualElement name="options-tab-view">

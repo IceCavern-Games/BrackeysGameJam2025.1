@@ -1,3 +1,4 @@
+using Reflex.Attributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,11 +16,15 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
 
     public bool IsOpen => _uiDocument.rootVisualElement.style.display == DisplayStyle.Flex;
 
+    [Inject] private readonly InputManager _inputManager;
+
     private VisualElement _currentTab;
     private VisualElement _currentTabView;
     private Label _footerLabel;
     private readonly Dictionary<VisualElement, IManipulator> _manipulators = new();
+    private ButtonPrompt _nextTabPrompt;
     private OptionsManager _optionsManager;
+    private ButtonPrompt _prevTabPrompt;
     private List<VisualElement> _tabs;
     private List<VisualElement> _tabViews;
     private bool _suppressNavigationCancel = false;
@@ -33,20 +38,16 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
 
         _optionsManager = GetComponent<OptionsManager>();
         _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
-
-        _nextTabAction = InputSystem.actions.FindAction("NextTab");
-        _prevTabAction = InputSystem.actions.FindAction("PrevTab");
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
 
-        _footerLabel = _uiDocument.rootVisualElement.Q<Label>(name = "options-footer-text");
+        _footerLabel = _uiDocument.rootVisualElement.Q<Label>("options-footer-text");
+        _nextTabPrompt = _uiDocument.rootVisualElement.Q<ButtonPrompt>("options-nav-right-prompt");
+        _prevTabPrompt = _uiDocument.rootVisualElement.Q<ButtonPrompt>("options-nav-left-prompt");
         BindTabs();
-
-        _nextTabAction.performed += OnNextTabPressed;
-        _prevTabAction.performed += OnPrevTabPressed;
     }
 
     protected override void OnDisable()
@@ -61,6 +62,8 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
             int tabIndex = i;
             _tabs[i].UnregisterCallback<ClickEvent>(evt => OnTabClicked(tabIndex));
         }
+
+        _inputManager.DeviceTypeChanged -= OnDeviceChanged;
     }
 
     /// <summary>
@@ -104,7 +107,7 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
         {
             var volumeSettings = new Dictionary<string, (Func<int> getValue, Action<int> setValue)>
             {
-                { "audio-master-volume",   (() => _optionsManager.Options.Audio.MasterVolume,  _optionsManager.SetMasterVolume) },
+                { "audio-master-volume",   (() => _optionsManager.Options.Audio.MasterVolume,   _optionsManager.SetMasterVolume) },
                 { "audio-ambience-volume", (() => _optionsManager.Options.Audio.AmbienceVolume, _optionsManager.SetAmbienceVolume) },
                 { "audio-dialogue-volume", (() => _optionsManager.Options.Audio.DialogueVolume, _optionsManager.SetDialogueVolume) },
                 { "audio-music-volume",    (() => _optionsManager.Options.Audio.MusicVolume,    _optionsManager.SetMusicVolume) },
@@ -150,7 +153,6 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
             switch (item.name)
             {
                 case "video-vsync":
-                    Debug.Log("BINDING VSYNC CONTROL");
                     toggleField.value = _optionsManager.Options.Video.Vsync;
                     item.RegisterCallback<ChangeEvent<bool>>(OnVideoVsyncChanged);
                     break;
@@ -253,7 +255,35 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
         _suppressNavigationCancel = false;
     }
 
+    private void SetPromptSprites()
+    {
+        _nextTabPrompt.Sprite = _inputManager.Prompts.GetBindingIconForAction(_nextTabAction);
+        _prevTabPrompt.Sprite = _inputManager.Prompts.GetBindingIconForAction(_prevTabAction);
+    }
+
     #region Event Handlers
+
+    private void OnDeviceChanged(InputDevice device, string controlScheme)
+    {
+        SetPromptSprites();
+    }
+
+    [Inject]
+    private void OnInject()
+    {
+        _inputManager.DeviceTypeChanged += OnDeviceChanged;
+
+        _nextTabAction = _inputManager.Input.actions["NextTab"];
+        _prevTabAction = _inputManager.Input.actions["PrevTab"];
+
+        _nextTabAction.Enable();
+        _prevTabAction.Enable();
+
+        _nextTabAction.performed += OnNextTabPressed;
+        _prevTabAction.performed += OnPrevTabPressed;
+
+        SetPromptSprites();
+    }
 
     private void OnNextTabPressed(InputAction.CallbackContext ctx)
     {
@@ -296,7 +326,6 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
 
     private void OnVideoVsyncChanged(ChangeEvent<bool> evt)
     {
-        Debug.Log("VSYNC CHANGED");
         _optionsManager.SetVsync(evt.newValue);
     }
 

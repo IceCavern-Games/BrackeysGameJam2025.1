@@ -1,0 +1,3 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ButtonPrompt sprite="project://database/Assets/UI/Textures/kf_prompts_gamepad.png?fileID=-670212276&amp;guid=ec45ee927ad13114f874ec0b8d8e7111&amp;type=3#kf_prompts_xbox_a" text="Attack" />
+</engine:UXML>
