@@ -25,7 +25,7 @@ Good work.
 title: ReportToManagementStart
 tags:
 ---
-First off, come to management to get your first task.
+First off, come to <color="green">Management</color> to get your first task.
 ===
 
 title: ReportToManagementComplete
@@ -47,6 +47,12 @@ tags:
 Management is pleased.
 ===
 
+title: SetupTheProjectorInteract
+tags:
+---
+This is where the <color="green">Projector</color> should go.
+===
+
 title: ReportToManagement2Start
 tags:
 ---
@@ -62,10 +68,10 @@ Welcome back.
 title: LunchBreakStart
 tags:
 ---
-Some tasks have been emailed to you. Please complete them before the deadlines.
-Unfortunately government regulations still mandate 30 minute lunch breaks for all employees.
-Take your lunch break before 1 pm.
-Sincerly, Management
+<i>Some tasks have been emailed to you. Please complete them before the deadlines.</i>
+<i>Unfortunately government regulations still mandate 30 minute lunch breaks for all employees.</i>
+<i>Take your lunch break before 1 pm.</i>
+<i>Sincerly, Management</i>
 ===
 
 title: LunchBreakEnd
@@ -78,7 +84,7 @@ But at least regulations are being followed.
 title: PickUpLaptopStart
 tags:
 ---
-Visit IT in the hall behind me to retrieve your laptop.
+Visit <color="green">IT</color> in the hall behind me to retrieve your laptop.
 Please bring it to your workstation.
 ===
 
@@ -87,6 +93,12 @@ tags:
 ---
 Many important emails have flooded your inbox.
 The first one reads
+===
+
+title:PickUpLaptopInteract
+tags:
+---
+This is where I need to bring my <color="green">Laptop</color>.
 ===
 
 title: MeetDianeEnd
@@ -100,13 +112,33 @@ title: FeedBobStart
 tags:
 ---
 By the way, can you be a dear and feed my precious darling Bob?
-His food is in the storage closet.
-He should be hanging out somewhere in the basement.
+His food is in the <color="green">Storage Closet</color>.
 ===
 
 title: FeedBobEnd
 tags:
 ---
-His collar says Beezelbob?
-At least he seems happy.
+His collar says <color="red">Beezelbob</color>?
+At least he seems happy...
+===
+
+title: FeedBobInteract
+tags:
+---
+Bob is waiting expectantly for his food.
+===
+
+title: FixPrinterStart
+tags:
+---
+A new email comes in.
+<i>One of the printers in the <color="green">Basement</color> is jammed.</i>
+<i>Please fix it before the end of the day.</i>
+<i>Sincerly, Management</i>
+===
+
+title: FixPrinterEnd
+tags:
+---
+Management is pleased.
 ===

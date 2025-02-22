@@ -49,6 +49,7 @@ public class OptionsManager : MonoBehaviour
         {
             SetDisplayMode(options.Video.DisplayMode);
             SetResolution(options.Video.Resolution);
+            SetVsync(options.Video.Vsync);
         }
     }
 
@@ -106,6 +107,7 @@ public class OptionsManager : MonoBehaviour
         Options.Video.DisplayMode = Screen.fullScreenMode;
         Options.Video.Resolution.Width = Screen.currentResolution.width;
         Options.Video.Resolution.Height = Screen.currentResolution.height;
+        Options.Video.Vsync = QualitySettings.vSyncCount >= 1 ? true : false;
 
         ApplyOptions(Options, false);
     }
@@ -225,6 +227,12 @@ public class OptionsManager : MonoBehaviour
         Options.Video.Resolution.Height = height;
 
         Screen.SetResolution(width, height, Options.Video.DisplayMode);
+    }
+
+    public void SetVsync(bool vsync)
+    {
+        Options.Video.Vsync = vsync;
+        QualitySettings.vSyncCount = vsync ? 1 : 0;
     }
 
     #endregion

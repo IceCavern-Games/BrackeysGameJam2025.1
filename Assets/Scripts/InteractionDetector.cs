@@ -39,7 +39,7 @@ public class InteractionDetector : MonoBehaviour
         foreach (var collider in results)
         {
             Interactable interactable = collider.GetComponent<Interactable>();
-            if (interactable != null)
+            if (interactable != null && interactable.isActiveAndEnabled)
             {
                 firstInteractable = interactable;
                 break;

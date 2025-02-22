@@ -34,11 +34,12 @@ public class HRProximityTrigger : MonoBehaviour
         Color lerpedColor = Color.Lerp(Color.white, Color.red, t);
         _renderPassFeature._settings.color = lerpedColor;
         
-        _audioManager.SetPitch(AudioManager.MUSIC_CHANNEL, Mathf.Lerp(1, 0.5f, t));
+        _audioManager.SetPitch(AudioManager.MUSIC_CHANNEL, Mathf.Lerp(1.0f, 0.5f, t));
     }
 
     private void OnDestroy()
     {
         _renderPassFeature._settings.color = Color.white;
+        _audioManager.SetPitch(AudioManager.MUSIC_CHANNEL, 1.0f);
     }
 }

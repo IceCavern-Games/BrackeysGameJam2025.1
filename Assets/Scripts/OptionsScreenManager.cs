@@ -145,6 +145,17 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
                     break;
             }
         }
+        else if (item is Toggle toggleField)
+        {
+            switch (item.name)
+            {
+                case "video-vsync":
+                    Debug.Log("BINDING VSYNC CONTROL");
+                    toggleField.value = _optionsManager.Options.Video.Vsync;
+                    item.RegisterCallback<ChangeEvent<bool>>(OnVideoVsyncChanged);
+                    break;
+            }
+        }
     }
 
     /// <inheritdoc />
@@ -174,6 +185,7 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
 
         item.UnregisterCallback<ChangeEvent<string>>(OnVideoDisplayModeChanged);
         item.UnregisterCallback<ChangeEvent<string>>(OnVideoResolutionChanged);
+        item.UnregisterCallback<ChangeEvent<bool>>(OnVideoVsyncChanged);
     }
 
     private void BindTabs()
@@ -280,6 +292,12 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
 
         var resolution = evt.newValue.Split(" x ");
         _optionsManager.SetResolution(int.Parse(resolution[0]), int.Parse(resolution[1]));
+    }
+
+    private void OnVideoVsyncChanged(ChangeEvent<bool> evt)
+    {
+        Debug.Log("VSYNC CHANGED");
+        _optionsManager.SetVsync(evt.newValue);
     }
 
     #endregion
