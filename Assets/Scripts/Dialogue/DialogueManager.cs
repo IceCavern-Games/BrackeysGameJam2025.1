@@ -86,6 +86,7 @@ public class DialogueManager : MonoBehaviour
         _gameManager.Clock.Stop();
         _uiManager.Gameplay.HideInteractPrompt();
         _inputManager.Input.DeactivateInput();
+        _inputManager.Prompts.ShowPrompts(PromptMappings.Dialogue);
 
         StartCoroutine(CoroutineUtils.WaitOneFrame(() =>
         {
@@ -122,6 +123,7 @@ public class DialogueManager : MonoBehaviour
             _uiManager.Gameplay.SetInteractPrompt(_uiManager.Gameplay.CurrentPrompt);
 
         _inputManager.Input.ActivateInput();
+        _inputManager.Prompts.ShowPrompts(PromptMappings.Gameplay);
         _gameManager.Clock.Start();
     }
 

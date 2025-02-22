@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f9f48f61439e46ea947817a6ddf2cbf, type: 3}
   m_Name: XboxOneControllerDeviceDisplaySettings
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   deviceDisplayName: Xbox One Controller
   deviceDisplayColor: {r: 0.09803922, g: 0.47843137, b: 0.101960786, a: 1}
   deviceHasContextIcons: 1
@@ -38,3 +38,7 @@ MonoBehaviour:
     customInputContextIcon: {fileID: -475692399, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
   - customInputContextString: Select
     customInputContextIcon: {fileID: 948111625, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  - customInputContextString: Submit
+    customInputContextIcon: {fileID: -670212276, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  - customInputContextString: Cancel
+    customInputContextIcon: {fileID: 1805095255, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}

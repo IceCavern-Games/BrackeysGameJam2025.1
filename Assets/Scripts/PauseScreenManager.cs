@@ -56,6 +56,7 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
     {
         Time.timeScale = 0f;
         _input.Input.DeactivateInput();
+        _input.Prompts.ShowPrompts(PromptMappings.PauseMenu);
         _input.SetCursorLock(false);
         Open();
     }
@@ -68,6 +69,7 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
         Time.timeScale = 1f;
         _input.SetCursorLock(true);
         _input.Input.ActivateInput();
+        _input.Prompts.ShowPrompts(PromptMappings.Gameplay);
         Close();
     }
 
@@ -155,11 +157,13 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
     private void OnOptionsOpened()
     {
         Close();
+        _input.Prompts.ShowPrompts(PromptMappings.OptionsMenu);
     }
 
     private void OnOptionsClosed()
     {
         Open();
+        _input.Prompts.ShowPrompts(PromptMappings.PauseMenu);
     }
 
     #endregion

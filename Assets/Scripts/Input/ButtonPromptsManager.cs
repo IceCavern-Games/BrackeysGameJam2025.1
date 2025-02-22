@@ -50,9 +50,13 @@ public class ButtonPromptsManager : MonoBehaviour
             InputControlPath.HumanReadableStringOptions.OmitDevice
         );
 
-        // Handle keyboard composite for WASD
+        Debug.Log($"Binding Input for {action.name} -> {bindingMask}:{currentBindingInput}");
+
+        // Hard-code composites.
         if (bindingMask == "Keyboard&Mouse" && (action.name == "Move" || action.name == "Navigate"))
             currentBindingInput = "WASD";
+        else if (bindingMask == "Gamepad" && action.name == "Navigate")
+            currentBindingInput = "D-Pad";
 
         return _deviceDisplayConfiguration.GetDeviceBindingIcon(_inputManager.CurrentDevice, currentBindingInput);
     }
@@ -60,6 +64,7 @@ public class ButtonPromptsManager : MonoBehaviour
     public void ShowPrompts(Dictionary<string, string> mappings)
     {
         _promptMappings = mappings;
+        RenderButtonPrompts();
     }
 
     private void OnDeviceChanged(InputDevice device, string scheme)

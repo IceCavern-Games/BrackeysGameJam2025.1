@@ -240,3 +240,7 @@ MonoBehaviour:
     customInputContextIcon: {fileID: 891560122, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
   - customInputContextString: Right Button
     customInputContextIcon: {fileID: 542385010, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Submit
+    customInputContextIcon: {fileID: 1249308736, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
+  - customInputContextString: Cancel
+    customInputContextIcon: {fileID: 408090346, guid: 53efe2120dcbce64a947e2fd387e1501, type: 3}
