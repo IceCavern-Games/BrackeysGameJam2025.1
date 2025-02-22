@@ -33,25 +33,24 @@ public class GameplayUIManager : MonoBehaviour
     {
         _interactContainer = _document.rootVisualElement.Q<VisualElement>(name: "interact-prompt");
         _interactPrompt = _interactContainer.Q<ButtonPrompt>();
+        SetPromptSprite();
 
         _taskContainer = _document.rootVisualElement.Q<VisualElement>(name: "task-container");
         _taskList = _taskContainer.Q<ListView>();
+        _taskList.itemsSource = _taskManager.ActiveTasks;
 
         _clockContainer = _document.rootVisualElement.Q<VisualElement>(name: "clock-container");
         _clockLabel = _clockContainer.Q<Label>();
 
         if (_interactPrompt.Text == "Interact")
             HideInteractPrompt();
+
+        _inputManager.DeviceTypeChanged += OnDeviceChanged;
     }
 
     private void OnDisable()
     {
         _inputManager.DeviceTypeChanged -= OnDeviceChanged;
-    }
-
-    private void Start()
-    {
-        _taskList.itemsSource = _taskManager.ActiveTasks;
     }
 
     #region Clock UI
@@ -80,13 +79,6 @@ public class GameplayUIManager : MonoBehaviour
         _interactPrompt.Text = text;
 
         _interactContainer.style.display = text != string.Empty ? DisplayStyle.Flex : DisplayStyle.None;
-    }
-
-    [Inject]
-    private void OnInject()
-    {
-        SetPromptSprite();
-        _inputManager.DeviceTypeChanged += OnDeviceChanged;
     }
 
     private void OnDeviceChanged(InputDevice device, string controlScheme)

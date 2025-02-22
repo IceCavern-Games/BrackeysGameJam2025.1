@@ -47,6 +47,7 @@ public class FirstPersonController : MonoBehaviour
 
     [Inject] private readonly GameManager _gameManager;
     [Inject] private readonly InputManager _inputManager;
+    [Inject] private readonly UIManager _uiManager;
 
     // cinemachine
     private float _cinemachineTargetPitch;
@@ -259,10 +260,10 @@ public class FirstPersonController : MonoBehaviour
     {
         if (_input.pause)
         {
-            if (_gameManager.Pause.IsOpen && _gameManager.Pause.CanClose)
-                _gameManager.Pause.Unpause();
-            else if (!_gameManager.Pause.IsOpen)
-                _gameManager.Pause.Pause();
+            if (_uiManager.Pause.IsOpen && _uiManager.Pause.CanClose)
+                _uiManager.Pause.Unpause();
+            else if (!_uiManager.Pause.IsOpen)
+                _uiManager.Pause.Pause();
         }
 
         _input.pause = false;

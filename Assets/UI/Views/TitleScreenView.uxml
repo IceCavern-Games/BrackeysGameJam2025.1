@@ -1,0 +1,19 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Views/TitleScreen.uss?fileID=7433441132597879392&amp;guid=e49c8c381bbfd42b19225067d1a1e941&amp;type=3#TitleScreen" />
+    <engine:Label text="First Day at Maze Corp." name="title" />
+    <engine:Label text="by IceCavern Games" name="subtitle" />
+    <engine:VisualElement name="title-menu">
+        <engine:VisualElement name="title-start" class="menu-item" focusable="true">
+            <engine:Label text="Start" />
+        </engine:VisualElement>
+        <engine:VisualElement name="title-options" class="menu-item" focusable="true">
+            <engine:Label text="Options" />
+        </engine:VisualElement>
+        <engine:VisualElement name="title-credits" class="menu-item" focusable="true">
+            <engine:Label text="Credits" />
+        </engine:VisualElement>
+        <engine:VisualElement name="title-exit" class="menu-item" focusable="true">
+            <engine:Label text="Exit" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
