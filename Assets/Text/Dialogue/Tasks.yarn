@@ -71,14 +71,13 @@ tags:
 <i>Some tasks have been emailed to you. Please complete them before the deadlines.</i>
 <i>Unfortunately government regulations still mandate 30 minute lunch breaks for all employees.</i>
 <i>Take your lunch break before 1 pm.</i>
-<i>Sincerly, Management</i>
+<i>Sincerely, Management</i>
 ===
 
 title: LunchBreakEnd
 tags:
 ---
-Management is not pleased.
-But at least regulations are being followed.
+Management is not pleased, but at least regulations are being followed.
 ===
 
 title: PickUpLaptopStart
@@ -133,8 +132,8 @@ tags:
 ---
 A new email comes in.
 <i>One of the printers in the <color="green">Basement</color> is jammed.</i>
-<i>Please fix it before the end of the day.</i>
-<i>Sincerly, Management</i>
+<i>Please fix it before EoD.</i>
+<i>Sincerely, Management</i>
 ===
 
 title: FixPrinterEnd
