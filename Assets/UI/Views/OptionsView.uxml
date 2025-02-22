@@ -26,6 +26,7 @@
                     <engine:VisualElement name="options-tab-view-video" tooltip="Video Options" class="options-tab-content selected">
                         <CarouselField name="video-resolution" label="Resolution" choices="1280x720,1920x1080,3840x2160" index="0" tooltip="Set the resolution." class="options-menu-item" />
                         <CarouselField name="video-display-mode" label="Display Mode" choices="Fullscreen, Borderless, Windowed" index="0" tooltip="Set the display mode." class="options-menu-item" />
+                        <engine:Toggle name="video-vsync" label="Vsync" tooltip="Set the vertical sync." class="options-menu-item" />
                     </engine:VisualElement>
                     <engine:VisualElement name="options-tab-view-audio" tooltip="Audio Options" class="options-tab-content hidden">
                         <engine:SliderInt name="audio-master-volume" label="Master Volume" value="75" high-value="100" page-size="5" show-input-field="true" tooltip="Set the master volume." class="options-menu-item" />

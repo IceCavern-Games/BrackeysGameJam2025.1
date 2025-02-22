@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb070319c892e4132bc41c9f26140b27, type: 3}
-  m_Name: LunchBreak
+  m_Name: FixPrinter
   m_EditorClassIdentifier: 
-  Name: Take a Lunch Break
-  Description: Strangely the government still requires these.
-  Deadline: 240
-  StartsAt: -1
-  _startDialogueNode: LunchBreakStart
-  _completeDialogueNode: LunchBreakEnd
+  Name: Fix the Printer
+  Description: The printer is Jammed
+  Deadline: 480
+  StartsAt: 240
+  _startDialogueNode: FixPrinterStart
+  _completeDialogueNode: FixPrinterEnd
   _followUpTasks: []

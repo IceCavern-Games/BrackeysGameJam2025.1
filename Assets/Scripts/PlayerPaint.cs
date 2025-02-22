@@ -15,39 +15,33 @@ public class PlayerPaint : MonoBehaviour
         _mainCamera = Camera.main;
         _ignoreLayers = LayerMask.GetMask("Triggers")
                         | LayerMask.GetMask("AudioZone")
-                        | LayerMask.GetMask("Interactable");
+                        | LayerMask.GetMask("Interactable")
+                        | LayerMask.GetMask("HeldObject");
     }
 
     public void Paint()
     {
-        Draw(Color.green);
+        Draw(Color.green, _radius);
     }
 
     public void Erase()
     {
-        Draw(new Color(0, 0, 0, 0));
+        Draw(new Color(0, 0, 0, 0), _radius * 1.5f);
     }
 
-    private void Draw(Color color)
+    private void Draw(Color color, float radius)
     {
         Vector3 position = Input.mousePosition;
         Ray ray = _mainCamera.ScreenPointToRay(position);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 5.0f, ~_ignoreLayers))
+        if (Physics.Raycast(ray, out hit, 7.0f, ~_ignoreLayers))
         {
             Debug.DrawRay(ray.origin, hit.point - ray.origin, Color.red);
             Paintable paintable = hit.collider.GetComponent<Paintable>();
 
             if (paintable)
-            {
-                // Debug.Log("Painting");
-                paintable.Paint(hit.point, _radius, _strength, _hardness, color);
-            }
-            else
-            {
-                // Debug.Log(hit.collider.gameObject.name);
-            }
+                paintable.Paint(hit.point, radius, _strength, _hardness, color);
         }
     }
 }

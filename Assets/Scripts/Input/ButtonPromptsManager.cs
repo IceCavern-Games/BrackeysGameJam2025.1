@@ -50,7 +50,7 @@ public class ButtonPromptsManager : MonoBehaviour
             InputControlPath.HumanReadableStringOptions.OmitDevice
         );
 
-        Debug.Log($"Binding Input for {action.name} -> {bindingMask}:{currentBindingInput}");
+        // Debug.Log($"Binding Input for {action.name} -> {bindingMask}:{currentBindingInput}");
 
         // Hard-code composites.
         if (bindingMask == "Keyboard&Mouse" && (action.name == "Move" || action.name == "Navigate"))
