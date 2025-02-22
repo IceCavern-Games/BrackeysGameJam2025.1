@@ -20,8 +20,8 @@ public class PlayerInputReader : MonoBehaviour
     [Header("Mouse Cursor Settings")]
     public bool cursorInputForLook = true;
 
-    [Inject] private readonly GameManager _gameManager;
     [Inject] private readonly InputManager _input;
+    [Inject] private readonly UIManager _uiManager;
 
     private InputActionAsset _actions;
 
@@ -91,7 +91,7 @@ public class PlayerInputReader : MonoBehaviour
 
     private void OnApplicationFocus(bool hasFocus)
     {
-        if (_gameManager.Pause.IsOpen)
+        if (_uiManager != null && _uiManager.Pause.IsOpen)
             hasFocus = false;
 
         _input.SetCursorLock(hasFocus);

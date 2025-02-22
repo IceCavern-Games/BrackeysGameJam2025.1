@@ -91,6 +91,7 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
         StartCoroutine(ResetNavigationCancelSuppression());
 
         Bind();
+        _inputManager.Prompts.ShowPrompts(PromptMappings.OptionsMenu);
         ScreenOpened?.Invoke();
     }
 

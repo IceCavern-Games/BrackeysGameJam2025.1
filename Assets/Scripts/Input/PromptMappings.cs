@@ -23,4 +23,8 @@ public static class PromptMappings
         {"Submit", "Select"},
         {"Cancel", "Back"},
     };
+    public static Dictionary<string, string> TitleMenu = new() {
+        {"Navigate", "Navigate"},
+        {"Submit", "Select"},
+    };
 }

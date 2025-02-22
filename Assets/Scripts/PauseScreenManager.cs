@@ -18,20 +18,15 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
 
     [Inject] private readonly GameManager _gameManager;
     [Inject] private readonly InputManager _input;
-    private OptionsManager _options;
+    [Inject] private readonly OptionsManager _options;
 
     private bool _suppressNavigationCancel = false;
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
-    }
 
     protected override void OnEnable()
     {
         base.OnEnable();
+
+        _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
 
         if (_options == null)
             return;
@@ -54,6 +49,7 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
     /// </summary>
     public void Pause()
     {
+        Debug.Log("PAUSE CALLED");
         Time.timeScale = 0f;
         _input.Input.DeactivateInput();
         _input.Prompts.ShowPrompts(PromptMappings.PauseMenu);
@@ -94,8 +90,7 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
                 break;
             case "pause-view-quit":
                 Unpause();
-                // _gameManager.ReturnToTitleScreen();
-                _gameManager.ExitGame();
+                _gameManager.LoadTitleScreen();
                 break;
         }
     }
@@ -108,14 +103,6 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
 
         if (IsOpen)
             Unpause();
-    }
-
-    [Inject]
-    private void BindEvents(OptionsManager options)
-    {
-        _options = options;
-        _options.OptionsScreen.ScreenOpened += OnOptionsOpened;
-        _options.OptionsScreen.ScreenClosed += OnOptionsClosed;
     }
 
     /// <summary>
@@ -132,6 +119,7 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
     /// </summary>
     private void Open()
     {
+        Debug.Log("PAUSE SCREEN OPEN CALLED");
         _uiDocument.rootVisualElement.style.display = DisplayStyle.Flex;
 
         // @NOTE: Since the pause button and navigation cancel buttons can be the same,
@@ -157,7 +145,6 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
     private void OnOptionsOpened()
     {
         Close();
-        _input.Prompts.ShowPrompts(PromptMappings.OptionsMenu);
     }
 
     private void OnOptionsClosed()
