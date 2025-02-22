@@ -25,3 +25,7 @@ GameTaskElement #name {
 GameTaskElement #description {
     font-size: 20px;
 }
+
+GameTaskElement #deadline {
+    color: rgb(250, 93, 93);
+}
