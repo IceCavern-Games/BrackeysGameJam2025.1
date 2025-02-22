@@ -1,9 +1,7 @@
 ﻿using Reflex.Attributes;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(PlayerInputReader))]
 public class FirstPersonController : MonoBehaviour
 {
@@ -48,6 +46,7 @@ public class FirstPersonController : MonoBehaviour
     public float BottomClamp = -90.0f;
 
     [Inject] private readonly GameManager _gameManager;
+    [Inject] private readonly InputManager _inputManager;
 
     // cinemachine
     private float _cinemachineTargetPitch;
@@ -62,7 +61,6 @@ public class FirstPersonController : MonoBehaviour
     private float _jumpTimeoutDelta;
     private float _fallTimeoutDelta;
 
-    private PlayerInput _playerInput;
     private CharacterController _controller;
     private PlayerInputReader _input;
     private GameObject _mainCamera;
@@ -73,26 +71,20 @@ public class FirstPersonController : MonoBehaviour
 
     private bool IsCurrentDeviceMouse
     {
-        get
-        {
-            return _playerInput.currentControlScheme == "Keyboard&Mouse";
-        }
+        get => _inputManager.Input.currentControlScheme == "Keyboard&Mouse";
     }
 
     private void Awake()
     {
         // get a reference to our main camera
         if (_mainCamera == null)
-        {
             _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        }
     }
 
     private void Start()
     {
         _controller = GetComponent<CharacterController>();
         _input = GetComponent<PlayerInputReader>();
-        _playerInput = GetComponent<PlayerInput>();
         _interactionDetector = GetComponent<InteractionDetector>();
         _playerPaint = GetComponent<PlayerPaint>();
 

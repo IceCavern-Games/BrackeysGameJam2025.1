@@ -9,11 +9,11 @@ public class PlayerPaint : MonoBehaviour
     private Camera _mainCamera;
 
     private int _ignoreLayers;
-    
+
     private void OnEnable()
     {
         _mainCamera = Camera.main;
-        _ignoreLayers = LayerMask.GetMask("Triggers") 
+        _ignoreLayers = LayerMask.GetMask("Triggers")
                         | LayerMask.GetMask("AudioZone")
                         | LayerMask.GetMask("Interactable");
     }
@@ -46,7 +46,7 @@ public class PlayerPaint : MonoBehaviour
             }
             else
             {
-                Debug.Log(hit.collider.gameObject.name);
+                // Debug.Log(hit.collider.gameObject.name);
             }
         }
     }

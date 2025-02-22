@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e202849fce0e4b528169affe60b6c4c, type: 3}
+  m_Name: DeviceDisplayConfiguraton
+  m_EditorClassIdentifier: 
+  listDeviceSets:
+  - deviceRawPath: Keyboard:/Keyboard
+    deviceDisplaySettings: {fileID: 11400000, guid: e978b838f51b74951acee15494423838, type: 2}
+  - deviceRawPath: Mouse:/Mouse
+    deviceDisplaySettings: {fileID: 11400000, guid: e978b838f51b74951acee15494423838, type: 2}
+  - deviceRawPath: XInputControllerWindows:/XInputControllerWindows
+    deviceDisplaySettings: {fileID: 11400000, guid: 28ae433f6f13f42d8a43ee6c57042148, type: 2}
+  - deviceRawPath: DualShock4GamepadHID:/DualShock4GamepadHID
+    deviceDisplaySettings: {fileID: 11400000, guid: 5651a91ce30a048498e2fcf60e3d2455, type: 2}
+  - deviceRawPath: DualSenseGamepadHID:/DualSenseGamepadHID
+    deviceDisplaySettings: {fileID: 11400000, guid: 5046b3a2f8b6d4c0b8f5830b3680b813, type: 2}
+  - deviceRawPath: SwitchProControllerHID:/SwitchProControllerHID
+    deviceDisplaySettings: {fileID: 11400000, guid: 4d613eb4ffb3a4dfca3bc788072b815b, type: 2}
+  - deviceRawPath: Gamepad:/Gamepad
+    deviceDisplaySettings: {fileID: 11400000, guid: 0ad68e39c1d774546889445c0ce4f6a7, type: 2}
+  - deviceRawPath: XboxOneGampad
+    deviceDisplaySettings: {fileID: 11400000, guid: 28ae433f6f13f42d8a43ee6c57042148, type: 2}

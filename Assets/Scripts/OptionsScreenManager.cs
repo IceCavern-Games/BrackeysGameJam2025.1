@@ -1,3 +1,4 @@
+using Reflex.Attributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,20 +34,14 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
 
         _optionsManager = GetComponent<OptionsManager>();
         _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
-
-        _nextTabAction = InputSystem.actions.FindAction("NextTab");
-        _prevTabAction = InputSystem.actions.FindAction("PrevTab");
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
 
-        _footerLabel = _uiDocument.rootVisualElement.Q<Label>(name = "options-footer-text");
+        _footerLabel = _uiDocument.rootVisualElement.Q<Label>("options-footer-text");
         BindTabs();
-
-        _nextTabAction.performed += OnNextTabPressed;
-        _prevTabAction.performed += OnPrevTabPressed;
     }
 
     protected override void OnDisable()
@@ -104,7 +99,7 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
         {
             var volumeSettings = new Dictionary<string, (Func<int> getValue, Action<int> setValue)>
             {
-                { "audio-master-volume",   (() => _optionsManager.Options.Audio.MasterVolume,  _optionsManager.SetMasterVolume) },
+                { "audio-master-volume",   (() => _optionsManager.Options.Audio.MasterVolume,   _optionsManager.SetMasterVolume) },
                 { "audio-ambience-volume", (() => _optionsManager.Options.Audio.AmbienceVolume, _optionsManager.SetAmbienceVolume) },
                 { "audio-dialogue-volume", (() => _optionsManager.Options.Audio.DialogueVolume, _optionsManager.SetDialogueVolume) },
                 { "audio-music-volume",    (() => _optionsManager.Options.Audio.MusicVolume,    _optionsManager.SetMusicVolume) },
@@ -242,6 +237,19 @@ public class OptionsScreenManager : NavigatableStaticUI<VisualElement, VisualEle
     }
 
     #region Event Handlers
+
+    [Inject]
+    private void OnInject(InputManager inputManager)
+    {
+        _nextTabAction = inputManager.Input.actions["NextTab"];
+        _prevTabAction = inputManager.Input.actions["PrevTab"];
+
+        _nextTabAction.Enable();
+        _prevTabAction.Enable();
+
+        _nextTabAction.performed += OnNextTabPressed;
+        _prevTabAction.performed += OnPrevTabPressed;
+    }
 
     private void OnNextTabPressed(InputAction.CallbackContext ctx)
     {

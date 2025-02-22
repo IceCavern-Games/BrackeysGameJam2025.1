@@ -1,0 +1,9 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="button-prompts" picking-mode="Ignore" style="flex-grow: 1; flex-direction: row; align-items: flex-end; align-content: auto; justify-content: flex-end;">
+        <ButtonPrompt sprite="project://database/Assets/UI/Textures/kf_prompts_kb.png?fileID=1308557452&amp;guid=53efe2120dcbce64a947e2fd387e1501&amp;type=3#kf_prompts_kb_wasd" text="Move" />
+        <ButtonPrompt sprite="project://database/Assets/UI/Textures/kf_prompts_kb.png?fileID=-380340682&amp;guid=53efe2120dcbce64a947e2fd387e1501&amp;type=3#kf_prompts_kb_space" text="Jump" />
+        <ButtonPrompt sprite="project://database/Assets/UI/Textures/kf_prompts_kb.png?fileID=-618781763&amp;guid=53efe2120dcbce64a947e2fd387e1501&amp;type=3#kf_prompts_kb_lshift" text="Sprint" />
+        <ButtonPrompt sprite="project://database/Assets/UI/Textures/kf_prompts_kb.png?fileID=891560122&amp;guid=53efe2120dcbce64a947e2fd387e1501&amp;type=3#kf_prompts_mb_left" text="Paint" />
+        <ButtonPrompt sprite="project://database/Assets/UI/Textures/kf_prompts_kb.png?fileID=542385010&amp;guid=53efe2120dcbce64a947e2fd387e1501&amp;type=3#kf_prompts_mb_right" text="Erase" />
+    </engine:VisualElement>
+</engine:UXML>

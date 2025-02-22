@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f9f48f61439e46ea947817a6ddf2cbf, type: 3}
+  m_Name: SwitchProControllerDeviceDisplaySettings
+  m_EditorClassIdentifier:
+  deviceDisplayName: Switch Pro Controller
+  deviceDisplayColor: {r: 0.8901961, g: 0.043137256, b: 0.1254902, a: 1}
+  deviceHasContextIcons: 1
+  buttonNorthIcon: {fileID: 84980214, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  buttonSouthIcon: {fileID: -1765177112, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  buttonWestIcon: {fileID: 290052294, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  buttonEastIcon: {fileID: 1489803826, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  triggerRightFrontIcon: {fileID: -1793872267, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  triggerRightBackIcon: {fileID: 1367542653, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  triggerLeftFrontIcon: {fileID: 1755273921, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  triggerLeftBackIcon: {fileID: -1726463918, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  customContextIcons:
+  - customInputContextString: Left Stick
+    customInputContextIcon: {fileID: 1996675245, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  - customInputContextString: Right Stick
+    customInputContextIcon: {fileID: -1151574364, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  - customInputContextString: Left Stick Press
+    customInputContextIcon: {fileID: -2111673867, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  - customInputContextString: Right Stick Press
+    customInputContextIcon: {fileID: 680983506, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  - customInputContextString: D-Pad
+    customInputContextIcon: {fileID: -180378060, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  - customInputContextString: Start
+    customInputContextIcon: {fileID: -1838086930, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
+  - customInputContextString: Select
+    customInputContextIcon: {fileID: 749217917, guid: ec45ee927ad13114f874ec0b8d8e7111, type: 3}
