@@ -9,8 +9,8 @@ public class NavigatableStaticUI<TTarget, TItem> : NavigatableUI where TTarget :
     [SerializeField] protected string _containerQuerySelector = null;
     [SerializeField] protected string _listItemsQuerySelector = null;
 
-    private List<TItem> _items = new();
-    private TTarget _target;
+    protected List<TItem> _items = new();
+    protected TTarget _target;
 
     /// <inheritdoc />
     protected override void Bind()

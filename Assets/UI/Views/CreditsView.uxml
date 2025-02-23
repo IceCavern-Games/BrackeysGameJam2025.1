@@ -1,0 +1,31 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Views/TitleScreen.uss?fileID=7433441132597879392&amp;guid=e49c8c381bbfd42b19225067d1a1e941&amp;type=3#TitleScreen" />
+    <engine:VisualElement name="credits-container" style="background-color: rgba(0, 0, 0, 0.8); flex-grow: 1;" focusable="true">
+        <engine:Label text="First Day at Maze Corp." name="title" style="top: 5%;" />
+        <engine:Label text="by IceCavern Games" name="subtitle" style="top: 5%;" />
+        <engine:VisualElement name="credits" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-top: 60px;">
+            <engine:VisualElement style="flex-direction: row; margin-bottom: 20px;">
+                <engine:VisualElement style="width: 50%;">
+                    <engine:Label text="Developed By" display-tooltip-when-elided="true" class="credits-header" />
+                    <engine:Label text="Colby Terry, Jordan Hill" display-tooltip-when-elided="true" class="credits-contributors" />
+                </engine:VisualElement>
+                <engine:VisualElement style="width: 50%;">
+                    <engine:Label text="Music &amp; &quot;Beezlebob&quot; By" display-tooltip-when-elided="true" class="credits-header" />
+                    <engine:Label text="Ro Panuganti" display-tooltip-when-elided="true" class="credits-contributors" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-direction: row; margin-bottom: 20px;">
+                <engine:VisualElement style="width: 50%;">
+                    <engine:Label text="Play Testing" display-tooltip-when-elided="true" class="credits-header" />
+                    <engine:Label text="Allison Martin, Cody Steimle, Ro Panuganti" display-tooltip-when-elided="true" class="credits-contributors" style="margin-bottom: 20px;" />
+                    <engine:Label text="Special Thanks" display-tooltip-when-elided="true" class="credits-header" />
+                    <engine:Label text="Allison Martin&#10;Ben Grassel&#10;Brackeys Game Jam&#10;Colbydude&apos;s Repose&#10;Ice Cavern" display-tooltip-when-elided="true" class="credits-contributors" />
+                </engine:VisualElement>
+                <engine:VisualElement style="width: 50%;">
+                    <engine:Label text="Sourced Assets" display-tooltip-when-elided="true" class="credits-header" />
+                    <engine:Label text="&lt;color=#E0913D&gt;Controller Prompts:&lt;/color&gt; opengameart.org/users/jstatz&#10;&lt;color=#E0913D&gt;General SFX:&lt;/color&gt; shapeforms.itch.io&#10;&lt;color=#E0913D&gt;Icons:&lt;/color&gt; game-icons.net&#10;&lt;color=#E0913D&gt;Keyboard SFX:&lt;/color&gt; freesound.org/people/Robhog&#10;&lt;color=#E0913D&gt;Low Poly Human (Rigged):&lt;/color&gt; fullbongrip.itch.io&#10;&lt;color=#E0913D&gt;Low Poly Office Props:&lt;/color&gt; rrfreelance.itch.io&#10;&lt;color=#E0913D&gt;Printing SFX:&lt;/color&gt; freesound.org/people/jaredpass24&#10;&lt;color=#E0913D&gt;Vending Machine SFX:&lt;/color&gt; pixabay.com/users/freesound_community-46691455" display-tooltip-when-elided="true" class="credits-contributors" style="font-size: 17px;" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

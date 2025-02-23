@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -47,12 +48,62 @@ public class AudioManager : MonoBehaviour
             SetVolume(key, _volumeMap[key]);
     }
 
+    public IEnumerator FadeMusicIn(float fadeDuration)
+    {
+        float targetVolume = _volumeMap[MUSIC_CHANNEL];
+
+        PlayMusic();
+
+        // Start from a low volume (0.001 is used to avoid issues with logarithms).
+        float startVolume = 0.001f;
+        SetVolume(MUSIC_CHANNEL, startVolume);
+
+        float elapsed = 0f;
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float newVolume = Mathf.Lerp(startVolume, targetVolume, elapsed / fadeDuration);
+            SetVolume(MUSIC_CHANNEL, newVolume);
+            yield return null;
+        }
+
+        // Ensure we hit the target volume exactly.
+        SetVolume(MUSIC_CHANNEL, targetVolume);
+    }
+
+    public IEnumerator FadeMusicOut(float fadeDuration)
+    {
+        // Get the starting volume for the music channel.
+        float startVolume = _volumeMap[MUSIC_CHANNEL];
+        float elapsed = 0f;
+
+        // Gradually reduce the volume over fadeDuration seconds.
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float newVolume = Mathf.Lerp(startVolume, 0.001f, elapsed / fadeDuration);
+            SetVolume(MUSIC_CHANNEL, newVolume);
+            yield return null;
+        }
+
+        // Ensure the volume is fully faded.
+        _musicSource.Stop();
+        SetVolume(MUSIC_CHANNEL, startVolume);
+    }
+
+
     /// <summary>
     /// Play a single (non-3D) sound effect on the dialogue channel.
     /// </summary>
     public void PlayDialogue(AudioClip sound)
     {
         _dialogueSource.PlayOneShot(sound);
+    }
+
+    public void PlayMusic()
+    {
+        if (!_musicSource.isPlaying)
+            _musicSource.Play();
     }
 
     /// <summary>

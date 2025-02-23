@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private Action _transitionCallback;
     private UIDocument _uiDocument;
 
+    [Inject] private readonly AudioManager _audioManager;
     [Inject] private readonly DialogueManager _dialogueManager;
     [Inject] private readonly InputManager _inputManager;
     [Inject] private readonly PaintTextureManager _paintTextureManager;
@@ -59,11 +60,14 @@ public class GameManager : MonoBehaviour
         _taskManager.Reset();
 
         _inputManager.Input.DeactivateInput();
+
+        _audioManager.StartCoroutine(_audioManager.FadeMusicOut(_fadeDuration));
+
         FadeOut(_fadeDuration, () =>
         {
             StartCoroutine(LoadScene("TheOffice", () =>
             {
-                //
+                _audioManager.StartCoroutine(_audioManager.FadeMusicIn(_fadeDuration));
             }));
         });
     }
@@ -103,6 +107,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadTitleScreen()
     {
+        _audioManager.StartCoroutine(_audioManager.FadeMusicOut(_fadeDuration));
+
         FadeOut(_fadeDuration, () =>
         {
             StartCoroutine(LoadScene("TitleScreen", () =>

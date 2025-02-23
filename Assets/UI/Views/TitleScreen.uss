@@ -28,10 +28,26 @@
     font-size: 24px;
     margin: 0 auto;
     text-shadow: 0 0 4px rgb(0, 0, 0);
-    width: 150px;
+
     -unity-text-align: middle-center;
 }
 
 .menu-item.selected {
     color: rgb(0, 255, 121);
+}
+
+.credits-header {
+    color: #3cc2e0;
+    font-size: 22px;
+    text-shadow: 0 0 22px rgb(0, 0, 0);
+    -unity-text-align: upper-center;
+}
+
+.credits-contributors {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    margin: 2px;
+    padding: 0;
+    text-shadow: 0 0 20px rgb(0, 0, 0);
+    -unity-text-align: upper-center;
 }
