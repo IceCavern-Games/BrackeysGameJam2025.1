@@ -39,3 +39,10 @@ Vending Machine SFX: [https://pixabay.com/users/freesound\_community-46691455](h
 ### Special Thanks
 
 Allison Martin, Ben Grassel, Colbydude's Repose, Ice Cavern
+
+License
+-------
+
+- Licenses of the assets listed under [Sourced Assets](#sourced-assets) are &copy; their respective owners.
+- [_Elevator Dings_](https://github.com/IceCavern-Games/BrackeysGameJam2025.1/blob/main/Assets/Audio/BGM/ElevatorDings_V1.wav) is &copy; 2025 Ro Panuganti.
+- Remaining code and content, with exceptions where noted, are [licensed under MIT](https://github.com/IceCavern-Games/BrackeysGameJam2025.1/blob/main/Source/License.txt).
