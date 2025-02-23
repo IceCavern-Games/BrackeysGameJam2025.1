@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _holdPosition: {fileID: 4938015035779606454}
+  _pickupSfx: {fileID: 8300000, guid: f3a0c43b8cb3641a59c01fcef5996b5b, type: 3}
 --- !u!114 &7464195706511024604
 MonoBehaviour:
   m_ObjectHideFlags: 0
