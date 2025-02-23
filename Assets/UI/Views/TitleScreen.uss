@@ -1,0 +1,37 @@
+#title {
+    color: white;
+    font-size: 72px;
+    text-shadow: 0 0 24px black;
+    top: 25%;
+    -unity-text-align: upper-center;
+    -unity-font-style: bold;
+}
+
+#subtitle {
+    color: rgb(0, 255, 121);
+    font-size: 32px;
+    margin: 0;
+    padding: 0;
+    text-shadow: 0 0 24px black;
+    top: 25%;
+    -unity-text-align: upper-center;
+}
+
+#title-menu {
+    bottom: 15%;
+    position: absolute;
+    width: 100%;
+}
+
+.menu-item {
+    color: white;
+    font-size: 24px;
+    margin: 0 auto;
+    text-shadow: 0 0 4px rgb(0, 0, 0);
+    width: 150px;
+    -unity-text-align: middle-center;
+}
+
+.menu-item.selected {
+    color: rgb(0, 255, 121);
+}

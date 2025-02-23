@@ -26,7 +26,7 @@ public class PlayerPaint : MonoBehaviour
 
     public void Erase()
     {
-        Draw(new Color(0, 0, 0, 0), _radius * 1.5f);
+        Draw(new Color(0, 0, 0, 0), _radius * 2f);
     }
 
     private void Draw(Color color, float radius)

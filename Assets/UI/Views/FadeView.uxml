@@ -1,0 +1,4 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Views/FadeView.uss?fileID=7433441132597879392&amp;guid=d273b2120dc894d208e85d6025533dd7&amp;type=3#FadeView" />
+    <engine:VisualElement picking-mode="Ignore" name="screen-fade" class="hidden" style="flex-grow: 1; background-color: black; transition-property: all; transition-duration: 1s;" />
+</engine:UXML>

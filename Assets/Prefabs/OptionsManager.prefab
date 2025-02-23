@@ -78,6 +78,7 @@ MonoBehaviour:
       Resolution:
         Height: 0
         Width: 0
+      Vsync: 0
 --- !u!114 &8342827426328209165
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,8 +8,14 @@ public class TaskManager : MonoBehaviour
     public List<GameTask> ActiveTasks { get; private set; } = new();
     public List<GameTask> Tasks { get; private set; } = new();
 
+    [Inject] private readonly AudioManager _audioManager;
     [Inject] private readonly DialogueManager _dialogueManager;
     [Inject] private readonly GameManager _gameManager;
+
+    [Header("Sound Effects")]
+    [SerializeField] private AudioClip _completeSfx;
+    [SerializeField] private AudioClip _failSfx;
+    [SerializeField] private AudioClip _newSfx;
 
     [SerializeField] private List<GameTask> _taskData;
 
@@ -43,6 +49,7 @@ public class TaskManager : MonoBehaviour
         task.Completed -= OnTaskCompleted;
 
         ActiveTasks.Remove(task);
+        _audioManager.PlaySound(_failSfx);
         _gameManager.Fail();
     }
 
@@ -52,6 +59,8 @@ public class TaskManager : MonoBehaviour
 
         task.Failed -= OnTaskFailed;
         task.Completed -= OnTaskCompleted;
+
+        _audioManager.PlaySound(_completeSfx);
 
         if (task.CompleteDialogueNode != string.Empty)
         {
@@ -64,6 +73,9 @@ public class TaskManager : MonoBehaviour
 
     private void OnTaskStarted(GameTask task)
     {
+        if (task.StartsAt > 0)
+            _audioManager.PlaySound(_newSfx);
+
         if (task.StartDialogueNode != string.Empty)
         {
             _dialogueManager.StartConversation(task.StartDialogueNode, () => { TaskStart(task); });
@@ -75,6 +87,9 @@ public class TaskManager : MonoBehaviour
 
     private void TaskComplete(GameTask task)
     {
+        if (task.FollowUpTasks.Count != 0)
+            _audioManager.PlaySound(_newSfx);
+
         foreach (GameTask followupTask in task.FollowUpTasks)
         {
             var newTask = Tasks.Find((t) => t.Name == followupTask.Name);

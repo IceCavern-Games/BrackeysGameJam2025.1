@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda5e2a1a54ac4bf5b3b10c1e45e79f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultDialogueSFX: {fileID: 0}
+  _defaultDialogueSFX: {fileID: 8300000, guid: a59b170b5253e44cd983840a9149bbfc, type: 3}
 --- !u!114 &-8705216541656391894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: 52964a8b072314b539ad772f6d821992, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 67edad6031d6c443faff4bdea6345539, type: 3}
-  m_SortingOrder: 95
+  m_SortingOrder: 50
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
   m_WorldSpaceHeight: 1080
@@ -164,6 +164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _useTypewriterEffect: 1
   _typewriterEffectSpeed: 64
-  _typeEmitFrequency: 3
+  _typeEmitFrequency: 5
   _holdTime: 2
   _autoAdvance: 0

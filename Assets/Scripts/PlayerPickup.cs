@@ -1,3 +1,4 @@
+using Reflex.Attributes;
 using UnityEngine;
 
 [RequireComponent(typeof(InteractionDetector))]
@@ -5,7 +6,10 @@ public class PlayerPickup : MonoBehaviour
 {
     public PickupInteractable HeldObject { get; private set; }
 
+    [Inject] private readonly AudioManager _audioManager;
+
     [SerializeField] private Transform _holdPosition;
+    [SerializeField] private AudioClip _pickupSfx;
 
     private InteractionDetector _interactionDetector;
     private Vector3 _initialLocalPosition;
@@ -35,6 +39,7 @@ public class PlayerPickup : MonoBehaviour
 
         HeldObject = pickup;
         HeldObject.PickUp(_holdPosition);
+        _audioManager.PlaySound(_pickupSfx);
         _interactionDetector.SetHeldObject(pickup);
     }
 

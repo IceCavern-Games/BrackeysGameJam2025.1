@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a010233834fb53f4bac856a7e202a271, type: 3}
-  m_Name: FeedBob
+  m_Name: WaterPlants
   m_EditorClassIdentifier: 
-  Name: Feed Bob
-  Description: Bring bob his dinner
+  Name: Water Bob's Plants
+  Description: Even demons have hobbies
   Deadline: 480
   StartsAt: -1
-  _startDialogueNode: FeedBobStart
-  _completeDialogueNode: FeedBobEnd
+  _startDialogueNode: WaterPlantsStart
+  _completeDialogueNode: WaterPlantsEnd
   _followUpTasks: []

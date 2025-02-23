@@ -9,7 +9,7 @@ public class PaintTextureManager : MonoBehaviour
         public RenderTexture Mask;
         public RenderTexture Support;
     }
-    
+
     private const int TEXTURE_SIZE = 512;
 
     private Dictionary<string, PaintTexture> _textureMap;
@@ -18,7 +18,7 @@ public class PaintTextureManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
-    
+
     private void OnEnable()
     {
         _textureMap = new Dictionary<string, PaintTexture>();
@@ -48,7 +48,17 @@ public class PaintTextureManager : MonoBehaviour
             Mask = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0, RenderTextureFormat.Default),
             Support = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0, RenderTextureFormat.Default),
         };
-        
+
         _textureMap.Add(id, texture);
+    }
+
+    public void Clear()
+    {
+        foreach (PaintTexture texture in _textureMap.Values)
+        {
+            texture.Mask.Release();
+            texture.Support.Release();
+        }
+        _textureMap.Clear();
     }
 }

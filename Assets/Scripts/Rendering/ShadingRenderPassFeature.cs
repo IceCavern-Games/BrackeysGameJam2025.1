@@ -23,6 +23,7 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
 
     public ShadingSettings _settings;
     [SerializeField] private Shader _shader;
+    private Material _material;
 
     class CustomShadingRenderPass : ScriptableRenderPass
     {
@@ -64,7 +65,7 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         {
             if (_material == null)
                 return;
-            
+
             _material.SetColor(_colorId, _settings.color);
             _material.SetFloat(_whiteCutoffId, _settings.WhiteCutoff);
             _material.SetFloat(_NormalThresholdId, _settings.NormalThreshold);
@@ -98,6 +99,7 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
                 // Use this scope to set the required inputs and outputs of the pass and to
                 // setup the passData with the required properties needed at pass execution time.
                 passData._cameraColor = cameraColor;
+                builder.UseTexture(passData._cameraColor);
 
                 // Setup pass inputs and outputs through the builder interface.
                 // Eg:
@@ -158,8 +160,8 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
     {
         if (_shader == null) return;
 
-        Material material = new Material(_shader);
-        m_ScriptablePass = new CustomShadingRenderPass(material, _settings)
+        _material = new Material(_shader);
+        m_ScriptablePass = new CustomShadingRenderPass(_material, _settings)
         {
             // Configures where the render pass should be injected.
             renderPassEvent = RenderPassEvent.AfterRenderingOpaques
@@ -174,5 +176,17 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
 
         if (renderingData.cameraData.camera.cameraType != CameraType.Game) return;
         renderer.EnqueuePass(m_ScriptablePass);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (Application.isPlaying)
+        {
+            Destroy(_material);
+        }
+        else
+        {
+            DestroyImmediate(_material);
+        }
     }
 }
