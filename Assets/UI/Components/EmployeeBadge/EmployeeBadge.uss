@@ -1,0 +1,36 @@
+#badge {
+    width: 280px;
+    height: 350px;
+}
+
+#badge Label {
+    position: absolute;
+}
+
+#hi {
+    font-size: 14px;
+    left: 68px;
+    top: 137px;
+    -unity-font-style: bold-and-italic;
+}
+
+#badge #name {
+    font-size: 18px;
+    left: 66px;
+    top: 155px;
+    -unity-font-style: bold;
+}
+
+#badge #badgenumber {
+    font-size: 14px;
+    left: 68px;
+    top: 187px;
+    -unity-font-style: bold-and-italic;
+}
+
+#badge #number {
+    font-size: 18px;
+    left: 66px;
+    top: 205px;
+    -unity-font-style: bold;
+}

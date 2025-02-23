@@ -1,4 +1,5 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="EmployeeBadge" src="project://database/Assets/UI/Components/EmployeeBadge/EmployeeBadge.uxml?fileID=9197481963319205126&amp;guid=695fb54ef16ab461aa0c6c43ef924031&amp;type=3#EmployeeBadge" />
     <Style src="project://database/Assets/UI/Views/GameplayView.uss?fileID=7433441132597879392&amp;guid=29e4abec63adc4f7291dddb6b07c4b68&amp;type=3#GameplayView" />
     <engine:VisualElement name="gameplay-view">
         <engine:VisualElement name="interact-prompt">
@@ -12,6 +13,9 @@
         </engine:VisualElement>
         <engine:VisualElement name="cursor-container">
             <engine:Label text="+" />
+        </engine:VisualElement>
+        <engine:VisualElement name="badge-container">
+            <engine:Instance template="EmployeeBadge" style="flex-grow: 1; flex-direction: row-reverse; align-items: flex-end;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
