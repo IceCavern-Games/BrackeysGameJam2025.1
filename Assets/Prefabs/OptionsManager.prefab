@@ -71,7 +71,7 @@ MonoBehaviour:
       MasterVolume: 100
       AmbienceVolume: 100
       DialogueVolume: 100
-      MusicVolume: 75
+      MusicVolume: 100
       SFXVolume: 100
     Video:
       DisplayMode: 0

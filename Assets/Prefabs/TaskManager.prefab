@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491ca49714deb464ab0490a9e906d11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _completeSfx: {fileID: 8300000, guid: 97298d8a60ff64874a134c3aceeba719, type: 3}
+  _failSfx: {fileID: 8300000, guid: 1bb7ca68958cc4c8389fc7f7ade16259, type: 3}
+  _newSfx: {fileID: 8300000, guid: c47c004ead3844cd0b919bc50d959b74, type: 3}
   _taskData:
   - {fileID: 11400000, guid: ba65dd3f7548248ebb236aec7660fe90, type: 2}
   - {fileID: 11400000, guid: 63445eec7a26a408399baf8d1e0eac22, type: 2}
