@@ -113,7 +113,7 @@ title: WaterPlantsStart
 tags:
 ---
 By the way, can you be a dear and water my plants?
-I have a special plant solution in the <color="green">Storage Closet</color>.
+I have a special plant solution in the <color="green">Storage Closet</color> around the corner.
 ===
 
 title: WaterPlantsEnd
@@ -132,7 +132,7 @@ title: FixPrinterStart
 tags:
 ---
 A new email comes in.
-<i>One of the printers in the <color="green">Basement</color> is jammed.</i>
+<i>One of the printers in <color="green">Shipping</color> is jammed.</i>
 <i>Please fix it before EoD.</i>
 <i>Sincerely, Management</i>
 ===
