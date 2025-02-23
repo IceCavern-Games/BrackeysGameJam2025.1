@@ -26,6 +26,7 @@ title: ReportToManagementStart
 tags:
 ---
 First off, come to <color="green">Management</color> to get your first task.
+Oh and please enjoy your complementary <color="green">Spray Paint</color>
 ===
 
 title: ReportToManagementComplete
@@ -100,31 +101,31 @@ tags:
 This is where I need to bring my <color="green">Laptop</color>.
 ===
 
-title: MeetDianeEnd
+title: MeetBobEnd
 tags:
 ---
+<i>You notice his nametag says <color="red">Beezelbob</color></i>
 Welcome to HR. 
 Please sign this form agreeing to waive all past, present, and future complaints against Maze Corp.
 ===
 
-title: FeedBobStart
+title: WaterPlantsStart
 tags:
 ---
-By the way, can you be a dear and feed my precious darling Bob?
-His food is in the <color="green">Storage Closet</color>.
+By the way, can you be a dear and water my plants?
+I have a special plant solution in the <color="green">Storage Closet</color>.
 ===
 
-title: FeedBobEnd
+title: WaterPlantsEnd
 tags:
 ---
-His collar says <color="red">Beezelbob</color>?
-At least he seems happy...
+The plants are pleased.
 ===
 
-title: FeedBobInteract
+title: WaterPlantsInteract
 tags:
 ---
-Bob is waiting expectantly for his food.
+The plants hunger.
 ===
 
 title: FixPrinterStart
