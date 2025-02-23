@@ -27,4 +27,7 @@ public static class PromptMappings
         {"Navigate", "Navigate"},
         {"Submit", "Select"},
     };
+    public static Dictionary<string, string> CreditsMenu = new() {
+        {"Cancel", "Back"},
+    };
 }
