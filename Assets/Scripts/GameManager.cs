@@ -58,12 +58,12 @@ public class GameManager : MonoBehaviour
         Clock.Reset();
         _taskManager.Reset();
 
-        _inputManager.Input.enabled = false;
+        _inputManager.Input.DeactivateInput();
         FadeOut(_fadeDuration, () =>
         {
             StartCoroutine(LoadScene("TheOffice", () =>
             {
-                _inputManager.Input.enabled = true;
+                //
             }));
         });
     }
