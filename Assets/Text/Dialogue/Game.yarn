@@ -1,9 +1,8 @@
 ﻿title: Intro
 tags:
 ---
-Good morning, and welcome to your first day at Maze Corp.
+Good morning, and welcome to your first day at <color="red">Maze Corp.</color>
 Our work is <b>very</b> mysterious and important.
-Make sure to take notes with your paint, our office layout is <i>slightly</i> confusing.
 <i>Nothing can go wrong...</i>
 ===
 
@@ -16,13 +15,13 @@ Congratulations on completing your first day.
 title: Fail
 tags:
 ---
-Due to poor performance your employment with Maze Corp. is terminated effective immediately.
+Due to poor performance your employment with <color="red">Maze Corp.</color> is terminated effective immediately.
 ===
 
 title: Notes
 tags:
 ---
 Some notes are sitting on the desk.
-"This place is a mess! I hope I don't get fired...
-Apparently <color="green">HR</color> and <color="green">Storage</color> are downstairs in the <color="green">Basement</color>."
+<i>This place is a mess! I hope I don't get fired...</i>
+<i>Apparently <color="green">HR</color> and <color="green">Shipping</color> are downstairs in the <color="green">Basement</color>.</i>
 ===
