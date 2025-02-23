@@ -8,6 +8,7 @@ public class GameplayUIManager : MonoBehaviour
 {
     public string CurrentPrompt => _interactPrompt.Text;
 
+    [Inject] private readonly GameManager _gameManager;
     [Inject] private readonly InputManager _inputManager;
     [Inject] private readonly TaskManager _taskManager;
 
@@ -23,6 +24,10 @@ public class GameplayUIManager : MonoBehaviour
     // Clock
     private VisualElement _clockContainer;
     private Label _clockLabel;
+
+    // Badge
+    private VisualElement _badgeContainer;
+    private VisualElement _badge;
 
     private void Awake()
     {
@@ -42,6 +47,10 @@ public class GameplayUIManager : MonoBehaviour
         _clockContainer = _document.rootVisualElement.Q<VisualElement>(name: "clock-container");
         _clockLabel = _clockContainer.Q<Label>();
 
+        _badgeContainer = _document.rootVisualElement.Q<VisualElement>(name: "badge-container");
+        _badge = _badgeContainer.Q<VisualElement>(name: "badge");
+        _badge.dataSource = _gameManager.BadgeData;
+
         if (_interactPrompt.Text == "Interact")
             HideInteractPrompt();
 
@@ -51,6 +60,11 @@ public class GameplayUIManager : MonoBehaviour
     private void OnDisable()
     {
         _inputManager.DeviceTypeChanged -= OnDeviceChanged;
+    }
+
+    private void Start()
+    {
+        _taskList.itemsSource = _taskManager.ActiveTasks;
     }
 
     #region Clock UI

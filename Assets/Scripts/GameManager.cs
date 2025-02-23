@@ -6,15 +6,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
+public class BadgeData
+{
+    public string Attempts = "0000000";
+    public string Name = "Mark S.";
+}
+
 [RequireComponent(typeof(UIDocument))]
 public class GameManager : MonoBehaviour
 {
-    [Inject] private readonly DialogueManager _dialogueManager;
-    [Inject] private readonly InputManager _inputManager;
-    [Inject] private readonly PaintTextureManager _paintTextureManager;
-    [Inject] private readonly TaskManager _taskManager;
-
-    public int Attempts { get; private set; } = 0;
+    public BadgeData BadgeData { get; private set; } = new();
     public Timer Clock { get; private set; }
     public string ClockTime => TimeUtils.ElapsedTimeToDisplay(Clock.ElapsedTime);
 
@@ -23,6 +24,14 @@ public class GameManager : MonoBehaviour
     private Action _transitionCallback;
     private UIDocument _uiDocument;
 
+    [Inject] private readonly DialogueManager _dialogueManager;
+    [Inject] private readonly InputManager _inputManager;
+    [Inject] private readonly PaintTextureManager _paintTextureManager;
+    [Inject] private readonly TaskManager _taskManager;
+
+    private int _attempts = 0;
+    private RandomNameGenerator _nameGenerator;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -30,6 +39,7 @@ public class GameManager : MonoBehaviour
         _uiDocument = GetComponent<UIDocument>();
 
         Clock = new Timer(510, false); // Will tick for 8.5 in-game hours.
+        _nameGenerator = new();
     }
 
     private void OnEnable()
@@ -48,12 +58,12 @@ public class GameManager : MonoBehaviour
         Clock.Reset();
         _taskManager.Reset();
 
-        _inputManager.Input.enabled = false;
+        _inputManager.Input.DeactivateInput();
         FadeOut(_fadeDuration, () =>
         {
             StartCoroutine(LoadScene("TheOffice", () =>
             {
-                _inputManager.Input.enabled = true;
+                //
             }));
         });
     }
@@ -83,6 +93,7 @@ public class GameManager : MonoBehaviour
         Clock.Reset();
         _taskManager.Reset();
         _paintTextureManager.Clear();
+        _attempts = 0;
 
         FadeOut(_fadeDuration, () =>
         {
@@ -103,9 +114,10 @@ public class GameManager : MonoBehaviour
 
     public void StartAttempt()
     {
+        UpdateBadge();
+
         _dialogueManager.StartConversation("Intro", () =>
         {
-            Attempts++;
             Clock.Start();
         });
     }
@@ -173,5 +185,13 @@ public class GameManager : MonoBehaviour
         {
             callback();
         });
+    }
+
+    private void UpdateBadge()
+    {
+        _attempts++;
+
+        BadgeData.Name = _nameGenerator.GetRandomName();
+        BadgeData.Attempts = _attempts.ToString("D6");
     }
 }
