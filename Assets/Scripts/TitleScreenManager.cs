@@ -10,21 +10,28 @@ public class TitleScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
     [Inject] private readonly OptionsManager _options;
     [Inject] private readonly UIManager _uiManager;
 
+    [SerializeField] private CreditsManager _creditsManager;
+
     protected override void OnEnable()
     {
         base.OnEnable();
 
-        _options.OptionsScreen.ScreenOpened += OnOptionsOpened;
-        _options.OptionsScreen.ScreenClosed += OnOptionsClosed;
+        _creditsManager.ScreenOpened += OnSubscreenOpened;
+        _creditsManager.ScreenClosed += OnSubscreenClosed;
+        _options.OptionsScreen.ScreenOpened += OnSubscreenOpened;
+        _options.OptionsScreen.ScreenClosed += OnSubscreenClosed;
     }
 
     protected override void OnDisable()
     {
+        _creditsManager.ScreenOpened -= OnSubscreenOpened;
+        _creditsManager.ScreenClosed -= OnSubscreenClosed;
+
         if (_options == null)
             return;
 
-        _options.OptionsScreen.ScreenOpened -= OnOptionsOpened;
-        _options.OptionsScreen.ScreenClosed -= OnOptionsClosed;
+        _options.OptionsScreen.ScreenOpened -= OnSubscreenOpened;
+        _options.OptionsScreen.ScreenClosed -= OnSubscreenClosed;
     }
 
     private void Start()
@@ -46,19 +53,22 @@ public class TitleScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
             case "title-options":
                 _options.OptionsScreen.Open();
                 break;
+            case "title-credits":
+                _creditsManager.Open();
+                break;
             case "title-exit":
                 _gameManager.ExitGame();
                 break;
         }
     }
 
-    private void OnOptionsOpened()
+    private void OnSubscreenOpened()
     {
         _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
         Unbind();
     }
 
-    private void OnOptionsClosed()
+    private void OnSubscreenClosed()
     {
         _uiDocument.rootVisualElement.style.display = DisplayStyle.Flex;
         Bind();
