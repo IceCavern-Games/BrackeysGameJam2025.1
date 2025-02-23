@@ -8,6 +8,7 @@ public class GameplayUIManager : MonoBehaviour
 {
     public string CurrentPrompt => _interactPrompt.Text;
 
+    [Inject] private readonly GameManager _gameManager;
     [Inject] private readonly InputManager _inputManager;
     [Inject] private readonly TaskManager _taskManager;
 
@@ -48,6 +49,7 @@ public class GameplayUIManager : MonoBehaviour
 
         _badgeContainer = _document.rootVisualElement.Q<VisualElement>(name: "badge-container");
         _badge = _badgeContainer.Q<VisualElement>(name: "badge");
+        _badge.dataSource = _gameManager.BadgeData;
 
         if (_interactPrompt.Text == "Interact")
             HideInteractPrompt();
@@ -63,12 +65,6 @@ public class GameplayUIManager : MonoBehaviour
     private void Start()
     {
         _taskList.itemsSource = _taskManager.ActiveTasks;
-    }
-
-    [Inject]
-    private void BindBadgeData(GameManager gameManager)
-    {
-        _badge.dataSource = gameManager.BadgeData;
     }
 
     #region Clock UI

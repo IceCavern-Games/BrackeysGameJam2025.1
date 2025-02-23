@@ -12,6 +12,7 @@ public class BadgeData
     public string Name = "Mark S.";
 }
 
+[RequireComponent(typeof(UIDocument))]
 public class GameManager : MonoBehaviour
 {
     public BadgeData BadgeData { get; private set; } = new();
@@ -92,6 +93,7 @@ public class GameManager : MonoBehaviour
         Clock.Reset();
         _taskManager.Reset();
         _paintTextureManager.Clear();
+        _attempts = 0;
 
         FadeOut(_fadeDuration, () =>
         {

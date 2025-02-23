@@ -83,5 +83,6 @@
 }
 
 #badge-container #badge {
-    right: -50px;
+    bottom: 35px;
+    right: -35px;
 }
