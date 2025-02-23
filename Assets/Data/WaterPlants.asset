@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaterPlants
   m_EditorClassIdentifier: 
   Name: Water Bob's Plants
-  Description: Even demons have hobbies
+  Description: Even demons have hobbies.
   Deadline: 480
   StartsAt: -1
   _startDialogueNode: WaterPlantsStart

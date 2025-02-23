@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MeetBob
   m_EditorClassIdentifier: 
   Name: Report to Bob
-  Description: Bob in HR would like to speak with you
+  Description: Bob in HR would like to speak with you.
   Deadline: 360
   StartsAt: -1
   _startDialogueNode: 
