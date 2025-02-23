@@ -19,7 +19,7 @@
                     <engine:Label text="Play Testing" display-tooltip-when-elided="true" class="credits-header" />
                     <engine:Label text="Allison Martin, Cody Steimle, Ro Panuganti" display-tooltip-when-elided="true" class="credits-contributors" style="margin-bottom: 20px;" />
                     <engine:Label text="Special Thanks" display-tooltip-when-elided="true" class="credits-header" />
-                    <engine:Label text="Allison Martin&#10;Ben Grassel&#10;Colbydude&apos;s Repose&#10;Ice Cavern" display-tooltip-when-elided="true" class="credits-contributors" />
+                    <engine:Label text="Allison Martin&#10;Ben Grassel&#10;Brackeys Game Jam&#10;Colbydude&apos;s Repose&#10;Ice Cavern" display-tooltip-when-elided="true" class="credits-contributors" />
                 </engine:VisualElement>
                 <engine:VisualElement style="width: 50%;">
                     <engine:Label text="Sourced Assets" display-tooltip-when-elided="true" class="credits-header" />
