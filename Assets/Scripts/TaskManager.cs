@@ -48,6 +48,8 @@ public class TaskManager : MonoBehaviour
         task.Failed -= OnTaskFailed;
         task.Completed -= OnTaskCompleted;
 
+        task.Status = GameTask.TaskStatus.Failed;
+
         ActiveTasks.Remove(task);
         _audioManager.PlaySound(_failSfx);
         _gameManager.Fail();
@@ -87,6 +89,8 @@ public class TaskManager : MonoBehaviour
 
     private void TaskComplete(GameTask task)
     {
+        task.Status = GameTask.TaskStatus.Completed;
+
         if (task.FollowUpTasks.Count != 0)
             _audioManager.PlaySound(_newSfx);
 
@@ -114,6 +118,8 @@ public class TaskManager : MonoBehaviour
 
         if (!ActiveTasks.Contains(task))
             ActiveTasks.Add(task);
+
+        task.Status = GameTask.TaskStatus.InProgress;
     }
 
     private void SubscribeToTaskEvents()

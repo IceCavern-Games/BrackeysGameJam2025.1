@@ -49,7 +49,6 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
     /// </summary>
     public void Pause()
     {
-        Debug.Log("PAUSE CALLED");
         Time.timeScale = 0f;
         _input.Input.DeactivateInput();
         _input.Prompts.ShowPrompts(PromptMappings.PauseMenu);
@@ -119,7 +118,6 @@ public class PauseScreenManager : NavigatableStaticUI<VisualElement, VisualEleme
     /// </summary>
     private void Open()
     {
-        Debug.Log("PAUSE SCREEN OPEN CALLED");
         _uiDocument.rootVisualElement.style.display = DisplayStyle.Flex;
 
         // @NOTE: Since the pause button and navigation cancel buttons can be the same,
