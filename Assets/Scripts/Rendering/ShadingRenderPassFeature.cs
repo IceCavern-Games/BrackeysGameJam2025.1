@@ -16,9 +16,6 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         [Range(0, 1)] public float DepthThreshold = 0.0f;
         public float DepthDistanceModulation = 1.0f;
         public float DepthModulationPower = 1.0f;
-        public float DitherSize = 1.0f;
-
-        public Texture2D DitherTexture;
     }
 
     public ShadingSettings _settings;
@@ -34,9 +31,6 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         private static readonly int _DepthThresholdId = Shader.PropertyToID("_DepthThreshold");
         private static readonly int _DepthDistanceModulationId = Shader.PropertyToID("_DepthDistanceModulation");
         private static readonly int _DepthModulationPowerId = Shader.PropertyToID("_DepthModulationPower");
-        private static readonly int _DitherSizeId = Shader.PropertyToID("_DitherSize");
-        private static readonly int _DitherTextureId = Shader.PropertyToID("_DitherTexture");
-        private static readonly int _DitherTextureSizeId = Shader.PropertyToID("_DitherTextureSize");
 
         // Pass Resources
         private Material _material;
@@ -55,8 +49,6 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
         private class PassData
         {
             internal TextureHandle _cameraColor;
-            internal TextureHandle _ditherTexture;
-            internal Vector4 _ditherTextureSize;
         }
 
         // This static method is passed as the RenderFunc delegate to the RenderGraph render pass.
@@ -72,10 +64,6 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
             _material.SetFloat(_DepthThresholdId, _settings.DepthThreshold);
             _material.SetFloat(_DepthDistanceModulationId, _settings.DepthDistanceModulation);
             _material.SetFloat(_DepthModulationPowerId, _settings.DepthModulationPower);
-            _material.SetFloat(_DitherSizeId, _settings.DitherSize);
-
-            _material.SetTexture(_DitherTextureId, data._ditherTexture);
-            _material.SetVector(_DitherTextureSizeId, data._ditherTextureSize);
 
             Blitter.BlitTexture(context.cmd, data._cameraColor, new Vector4(1, 1, 0, 0), _material, 0);
         }
@@ -88,7 +76,6 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
 
             // Make use of frameData to access resources and camera data through the dedicated containers.
             UniversalResourceData resourceData = frameData.Get<UniversalResourceData>();
-            UniversalCameraData cameraData = frameData.Get<UniversalCameraData>();
             TextureHandle dst =
                 UniversalRenderer.CreateRenderGraphTexture(renderGraph, _rtDescriptor, "_FinalColor", false);
             TextureHandle cameraColor = resourceData.activeColorTexture;
@@ -100,21 +87,8 @@ public class ShadingRenderPassFeature : ScriptableRendererFeature
                 // setup the passData with the required properties needed at pass execution time.
                 passData._cameraColor = cameraColor;
                 builder.UseTexture(passData._cameraColor);
-
-                // Setup pass inputs and outputs through the builder interface.
-                // Eg:
-                // builder.UseTexture(sourceTexture);
-                // TextureHandle destination = UniversalRenderer.CreateRenderGraphTexture(renderGraph, cameraData.cameraTargetDescriptor, "Destination Texture", false);
-                if (_settings.DitherTexture != null)
-                {
-                    RTHandle renderTexture = RTHandles.Alloc(_settings.DitherTexture);
-                    TextureHandle ditherTexture = renderGraph.ImportTexture(renderTexture);
-                    builder.UseTexture(ditherTexture);
-                    passData._ditherTexture = ditherTexture;
-                    passData._ditherTextureSize = new Vector4(_settings.DitherTexture.width, _settings.DitherTexture.width, 0.0f, 0.0f);
-                }
-
-                // This sets the render target of the pass to the active color texture. Change it to your own render target as needed.
+                
+                // Set render target to dst texture
                 builder.SetRenderAttachment(dst, 0);
 
                 // Assigns the ExecutePass function to the render pass delegate. This will be called by the render graph when executing the pass.

@@ -16,8 +16,7 @@
             Name "UVRemapPass"
             
             HLSLPROGRAM
-
-            // #include "Packages/com.unity.render-pipelines.universal/Shaders/SimpleLitForwardPass.hlsl"
+            
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             
             #pragma vertex Vert

@@ -58,11 +58,6 @@
             float _DepthThreshold;
             float _DepthDistanceModulation;
             float _DepthModulationPower;
-            float _DitherSize;
-
-            sampler2D _DitherTexture;
-            float4 _DitherTextureSize;
-
 
             struct VaryingsWithView
             {
@@ -121,16 +116,6 @@
                 return modulationFactor;
             }
 
-            float4 TriplanarMapping(sampler2D source, float3 normal, float3 position, float tile, float blend)
-            {
-                float3 uv = position * tile;
-                float3 blendResult = pow(abs(normal), blend);
-                float4 xPlane = tex2D(source, uv.zy);
-                float4 yPlane = tex2D(source, uv.xz);
-                float4 zPlane = tex2D(source, uv.xy);
-                return xPlane * blendResult.x + yPlane * blendResult.y + zPlane * blendResult.z;
-            }
-
             VaryingsWithView VertWithView(Attributes input)
             {
                 VaryingsWithView output;
@@ -164,26 +149,19 @@
                 edgeColor.g = CalculateEdgeDepth(input.texcoord, offsetDepth, depth) > _DepthThreshold ? 1 : 0;
                 edgeColor.b = edgeColor.r > 0 || edgeColor.g > 0 ? 1 : 0;
 
+                // Posterization
                 float4 camColor = SAMPLE_TEXTURE2D(_BlitTexture, sampler_LinearClamp, input.texcoord);
                 float luma = dot(camColor.rgb, float3(0.2126729, 0.7151522, 0.0721750));
                 luma = sqrt(luma) * 10;
                 luma = floor(luma);
                 luma /= 6;
-                // return float4(luma.xxx, 1);
-                // dither cam color
-                float3 worldPos = ComputeWorldSpacePosition(input.texcoord, SampleSceneDepth(input.texcoord), UNITY_MATRIX_I_VP);
-                float3 ditherTex = TriplanarMapping(_DitherTexture, SampleSceneNormals(input.texcoord.xy), worldPos, _DitherSize, 1);
-                //float3 ditherTex = tex2D(_DitherTexture, worldPos.xy * _DitherSize /* * _ScreenParams.xy*/ / _DitherTextureSize.xy);
-                float4 dithered = float4(luma.xxx * ditherTex, 1);
 
                 float edge = step(_WhiteCutoff, edgeColor.b);
-                float ditheredFinal = step(_WhiteCutoff, dithered / (1 - luma));
 
                 if (edge > 0)
                     return float4(0, 0, 0, 1);
 
                 return float4(luma.xxx * _Color, 1);
-                return float4(ditheredFinal.xxx * luma, 1);
             }
 
             ENDHLSL
